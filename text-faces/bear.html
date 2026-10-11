@@ -98,14 +98,26 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Bashful Bear",
-          "description": "Bashful Bear text emoticon: ʕ´•ᴥ•`ʔ"
+          "name": "Bashful Shy Bear",
+          "description": "Bashful Shy Bear text emoticon: ʕ´•ᴥ•`ʔ"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Hiding Bear",
-          "description": "Hiding Bear text emoticon: ʕノ)ᴥ(ヾʔ"
+          "name": "Hiding Bashful Bear",
+          "description": "Hiding Bashful Bear text emoticon: ʕノ)ᴥ(ヾʔ"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Waving Hello Bear",
+          "description": "Waving Hello Bear text emoticon: ʕ•́ᴥ•̀ʔっ"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Hugging Teddy Bear",
+          "description": "Hugging Teddy Bear text emoticon: ʕっ•ᴥ•ʔっ"
         }
       ]
     }
@@ -135,7 +147,6 @@
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
         <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
           <option value="../index.html" selected>🇺🇸 English</option>
           <option value="../es/index.html" >🇪🇸 Español</option>
@@ -217,8 +228,8 @@
   <!-- Main Grid Section -->
   <main class="container">
     <div class="grid-controls">
-      <div class="grid-count">Showing <strong>3</strong> items in this category</div>
-      <div style="font-size: 0.85rem; color: var(--cyan);">💡 Click any card to copy instantly</div>
+      <div class="grid-count">Showing <strong>5</strong> items in this category</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
     </div>
 
     <!-- Static Pre-rendered Grid (SSR for Instant 100/100 CWV & SEO) -->
@@ -253,12 +264,12 @@
         <span class="face-glyph">ʕ´•ᴥ•`ʔ</span>
       </div>
       <div class="face-meta">
-        <span class="face-tag">Bashful Bear</span>
+        <span class="face-tag">Bashful Shy Bear</span>
         <div class="face-actions" onclick="event.stopPropagation()">
           <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ʕ´•ᴥ•\`ʔ`)" title="Add to favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕ´•ᴥ•\`ʔ`, `Bashful Bear`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕ´•ᴥ•\`ʔ`, `Bashful Shy Bear`)" title="Share this text face">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ʕ´•ᴥ•\`ʔ`, this)" title="Copy text face">
@@ -276,15 +287,61 @@
         <span class="face-glyph">ʕノ)ᴥ(ヾʔ</span>
       </div>
       <div class="face-meta">
-        <span class="face-tag">Hiding Bear</span>
+        <span class="face-tag">Hiding Bashful Bear</span>
         <div class="face-actions" onclick="event.stopPropagation()">
           <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ʕノ)ᴥ(ヾʔ`)" title="Add to favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕノ)ᴥ(ヾʔ`, `Hiding Bear`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕノ)ᴥ(ヾʔ`, `Hiding Bashful Bear`)" title="Share this text face">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ʕノ)ᴥ(ヾʔ`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`ʕ•́ᴥ•̀ʔっ`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">ʕ•́ᴥ•̀ʔっ</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Waving Hello Bear</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ʕ•́ᴥ•̀ʔっ`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕ•́ᴥ•̀ʔっ`, `Waving Hello Bear`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ʕ•́ᴥ•̀ʔっ`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`ʕっ•ᴥ•ʔっ`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">ʕっ•ᴥ•ʔっ</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Hugging Teddy Bear</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ʕっ•ᴥ•ʔっ`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ʕっ•ᴥ•ʔっ`, `Hugging Teddy Bear`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ʕっ•ᴥ•ʔっ`, this)" title="Copy text face">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -398,8 +455,8 @@
             <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
             <span>Lenny<span class="highlight">Pro</span></span>
           </div>
-          <p style="color: var(--text-dim); font-size: 0.875rem; max-width: 300px;">
-            The ultimate 100/100 PageSpeed text face repository engineered for lightning-fast 1-click copy and paste.
+          <p style="color: var(--text-muted); font-size: 0.875rem; max-width: 320px; line-height: 1.6;">
+            Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, kaomoji, aesthetic emoticons, and text symbols in 1-click. Free Lenny Face generator with cute, angry, sad, and custom styles.
           </p>
         </div>
 

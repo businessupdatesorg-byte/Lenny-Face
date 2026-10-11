@@ -100,6 +100,42 @@
           "position": 2,
           "name": "Starlight Frame Border",
           "description": "Starlight Frame Border text emoticon: ┌─── ･ ｡ﾟ☆: *.☽ .* :☆ﾟ. ───┐"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Dotted Text Bubble Frame",
+          "description": "Dotted Text Bubble Frame text emoticon: ╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮\n   [ your text here ]\n╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Red String Japanese Frame",
+          "description": "Red String Japanese Frame text emoticon: ┏━━━━°⌜ 赤い糸 ⌟°━━━━┓\n  [ japanese red thread frame ]\n┗━━━━°⌜ 赤い糸 ⌟°━━━━┛"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Ornate Gothic Tomb Frame",
+          "description": "Ornate Gothic Tomb Frame text emoticon: ╔═━───━▒ ۞ ▒━───━═╗\n  [ gothic ornate frame ]\n╚═━───━▒ ۞ ▒━───━═╝"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Star Box Clean Frame",
+          "description": "Star Box Clean Frame text emoticon: ┌─── ⋆⋅☆⋅⋆ ───┐\n  [ star box ]\n└─── ⋆⋅☆⋅⋆ ───┘"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Royal Ornate Crown Banner",
+          "description": "Royal Ornate Crown Banner text emoticon: ꧁༺ [your text] ༻꧂"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Botanical Sakura Border Frame",
+          "description": "Botanical Sakura Border Frame text emoticon: ┏━•❃°•°❀°•°❃•━┓\n  [ botanical card ]\n┗━•❃°•°❀°•°❃•━┛"
         }
       ]
     }
@@ -129,7 +165,6 @@
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
         <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
           <option value="../index.html" selected>🇺🇸 English</option>
           <option value="../es/index.html" >🇪🇸 Español</option>
@@ -211,8 +246,8 @@
   <!-- Main Grid Section -->
   <main class="container">
     <div class="grid-controls">
-      <div class="grid-count">Showing <strong>2</strong> items in this category</div>
-      <div style="font-size: 0.85rem; color: var(--cyan);">💡 Click any card to copy instantly</div>
+      <div class="grid-count">Showing <strong>8</strong> items in this category</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
     </div>
 
     <!-- Static Pre-rendered Grid (SSR for Instant 100/100 CWV & SEO) -->
@@ -256,6 +291,184 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`┌─── ･ ｡ﾟ☆: *.☽ .* :☆ﾟ. ───┐`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮
+   [ your text here ]
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮<br>   [ your text here ]<br>╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Dotted Text Bubble Frame</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮
+   [ your text here ]
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮
+   [ your text here ]
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯`, `Dotted Text Bubble Frame`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`╭┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╮
+   [ your text here ]
+╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈╯`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`┏━━━━°⌜ 赤い糸 ⌟°━━━━┓
+  [ japanese red thread frame ]
+┗━━━━°⌜ 赤い糸 ⌟°━━━━┛`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">┏━━━━°⌜ 赤い糸 ⌟°━━━━┓<br>  [ japanese red thread frame ]<br>┗━━━━°⌜ 赤い糸 ⌟°━━━━┛</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Red String Japanese Frame</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`┏━━━━°⌜ 赤い糸 ⌟°━━━━┓
+  [ japanese red thread frame ]
+┗━━━━°⌜ 赤い糸 ⌟°━━━━┛`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`┏━━━━°⌜ 赤い糸 ⌟°━━━━┓
+  [ japanese red thread frame ]
+┗━━━━°⌜ 赤い糸 ⌟°━━━━┛`, `Red String Japanese Frame`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`┏━━━━°⌜ 赤い糸 ⌟°━━━━┓
+  [ japanese red thread frame ]
+┗━━━━°⌜ 赤い糸 ⌟°━━━━┛`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`╔═━───━▒ ۞ ▒━───━═╗
+  [ gothic ornate frame ]
+╚═━───━▒ ۞ ▒━───━═╝`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">╔═━───━▒ ۞ ▒━───━═╗<br>  [ gothic ornate frame ]<br>╚═━───━▒ ۞ ▒━───━═╝</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Ornate Gothic Tomb Frame</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`╔═━───━▒ ۞ ▒━───━═╗
+  [ gothic ornate frame ]
+╚═━───━▒ ۞ ▒━───━═╝`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`╔═━───━▒ ۞ ▒━───━═╗
+  [ gothic ornate frame ]
+╚═━───━▒ ۞ ▒━───━═╝`, `Ornate Gothic Tomb Frame`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`╔═━───━▒ ۞ ▒━───━═╗
+  [ gothic ornate frame ]
+╚═━───━▒ ۞ ▒━───━═╝`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`┌─── ⋆⋅☆⋅⋆ ───┐
+  [ star box ]
+└─── ⋆⋅☆⋅⋆ ───┘`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">┌─── ⋆⋅☆⋅⋆ ───┐<br>  [ star box ]<br>└─── ⋆⋅☆⋅⋆ ───┘</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Star Box Clean Frame</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`┌─── ⋆⋅☆⋅⋆ ───┐
+  [ star box ]
+└─── ⋆⋅☆⋅⋆ ───┘`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`┌─── ⋆⋅☆⋅⋆ ───┐
+  [ star box ]
+└─── ⋆⋅☆⋅⋆ ───┘`, `Star Box Clean Frame`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`┌─── ⋆⋅☆⋅⋆ ───┐
+  [ star box ]
+└─── ⋆⋅☆⋅⋆ ───┘`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`꧁༺ [your text] ༻꧂`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">꧁༺ [your text] ༻꧂</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Royal Ornate Crown Banner</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`꧁༺ [your text] ༻꧂`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`꧁༺ [your text] ༻꧂`, `Royal Ornate Crown Banner`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`꧁༺ [your text] ༻꧂`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`┏━•❃°•°❀°•°❃•━┓
+  [ botanical card ]
+┗━•❃°•°❀°•°❃•━┛`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">┏━•❃°•°❀°•°❃•━┓<br>  [ botanical card ]<br>┗━•❃°•°❀°•°❃•━┛</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Botanical Sakura Border Frame</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`┏━•❃°•°❀°•°❃•━┓
+  [ botanical card ]
+┗━•❃°•°❀°•°❃•━┛`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`┏━•❃°•°❀°•°❃•━┓
+  [ botanical card ]
+┗━•❃°•°❀°•°❃•━┛`, `Botanical Sakura Border Frame`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`┏━•❃°•°❀°•°❃•━┓
+  [ botanical card ]
+┗━•❃°•°❀°•°❃•━┛`, this)" title="Copy text face">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -369,8 +582,8 @@
             <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
             <span>Lenny<span class="highlight">Pro</span></span>
           </div>
-          <p style="color: var(--text-dim); font-size: 0.875rem; max-width: 300px;">
-            The ultimate 100/100 PageSpeed text face repository engineered for lightning-fast 1-click copy and paste.
+          <p style="color: var(--text-muted); font-size: 0.875rem; max-width: 320px; line-height: 1.6;">
+            Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, kaomoji, aesthetic emoticons, and text symbols in 1-click. Free Lenny Face generator with cute, angry, sad, and custom styles.
           </p>
         </div>
 

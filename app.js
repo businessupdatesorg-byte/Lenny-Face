@@ -1,30 +1,11 @@
 /**
  * Lenny Face Pro - Client Application Engine
- * Features: One-Click Copy, Live Generator, Favorites, Search & Theme Toggle
+ * Features: One-Click Copy, Live Generator, Favorites, Search
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme Management
-  const themeToggleBtn = document.getElementById('theme-toggle');
-  const savedTheme = localStorage.getItem('lenny_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('lenny_theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
-  }
-
-  function updateThemeIcon(theme) {
-    if (!themeToggleBtn) return;
-    themeToggleBtn.innerHTML = theme === 'dark' ? '☀️' : '🌙';
-    themeToggleBtn.setAttribute('title', `Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`);
-  }
+  // Always clean permanent light mode
+  document.documentElement.setAttribute('data-theme', 'light');
 
   // Favorites Management
   let favorites = JSON.parse(localStorage.getItem('lenny_favs')) || [];

@@ -92,14 +92,32 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Crying Pout",
-          "description": "Crying Pout text emoticon: (╥﹏╥)"
+          "name": "Crying Pout Face",
+          "description": "Crying Pout Face text emoticon: (╥﹏╥)"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Weeping Loudly",
-          "description": "Weeping Loudly text emoticon: (இдஇ; )"
+          "name": "Weeping Loudly Out Loud",
+          "description": "Weeping Loudly Out Loud text emoticon: (இдஇ; )"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Overwhelmed Tears",
+          "description": "Overwhelmed Tears text emoticon: (ಥ﹏ಥ)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Streaming Waterfall Tears",
+          "description": "Streaming Waterfall Tears text emoticon: (个_个)"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Anime Glistening Teary Eyes",
+          "description": "Anime Glistening Teary Eyes text emoticon: ( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )"
         }
       ]
     }
@@ -129,7 +147,6 @@
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
         <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
           <option value="../index.html" selected>🇺🇸 English</option>
           <option value="../es/index.html" >🇪🇸 Español</option>
@@ -211,8 +228,8 @@
   <!-- Main Grid Section -->
   <main class="container">
     <div class="grid-controls">
-      <div class="grid-count">Showing <strong>2</strong> items in this category</div>
-      <div style="font-size: 0.85rem; color: var(--cyan);">💡 Click any card to copy instantly</div>
+      <div class="grid-count">Showing <strong>5</strong> items in this category</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
     </div>
 
     <!-- Static Pre-rendered Grid (SSR for Instant 100/100 CWV & SEO) -->
@@ -224,12 +241,12 @@
         <span class="face-glyph">(╥﹏╥)</span>
       </div>
       <div class="face-meta">
-        <span class="face-tag">Crying Pout</span>
+        <span class="face-tag">Crying Pout Face</span>
         <div class="face-actions" onclick="event.stopPropagation()">
           <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(╥﹏╥)`)" title="Add to favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(╥﹏╥)`, `Crying Pout`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(╥﹏╥)`, `Crying Pout Face`)" title="Share this text face">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(╥﹏╥)`, this)" title="Copy text face">
@@ -247,15 +264,84 @@
         <span class="face-glyph">(இдஇ; )</span>
       </div>
       <div class="face-meta">
-        <span class="face-tag">Weeping Loudly</span>
+        <span class="face-tag">Weeping Loudly Out Loud</span>
         <div class="face-actions" onclick="event.stopPropagation()">
           <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(இдஇ; )`)" title="Add to favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(இдஇ; )`, `Weeping Loudly`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(இдஇ; )`, `Weeping Loudly Out Loud`)" title="Share this text face">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(இдஇ; )`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`(ಥ﹏ಥ)`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">(ಥ﹏ಥ)</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Overwhelmed Tears</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(ಥ﹏ಥ)`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(ಥ﹏ಥ)`, `Overwhelmed Tears`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(ಥ﹏ಥ)`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`(个_个)`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">(个_个)</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Streaming Waterfall Tears</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(个_个)`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(个_个)`, `Streaming Waterfall Tears`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(个_个)`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Anime Glistening Teary Eyes</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )`, `Anime Glistening Teary Eyes`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( ᵒ̴̶̷᷄ д ᵒ̴̶̷᷅ )`, this)" title="Copy text face">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -369,8 +455,8 @@
             <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
             <span>Lenny<span class="highlight">Pro</span></span>
           </div>
-          <p style="color: var(--text-dim); font-size: 0.875rem; max-width: 300px;">
-            The ultimate 100/100 PageSpeed text face repository engineered for lightning-fast 1-click copy and paste.
+          <p style="color: var(--text-muted); font-size: 0.875rem; max-width: 320px; line-height: 1.6;">
+            Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, kaomoji, aesthetic emoticons, and text symbols in 1-click. Free Lenny Face generator with cute, angry, sad, and custom styles.
           </p>
         </div>
 

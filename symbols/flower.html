@@ -106,6 +106,48 @@
           "position": 3,
           "name": "Eight Petaled Flower",
           "description": "Eight Petaled Flower text emoticon: ❁"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Heavy Teardrop Florette",
+          "description": "Heavy Teardrop Florette text emoticon: ❃"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Indian Heritage Lotus",
+          "description": "Indian Heritage Lotus text emoticon: 𑁍"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Delicate Japanese Branch",
+          "description": "Delicate Japanese Branch text emoticon: 𖥸"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Slender Stem Rose",
+          "description": "Slender Stem Rose text emoticon: ⚘"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Pink Aesthetic Blooming Tulip",
+          "description": "Pink Aesthetic Blooming Tulip text emoticon: 𓍢ִ໋🌷"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Tiny Green Earth Sprout",
+          "description": "Tiny Green Earth Sprout text emoticon: 🌱"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Lucky Four Leaf Clover",
+          "description": "Lucky Four Leaf Clover text emoticon: 🍀"
         }
       ]
     }
@@ -135,7 +177,6 @@
       </nav>
 
       <div class="nav-actions">
-        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
         <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
           <option value="../index.html" selected>🇺🇸 English</option>
           <option value="../es/index.html" >🇪🇸 Español</option>
@@ -217,8 +258,8 @@
   <!-- Main Grid Section -->
   <main class="container">
     <div class="grid-controls">
-      <div class="grid-count">Showing <strong>3</strong> items in this category</div>
-      <div style="font-size: 0.85rem; color: var(--cyan);">💡 Click any card to copy instantly</div>
+      <div class="grid-count">Showing <strong>10</strong> items in this category</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
     </div>
 
     <!-- Static Pre-rendered Grid (SSR for Instant 100/100 CWV & SEO) -->
@@ -285,6 +326,167 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
           <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`❁`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`❃`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">❃</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Heavy Teardrop Florette</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`❃`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`❃`, `Heavy Teardrop Florette`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`❃`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`𑁍`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">𑁍</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Indian Heritage Lotus</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`𑁍`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`𑁍`, `Indian Heritage Lotus`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`𑁍`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`𖥸`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">𖥸</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Delicate Japanese Branch</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`𖥸`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`𖥸`, `Delicate Japanese Branch`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`𖥸`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`⚘`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">⚘</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Slender Stem Rose</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`⚘`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`⚘`, `Slender Stem Rose`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`⚘`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`𓍢ִ໋🌷`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">𓍢ִ໋🌷</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Pink Aesthetic Blooming Tulip</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`𓍢ִ໋🌷`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`𓍢ִ໋🌷`, `Pink Aesthetic Blooming Tulip`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`𓍢ִ໋🌷`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`🌱`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">🌱</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Tiny Green Earth Sprout</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`🌱`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`🌱`, `Tiny Green Earth Sprout`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`🌱`, this)" title="Copy text face">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="face-card" onclick="copyGlyph(`🍀`, this.querySelector('.face-copy-btn'))">
+      
+      <div class="face-glyph-box">
+        <span class="face-glyph">🍀</span>
+      </div>
+      <div class="face-meta">
+        <span class="face-tag">Lucky Four Leaf Clover</span>
+        <div class="face-actions" onclick="event.stopPropagation()">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`🍀`)" title="Add to favorites">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`🍀`, `Lucky Four Leaf Clover`)" title="Share this text face">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`🍀`, this)" title="Copy text face">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -398,8 +600,8 @@
             <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
             <span>Lenny<span class="highlight">Pro</span></span>
           </div>
-          <p style="color: var(--text-dim); font-size: 0.875rem; max-width: 300px;">
-            The ultimate 100/100 PageSpeed text face repository engineered for lightning-fast 1-click copy and paste.
+          <p style="color: var(--text-muted); font-size: 0.875rem; max-width: 320px; line-height: 1.6;">
+            Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, kaomoji, aesthetic emoticons, and text symbols in 1-click. Free Lenny Face generator with cute, angry, sad, and custom styles.
           </p>
         </div>
 
