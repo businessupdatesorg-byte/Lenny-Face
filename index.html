@@ -109,7 +109,6 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#browse" class="active">Browse Faces</a></li>
-          <li><a href="#generator">Face Generator</a></li>
           <li><a href="#guide">Unicode Guide</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
@@ -191,17 +190,14 @@
     </div>
   </section>
 
-  <!-- Main Browse Section with 2-Column Grid & Sticky Right Generator Sidebar -->
+  <!-- Main Glyph Cards Grid Section -->
   <main class="container">
-    <div class="browse-layout">
-      <!-- Main Column: Glyph Cards Grid -->
-      <div class="browse-main-col">
-        <div class="grid-controls">
-          <div class="grid-count">Showing top text faces &amp; kaomojis</div>
-          <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
-        </div>
+    <div class="grid-controls">
+      <div class="grid-count">Showing top text faces &amp; kaomojis</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
+    </div>
 
-        <!-- START_SSR_CARDS -->
+    <!-- START_SSR_CARDS -->
         <div class="face-grid" id="face-grid">
 
     <article class="face-card" onclick="copyGlyph(`( ͡° ͜ʖ ͡°)`, this.querySelector('.face-copy-btn'))">
@@ -1677,81 +1673,6 @@
   
         </div>
         <!-- END_SSR_CARDS -->
-      </div>
-
-      <!-- Right Column: Sticky Vertical Custom Lenny Generator -->
-      <aside class="browse-sidebar-col">
-        <div class="generator-vertical-card" id="generator">
-          <div class="hero-badge" style="margin-bottom: 0.5rem;">🛠️ Custom Maker</div>
-          <h2 class="gen-title">Lenny Generator</h2>
-          <p class="gen-sub">Mix &amp; match arms, eyes, and mouth to create your unique text face.</p>
-
-          <div class="gen-preview-box">
-            <div class="gen-preview-glyph" id="gen-preview">( ͡° ͜ʖ ͡°)</div>
-            <div class="gen-actions">
-              <button type="button" class="btn-green-copy" id="btn-copy-gen">📋 Copy</button>
-              <button type="button" class="btn-secondary" id="btn-random-gen">🎲 Random</button>
-            </div>
-          </div>
-
-          <div class="gen-vertical-controls">
-            <div class="gen-control-group">
-              <label for="sel-arms-left">Left Arm</label>
-              <select id="sel-arms-left">
-                <option value="">None</option>
-                <option value="ᕦ">Flex (ᕦ)</option>
-                <option value="ง">Fist (ง)</option>
-                <option value="t">Middle Finger (t)</option>
-                <option value="つ">Hug (つ)</option>
-                <option value="¯\_">Shrug (¯\_)</option>
-                <option value="(ノಠ益ಠ)ノ彡">Table Flip (ノಠ益ಠ)ノ彡</option>
-              </select>
-            </div>
-
-            <div class="gen-control-group">
-              <label for="sel-eyes">Eyes</label>
-              <select id="sel-eyes">
-                <option value="°" selected>Classic (°)</option>
-                <option value="•">Cute Dot (•)</option>
-                <option value="ಠ">Disapproval (ಠ)</option>
-                <option value="♥">Hearts (♥)</option>
-                <option value="✧">Stars (✧)</option>
-                <option value="ʘ">Wide Eyes (ʘ)</option>
-                <option value="~">Winking (~)</option>
-                <option value="¬">Skeptical (¬)</option>
-              </select>
-            </div>
-
-            <div class="gen-control-group">
-              <label for="sel-mouth">Mouth / Nose</label>
-              <select id="sel-mouth">
-                <option value="͜ʖ" selected>Smirk (͜ʖ)</option>
-                <option value="ω">Cute Cat (ω)</option>
-                <option value="ʖ̯">Sad (ʖ̯)</option>
-                <option value="∀">Happy (∀)</option>
-                <option value="益">Rage (益)</option>
-                <option value="‿">Smile (‿)</option>
-                <option value="ヘ">Pout (ヘ)</option>
-                <option value="3">Kiss (3)</option>
-              </select>
-            </div>
-
-            <div class="gen-control-group">
-              <label for="sel-arms-right">Right Arm</label>
-              <select id="sel-arms-right">
-                <option value="">None</option>
-                <option value="ᕤ">Flex (ᕤ)</option>
-                <option value="ง">Fist (ง)</option>
-                <option value="t">Middle Finger (t)</option>
-                <option value="つ">Hug (つ)</option>
-                <option value="_/¯">Shrug (_/¯)</option>
-                <option value="/">Wave (/)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </div>
   </main>
 
   <!-- Editorial Guide & Semantic SEO Content -->
@@ -2042,7 +1963,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="faq-answer">
-            <p>Use our interactive Lenny Face Generator at the top of this page! Select different combinations of arms, eyes, and mouths, preview your creation in real-time, or hit the "Randomize" button to generate unique text faces with one click.</p>
+            <p>Simply choose from our huge collection of over 430+ curated Lenny faces and kaomojis! Click the green Copy button on any card to copy instantly to your clipboard, or combine Unicode eyes, smirks, and arms to craft custom expressions.</p>
           </div>
         </div>
       </div>

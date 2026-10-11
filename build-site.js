@@ -1167,8 +1167,8 @@ function buildHomePage() {
   } else {
     // Fallback: replace face-grid
     indexHtml = indexHtml.replace(
-      /<div class="face-grid" id="face-grid">[\s\S]*?<\/div>\s*<\/div>\s*<aside class="browse-sidebar-col">/,
-      `<div class="face-grid" id="face-grid">\n${cardsHtml}\n        </div>\n      </div>\n      <aside class="browse-sidebar-col">`
+      /<div class="face-grid" id="face-grid">[\s\S]*?<\/div>/,
+      `<div class="face-grid" id="face-grid">\n${cardsHtml}\n        </div>`
     );
   }
 

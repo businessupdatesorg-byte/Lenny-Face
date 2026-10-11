@@ -333,54 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Interactive Custom Lenny Face Generator / Maker
-  const genPreview = document.getElementById('gen-preview');
-  const selArmsLeft = document.getElementById('sel-arms-left');
-  const selEyes = document.getElementById('sel-eyes');
-  const selMouth = document.getElementById('sel-mouth');
-  const selArmsRight = document.getElementById('sel-arms-right');
-  const btnCopyGen = document.getElementById('btn-copy-gen');
-  const btnRandomGen = document.getElementById('btn-random-gen');
-
-  function updateGeneratorPreview() {
-    if (!genPreview || !selArmsLeft || !selEyes || !selMouth || !selArmsRight) return;
-    const aL = selArmsLeft.value;
-    const eye = selEyes.value;
-    const mouth = selMouth.value;
-    const aR = selArmsRight.value;
-
-    const fullGlyph = `${aL}( ${eye} ${mouth} ${eye} )${aR}`;
-    genPreview.innerText = fullGlyph;
-  }
-
-  [selArmsLeft, selEyes, selMouth, selArmsRight].forEach(el => {
-    if (el) el.addEventListener('change', updateGeneratorPreview);
-  });
-
-  if (btnCopyGen) {
-    btnCopyGen.addEventListener('click', () => {
-      if (genPreview) copyGlyph(genPreview.innerText);
-    });
-  }
-
-  if (btnRandomGen) {
-    btnRandomGen.addEventListener('click', () => {
-      if (!selArmsLeft || !selEyes || !selMouth || !selArmsRight) return;
-      randomizeSelect(selArmsLeft);
-      randomizeSelect(selEyes);
-      randomizeSelect(selMouth);
-      randomizeSelect(selArmsRight);
-      updateGeneratorPreview();
-      showToast('🎲 Generated random Lenny face!');
-    });
-  }
-
-  function randomizeSelect(selectEl) {
-    const opts = selectEl.options;
-    const randomIdx = Math.floor(Math.random() * opts.length);
-    selectEl.selectedIndex = randomIdx;
-  }
-
   // FAQ Accordion
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
@@ -395,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initial Render: only render dynamically if grid is empty or on home page
-  updateGeneratorPreview();
   const initialHub = faceGrid ? faceGrid.getAttribute('data-initial-hub') : null;
   const initialSub = faceGrid ? faceGrid.getAttribute('data-initial-sub') : null;
   if (initialHub) activeHub = initialHub;
