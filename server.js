@@ -66,7 +66,8 @@ const server = http.createServer((req, res) => {
   }
 
   // Check clean URL (.html extension)
-  const htmlPath = filePath + '.html';
+  const trimmed = filePath.replace(/[/\\]+$/, '');
+  const htmlPath = trimmed + '.html';
   if (fs.existsSync(htmlPath)) {
     return serveFile(res, htmlPath);
   }

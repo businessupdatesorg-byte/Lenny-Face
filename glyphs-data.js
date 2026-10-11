@@ -1,6 +1,5 @@
 /**
- * Master Glyphs Dataset (435+ Items)
- * Comprehensive collection across Lenny Faces, Text Faces, Kaomoji, Emoticons, Symbols & Aesthetic
+ * Master Glyphs Dataset (485 Items)
  */
 
 module.exports = [
@@ -5142,6 +5141,665 @@ module.exports = [
       "discord",
       "quote",
       "card"
+    ]
+  },
+  {
+    "glyph": "( ͠° ͟ʖ ͠° ｡ﾟ)",
+    "name": "Crying Tear Droplet Lenny",
+    "hub": "lenny",
+    "sub": "crying",
+    "badge": "🔥 HOT",
+    "tags": [
+      "crying",
+      "tears",
+      "lenny",
+      "weeping",
+      "sad"
+    ]
+  },
+  {
+    "glyph": "ಥ_ಥ",
+    "name": "Dramatic Anime Weeping Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "badge": "POPULAR",
+    "tags": [
+      "crying",
+      "tears",
+      "weeping",
+      "anime",
+      "sad"
+    ]
+  },
+  {
+    "glyph": "(ಥ_ʖಥ)",
+    "name": "Crying Smirk Lenny",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "smirk",
+      "tears",
+      "lenny",
+      "bittersweet"
+    ]
+  },
+  {
+    "glyph": "(ಥ_ಥ)و ̑̑",
+    "name": "Determined Weeping Tear",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "fist",
+      "determined",
+      "tears"
+    ]
+  },
+  {
+    "glyph": "(´；ω；｀)",
+    "name": "Emotional Sobbing Kaomoji",
+    "hub": "lenny",
+    "sub": "crying",
+    "badge": "🔥 HOT",
+    "tags": [
+      "crying",
+      "sobbing",
+      "tears",
+      "emotional",
+      "sad"
+    ]
+  },
+  {
+    "glyph": "(இдஇ)",
+    "name": "Heartbroken Bawling Eyes",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "bawling",
+      "tears",
+      "heartbroken"
+    ]
+  },
+  {
+    "glyph": "(ó﹏ò｡)",
+    "name": "Quiet Whimpering Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "whimpering",
+      "tears",
+      "pout"
+    ]
+  },
+  {
+    "glyph": "(｡T ω T｡)",
+    "name": "Crying Happy Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "happy tears",
+      "tears",
+      "joy"
+    ]
+  },
+  {
+    "glyph": "(งT_T)ว",
+    "name": "Fighting Through Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "fighting",
+      "tears",
+      "boxer"
+    ]
+  },
+  {
+    "glyph": "( Ĭ ^ Ĭ )",
+    "name": "Pouting Stream Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "stream tears",
+      "sad",
+      "pout"
+    ]
+  },
+  {
+    "glyph": "( ɵ̥̥ ﹏ ɵ̥̥ )",
+    "name": "Pools of Tears Weeping",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "pools of tears",
+      "weeping",
+      "sad"
+    ]
+  },
+  {
+    "glyph": "(ू˃̣̣̣̣̣̣o˂̣̣̣̣̣̣ ू)",
+    "name": "Overwhelmed Squeezing Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "overwhelmed",
+      "screaming tears",
+      "sad"
+    ]
+  },
+  {
+    "glyph": "( ߹꒳߹ )",
+    "name": "Cute Kitten Sniffle Cry",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "kitten tears",
+      "cute crying",
+      "sniffle"
+    ]
+  },
+  {
+    "glyph": "( ᐪ꒳ᐪ )",
+    "name": "Pouty Tearful Weep",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "pout",
+      "tears",
+      "sniffle"
+    ]
+  },
+  {
+    "glyph": "( ˃̣̣̥᷄⌓˂̣̣̣̥᷅ )",
+    "name": "Wailing Melodramatic Sob",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "wailing",
+      "sobbing",
+      "dramatic tears"
+    ]
+  },
+  {
+    "glyph": "( ᵒ̴̶̷̥́ _ᵒ̴̶̷̣̥̀ )",
+    "name": "Sparkling Anime Teary Eyes",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "anime tears",
+      "sparkle eyes",
+      "glistening"
+    ]
+  },
+  {
+    "glyph": "／～＠⃀＠～＼",
+    "name": "Dizzy Swirling Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "dizzy",
+      "swirl",
+      "tears"
+    ]
+  },
+  {
+    "glyph": "(つд⊂)",
+    "name": "Covering Face In Tears",
+    "hub": "lenny",
+    "sub": "crying",
+    "tags": [
+      "crying",
+      "hiding face",
+      "shame",
+      "tears"
+    ]
+  },
+  {
+    "glyph": "( ͠° ͟ʖ ͡°)",
+    "name": "Fierce Brow Angry Lenny",
+    "hub": "lenny",
+    "sub": "angry",
+    "badge": "🔥 HOT",
+    "tags": [
+      "angry",
+      "glare",
+      "stern",
+      "lenny",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "凸( ͠° ͟ʖ ͡°)凸",
+    "name": "Angry Dual Flipping Lenny",
+    "hub": "lenny",
+    "sub": "angry",
+    "badge": "POPULAR",
+    "tags": [
+      "angry",
+      "flipping off",
+      "middle finger",
+      "rage"
+    ]
+  },
+  {
+    "glyph": "( ͠° ͟ʖ ͠° )凸",
+    "name": "Aggressive One Hand Flip",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "middle finger",
+      "disrespect",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "(ง ͠° ͟ʖ #)ง",
+    "name": "Bruised Boxer Angry Lenny",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "bruised",
+      "boxer",
+      "fighting",
+      "rage"
+    ]
+  },
+  {
+    "glyph": "( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/'̿̿ ̿ ̿ ̿ ̿ ̿",
+    "name": "Angry Lenny With Sniper Rifle",
+    "hub": "lenny",
+    "sub": "angry",
+    "badge": "🔥 HOT",
+    "tags": [
+      "angry",
+      "gun",
+      "sniper",
+      "weapon",
+      "lenny face with gun"
+    ]
+  },
+  {
+    "glyph": "(งಠ_ಠ)ง",
+    "name": "Disapproval Boxer Ready To Fight",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "disapproval",
+      "fighting",
+      "boxer",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "(ಠ_ʖಠ)",
+    "name": "Stern Monocle Glare Lenny",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "stern",
+      "glare",
+      "disapproval",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "( ͠° ͟ʖ ͡°)ᕗ",
+    "name": "Angry Lenny Flexing Muscle",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "flex",
+      "muscle",
+      "fighting",
+      "lenny"
+    ]
+  },
+  {
+    "glyph": "(◣_◢)",
+    "name": "Dark Evil Rage Glare",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "evil",
+      "rage",
+      "dark",
+      "glare"
+    ]
+  },
+  {
+    "glyph": "(╬ಠ益ಠ)",
+    "name": "Intense Vein Popping Rage",
+    "hub": "lenny",
+    "sub": "angry",
+    "badge": "🔥 HOT",
+    "tags": [
+      "angry",
+      "rage",
+      "furious",
+      "vein popping"
+    ]
+  },
+  {
+    "glyph": "(⋋▂⋌)",
+    "name": "Angry Sharp Eyebrow Scowl",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "scowl",
+      "sharp",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "(ᗒᗣᗕ)՞",
+    "name": "Frustrated Tantrum Angry Face",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "tantrum",
+      "frustrated",
+      "sweating",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "( •̀ ⤙ •́ )",
+    "name": "Pouty Clenched Jaw Anger",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "clenched jaw",
+      "pout",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "( º言º)",
+    "name": "Silent Psycho Menacing Rage",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "menacing",
+      "creepy anger",
+      "silent rage"
+    ]
+  },
+  {
+    "glyph": "(ﾒ ﾛ ´)",
+    "name": "Yelling Mad Shouting Face",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "yelling",
+      "shouting",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "(ง'̀-'́)ง",
+    "name": "Classic Street Fight Stance",
+    "hub": "lenny",
+    "sub": "angry",
+    "tags": [
+      "angry",
+      "fighting",
+      "fists",
+      "mad"
+    ]
+  },
+  {
+    "glyph": "8-D",
+    "name": "Glasses Big Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "glasses",
+      "nerd laugh",
+      "smiley"
+    ]
+  },
+  {
+    "glyph": "8D",
+    "name": "Wide Eyed Glasses Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "glasses",
+      "smiley",
+      "grin"
+    ]
+  },
+  {
+    "glyph": "x-D",
+    "name": "Hyphen Squint Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "xd",
+      "squint",
+      "lol"
+    ]
+  },
+  {
+    "glyph": "X-D",
+    "name": "Capital Hard Laugh X-D",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "badge": "🔥 HOT",
+    "tags": [
+      "laughing",
+      "xd",
+      "hard laugh",
+      "emoticon"
+    ]
+  },
+  {
+    "glyph": ":->",
+    "name": "Smirking Grin Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "smirk",
+      "grin",
+      "smiley"
+    ]
+  },
+  {
+    "glyph": ":-))",
+    "name": "Double Chin Big Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "double smile",
+      "happy",
+      "grin"
+    ]
+  },
+  {
+    "glyph": "ヾ(≧▽≦*)o",
+    "name": "Slapping Knee Ecstatic Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "badge": "🔥 HOT",
+    "tags": [
+      "laughing",
+      "ecstatic",
+      "slapping knee",
+      "kaomoji laugh"
+    ]
+  },
+  {
+    "glyph": "( ≧ᗜ≦)",
+    "name": "Wide Open Mouth Hysterical Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "badge": "🔥 HOT",
+    "tags": [
+      "laughing",
+      "hysterical",
+      "open mouth",
+      "lol"
+    ]
+  },
+  {
+    "glyph": "(ﾉ´ヮ)ﾉ*: ･ﾟ",
+    "name": "Throwing Confetti Laughter",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "confetti",
+      "sparkles",
+      "joyful"
+    ]
+  },
+  {
+    "glyph": "(＾▽＾)",
+    "name": "Pure Happy Hearty Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "hearty",
+      "pure smile",
+      "happy"
+    ]
+  },
+  {
+    "glyph": "(⌒▽⌒)☆",
+    "name": "Cheering Star Burst Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "star",
+      "cheering",
+      "happy"
+    ]
+  },
+  {
+    "glyph": "(≧ω≦)",
+    "name": "Cute Kitten Squeeze Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "kitten mouth",
+      "cute laugh",
+      "squeeze"
+    ]
+  },
+  {
+    "glyph": "(o^▽^o)",
+    "name": "Cheerful Round Eyed Chuckle",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "chuckle",
+      "cheerful",
+      "happy"
+    ]
+  },
+  {
+    "glyph": "(*≧ω≦*)",
+    "name": "Ecstatic Squealing Laughter",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "squealing",
+      "ecstatic",
+      "joy"
+    ]
+  },
+  {
+    "glyph": "( *´艸｀)",
+    "name": "Giggling Behind Hands",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "giggle",
+      "covering mouth",
+      "shy laugh"
+    ]
+  },
+  {
+    "glyph": "ꉂ(ˊᗜˋ*)",
+    "name": "Bursting Out Laughing Loud",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "badge": "🔥 HOT",
+    "tags": [
+      "laughing",
+      "bursting out",
+      "loud laugh",
+      "megaphone"
+    ]
+  },
+  {
+    "glyph": "(𐭪 > ᴗ <)𐭪",
+    "name": "Double Hand Fist Pump Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "fist pump",
+      "giggle",
+      "happy"
+    ]
+  },
+  {
+    "glyph": "( ˶ˆᗜˆ˵ )",
+    "name": "Blushing Soft Warm Giggles",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "blushing",
+      "giggle",
+      "warm smile"
+    ]
+  },
+  {
+    "glyph": "((´∀｀*))",
+    "name": "Echoing Deep Belly Laugh",
+    "hub": "emoticons",
+    "sub": "laughing",
+    "tags": [
+      "laughing",
+      "belly laugh",
+      "echo",
+      "deep laugh"
     ]
   }
 ];

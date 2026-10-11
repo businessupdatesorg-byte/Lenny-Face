@@ -539,40 +539,133 @@ const LENNY_SUBPAGES = [
   },
   {
     slug: 'angry-lenny-face.html',
-    title: 'Angry Lenny Face (ง ͠° ͟ل͜ ͡°)ง — Copy & Paste Mad & Fighting Text Faces',
-    description: 'Copy and paste Angry Lenny Faces (ง ͠° ͟ل͜ ͡°)ง, fighting text faces, rage emoticons, and boxer kaomoji in 1-click. Free Unicode generator.',
-    h1: 'Angry Lenny Face <span>(ง ͠° ͟ل͜ ͡°)ง</span>',
-    heroSub: 'Ready to fight or furious? Copy angry Lenny faces, boxer fists, and rage expressions with 1-click.',
+    title: 'Angry Lenny Face ( ͠° ͟ʖ ͡°) — Copy & Paste Mad, Boxer & Rage Text Faces',
+    description: 'Copy and paste Angry Lenny Face ( ͠° ͟ʖ ͡°), fighting boxer lenny (ง ͠° ͟ل͜ ͡°)ง, and rage text faces in 1-click. Free Unicode generator for Discord, Twitch & gaming.',
+    h1: 'Angry Lenny Face <span>( ͠° ͟ʖ ͡°)</span>',
+    heroSub: 'Furrowed brows, clenched boxer fists, and mock rage. Tap to copy angry Lenny faces and fighting emoticons in 1-click.',
     sub: 'angry',
     editorial: `
-      <h2>The Art of the Angry Lenny Face & Boxer Emoticons</h2>
-      <p>When internet arguments heat up or playful rivalry sparks in gaming lobbies, the <strong>Angry Lenny Face</strong> <code>(ง ͠° ͟ل͜ ͡°)ง</code> enters the ring. Outfitted with raised boxer fists <code>ง</code> and furrowed brows <code>͠° ͟</code>, it represents mock-aggression, determination, and intense competitive spirit.</p>
+      <h2>Master the Angry Lenny Face ( ͠° ͟ʖ ͡°): Mock Outrage &amp; Fighting Spirit</h2>
+      <p>The <strong>Angry Lenny Face</strong> <code>( ͠° ͟ʖ ͡°)</code> tilts the brows down and hardens the stare into a fierce, battle-ready glare. Outfitted with furrowed forehead diacritics, clenched teeth, or raised boxing fists <code>(ง ͠° ͟ل͜ ͡°)ง</code>, this emoticon converts aggression into pure internet comedy. Rather than causing genuine hostility, posting an angry Lenny face communicates mock outrage, playful rivalry, or hilarious exasperation in gaming lobbies, Twitch chats, and comment sections.</p>
+
+      <h3>Unicode Breakdown: The Secret of Furrowed Brows &amp; Boxing Fists</h3>
+      <p>To give the friendly Lenny smirk an aggressive makeover, the internet creatively borrowed typographic symbols from across the globe:</p>
+      <ul>
+        <li><strong>Combining Double Tilde (<code> ͠ </code> - U+0360) &amp; Combining Low Line (<code> ͟ </code> - U+035F):</strong> These combining diacritics sit above and below the brow line, creating the menacing furrowed brow of <code>( ͠° ͟ʖ ͡°)</code>.</li>
+        <li><strong>Thai Consonant Ngor Ngu (<code>ง</code> - U+0E07):</strong> Flanking either side of the face, this Thai character mimics clenched boxer fists raised in a sparring stance: <code>(ง ͠° ͟ل͜ ͡°)ง</code>.</li>
+        <li><strong>Japanese Kanji Totsu (<code>凸</code> - U+51F8):</strong> Meaning 'convex', this character resembles a raised middle finger, creating brazen defiance in <code>凸( ͠° ͟ʖ ͡°)凸</code>.</li>
+        <li><strong>Telugu Letter Gha (<code>ಠ</code> - U+0C20):</strong> Borrowed from the Look of Disapproval <code>ಠ_ಠ</code>, it produces the unforgiving glare of <code>( ͡ಠ ʖ̯ ͡ಠ)</code>.</li>
+      </ul>
+
+      <h3>The 4 Escalation Levels of the Angry Lenny Face</h3>
+      <p>To maximize comedic effect during online banter, escalate through the collection as the conversation heats up:</p>
+      <ol>
+        <li><strong>Level 1: The Suspicious Glare <code>( ͠° ͟ʖ ͡°)</code>:</strong> When someone makes a suspicious claim or posts a dubious meme. A squint of mild distrust.</li>
+        <li><strong>Level 2: The Square-Up Boxer <code>(ง ͠° ͟ل͜ ͡°)ง</code>:</strong> Internet shorthand for "1v1 me on Rust" or "square up." Signals playful combat readiness in gaming lobbies.</li>
+        <li><strong>Level 3: Table-Flipping Rage <code>(ノಠ益ಠ)ノ彡┻━┻</code>:</strong> When pure frustration boils over from a ranked game loss or lag spike.</li>
+        <li><strong>Level 4: Disrespect &amp; Defiance <code>凸( ͠° ͟ʖ ͡°)凸</code> or Sniper Chaos <code>( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/'̿̿ ̿ ̿ ̿ ̿ ̿</code>:</strong> Maximum comedic disrespect for friends who talk too much smack.</li>
+      </ol>
+
+      <h3>Best Platforms for Angry Lenny Faces</h3>
+      <p>Angry Lenny faces are a permanent staple on high-velocity community platforms:</p>
+      <ul>
+        <li><strong>Twitch Live Chat:</strong> Spamming <code>(ง ͠° ͟ل͜ ͡°)ง</code> during hype esports tournaments or boss fights.</li>
+        <li><strong>Discord Servers:</strong> Reacting to server rule reminders, bot errors, or gaming defeat screens.</li>
+        <li><strong>Steam Profile Customization:</strong> Showcasing intimidating or hilarious ASCII art in your Steam summary box.</li>
+        <li><strong>Reddit Comment Battles:</strong> Disarming intense debates with absurd typographic anger.</li>
+      </ul>
+
+      <h3>How to Copy in 1-Click</h3>
+      <p>Click or tap on any angry Lenny face card on this page to copy it to your clipboard instantly. Paste anywhere using <kbd>Ctrl</kbd> + <kbd>V</kbd> (Windows) or <kbd>Cmd</kbd> + <kbd>V</kbd> (Mac).</p>
     `,
     faqs: [
-      { q: "What does (ง ͠° ͟ل͜ ͡°)ง mean?", a: "It is internet shorthand for 'square up' or 'come at me bro', signaling playful combat readiness in Twitch chats and gaming lobbies." }
+      { q: "What does the angry Lenny face mean?", a: "The angry Lenny face ( ͠° ͟ʖ ͡°) expresses playful irritation, skepticism, or mock outrage. The angled brow characters over the iconic smirk read as an aggressive glare without genuine malice, making it ideal for banter." },
+      { q: "What do the 'ง' characters represent in the boxing Lenny face?", a: "The characters 'ง' on either side of (ง ͠° ͟ل͜ ͡°)ง are the Thai letter Ngor Ngu (U+0E07). In internet ASCII art, they are universally used to depict clenched boxing gloves or fists raised in a fight stance." },
+      { q: "Is there a weapon or sniper rifle version of the angry Lenny face?", a: "Yes! Our collection includes the famous sniper rifle face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/'̿̿ ̿ ̿ ̿ ̿ ̿ as well as dual middle finger variants 凸( ͠° ͟ʖ ͡°)凸 for ultimate comedic firepower." },
+      { q: "Do angry Lenny faces display properly on mobile phones?", a: "Yes! All eyebrow marks and arm characters use standardized Unicode UTF-8, rendering crisply on iPhone, iPad, Android, Mac, and Windows devices without broken squares." },
+      { q: "How can I make an angry Lenny face on my keyboard without copying?", a: "Typing the combining tilde (U+0360) and combining low line (U+035F) manually requires complex Alt codes or special character palettes. The easiest and fastest method is using our 1-click copy button." }
     ],
     related: [
       { name: "Middle Finger Lenny", url: "middle-finger.html", sample: "t( ͡° ͜ʖ ͡° t)" },
-      { name: "Table Flip", url: "text-faces/table-flipping.html", sample: "(ノಠ益ಠ)ノ彡┻━┻" }
+      { name: "Fighting Text Faces", url: "text-faces/fight.html", sample: "(ง'̀-'́)ง" },
+      { name: "Table Flip Faces", url: "text-faces/table-flipping.html", sample: "(ノಠ益ಠ)ノ彡┻━┻" },
+      { name: "Disapproval Face", url: "text-faces/disapproval.html", sample: "ಠ_ಠ" },
+      { name: "Mad Emoticons", url: "emoticons/mad.html", sample: ">:-(" },
+      { name: "Crying Lenny Face", url: "crying-lenny-face.html", sample: "( ͡ಥ ͜ʖ ͡ಥ)" }
     ]
   },
   {
     slug: 'crying-lenny-face.html',
-    title: 'Crying Lenny Face ( ͡ಥ ͜ʖ ͡ಥ) — Copy & Paste Tears & Weeping Faces',
-    description: 'Copy and paste Crying Lenny Faces ( ͡ಥ ͜ʖ ͡ಥ), sobbing kaomojis, and weeping text faces in 1-click. 100% Unicode compatible for Discord and mobile.',
+    title: 'Crying Lenny Face ( ͡ಥ ͜ʖ ͡ಥ) — Copy & Paste Tears & Weeping Text Faces',
+    description: 'Copy and paste Crying Lenny Face ( ͡ಥ ͜ʖ ͡ಥ), sobbing text faces, and crying kaomojis in 1-click. Free Unicode generator with sad, tears of joy, and dramatic weeping faces.',
     h1: 'Crying Lenny Face <span>( ͡ಥ ͜ʖ ͡ಥ)</span>',
-    heroSub: 'From bittersweet tears of joy to dramatic weeping, copy crying Lenny faces instantly.',
+    heroSub: 'From dramatic sobbing and bittersweet tears of joy to anime waterfall weeping, copy crying Lenny faces instantly.',
     sub: 'crying',
     editorial: `
-      <h2>Crying Lenny Faces: From Tears of Joy to Bitter Sorrow</h2>
-      <p>The <strong>Crying Lenny Face</strong> <code>( ͡ಥ ͜ʖ ͡ಥ)</code> uses the Telugu letter Tha <code>ಥ</code> as giant, tear-filled anime eyes. This gives the face an intensely dramatic, comedic weeping expression that has become a viral staple on Twitter, Reddit, and Twitch.</p>
+      <h2>Complete Guide to Crying Lenny Faces ( ͡ಥ ͜ʖ ͡ಥ) &amp; Tearful Text Emoticons</h2>
+      <p>The <strong>Crying Lenny Face</strong> <code>( ͡ಥ ͜ʖ ͡ಥ)</code> is one of the most recognizable and versatile emoticons on the modern web. Born as an emotional mutation of the legendary 2012 Finnish imageboard smirk <code>( ͡° ͜ʖ ͡°)</code>, the crying variant replaces standard eyes with tear-filled or streaming characters to create a melodramatic, comic reaction. Whether used in Discord gaming chats, Twitch live streams, Reddit comment chains, or Twitter/X banter, it provides an ironic, exaggerated expression of grief, sympathy, or bittersweet joy.</p>
+
+      <h3>Anatomy &amp; Unicode Breakdown: How ( ͡ಥ ͜ʖ ͡ಥ) and ( ཀ ʖ̯ ཀ) are Created</h3>
+      <p>Unlike standard emojis like 😭 or 😢 that look identical and cartoonish on every platform, the crying Lenny face relies on exotic international Unicode typography to deliver authentic character:</p>
+      <ul>
+        <li><strong>Telugu Letter Tha (<code>ಥ</code> - U+0C25):</strong> The iconic wide, tear-rimmed eyes are actually characters from the Indian Telugu language. The curved glyph resembles an eye overflowing with tears.</li>
+        <li><strong>Tibetan Script (<code>ཀ</code> - U+0F40):</strong> In heavy weeping faces like <code>( ཀ ʖ̯ ཀ)</code>, Tibetan consonants produce a furrowed, tortured brow and sorrowful eye socket.</li>
+        <li><strong>Combining Ring Below &amp; Diacritics (<code> ̥̥̥̥̥̥̥̥ </code> - U+0325):</strong> Stacked below the face, these dots simulate water droplets splashing downwards, producing waterfall crying effects like <code>( ͡° ̥̥̥̥̥̥̥̥ ͜ʖ ͡° ̥̥̥̥̥̥̥̥ )</code>.</li>
+        <li><strong>Downturned Frown Mouth (<code>ʖ̯</code> - U+028F + U+032F):</strong> Combining Latin small letter Y with inverted breve diacritics creates the unmistakable quivering lip.</li>
+      </ul>
+
+      <h3>When &amp; Where to Use Crying Lenny Faces</h3>
+      <p>The beauty of text faces is their nuanced comedic timing. Here are prime situations where crying Lenny faces outperform standard emojis:</p>
+      <ol>
+        <li><strong>Gaming Misery &amp; Clutch Fails:</strong> Missing a game-winning shot in <em>Valorant</em>, losing your diamond armor in <em>Minecraft</em>, or watching your team throw in <em>League of Legends</em>.</li>
+        <li><strong>Comic Overreaction to Minor Inconveniences:</strong> Dropping your toast butter-side down, finding out your favorite series was delayed, or running out of coffee on a Monday morning.</li>
+        <li><strong>Tears of Pride &amp; Joy:</strong> Celebrating an unexpected victory or cheering for a friend's achievement with bittersweet weeping <code>(｡T ω T｡)</code>.</li>
+        <li><strong>Faking Devastation in Group Chats:</strong> Feigning mock heartbreak when someone doesn't agree with your hot take.</li>
+      </ol>
+
+      <h3>Comparison: Crying Lenny Face vs. Standard Emojis (😭 vs. ͡ಥ ͜ʖ ͡ಥ)</h3>
+      <table class="editorial-table" style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border-color); text-align:left;">
+            <th style="padding:10px;">Format</th>
+            <th style="padding:10px;">Tone &amp; Feeling</th>
+            <th style="padding:10px;">Cross-Platform Rendering</th>
+            <th style="padding:10px;">Best Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:10px; font-weight:700;">( ͡ಥ ͜ʖ ͡ಥ) Text Face</td>
+            <td style="padding:10px;">Ironic, witty, melodramatic, self-aware</td>
+            <td style="padding:10px; color:var(--emerald); font-weight:700;">100% Identical Everywhere (Pure Unicode)</td>
+            <td style="padding:10px;">Discord, Twitch, Reddit, Gaming Lobbies</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; font-weight:700;">😭 Graphic Emoji</td>
+            <td style="padding:10px;">Generic, often reads as literal crying or screaming</td>
+            <td style="padding:10px; color:var(--text-muted);">Varies by OS (Apple vs Google vs Samsung)</td>
+            <td style="padding:10px;">Casual SMS, Instagram Stories, Family chats</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>How to Copy and Paste Crying Lenny Faces</h3>
+      <p>To use any crying Lenny face from our directory, simply tap or click on any card box above. The emoticon is immediately copied to your clipboard, and a green confirmation toast will appear. Press <kbd>Ctrl</kbd> + <kbd>V</kbd> on Windows or <kbd>Cmd</kbd> + <kbd>V</kbd> on Mac, or long-press on mobile to paste instantly into Discord, TikTok, WhatsApp, Roblox, or your bio.</p>
     `,
     faqs: [
-      { q: "What character is used for the crying Lenny eyes?", a: "It uses Unicode character U+0C25 (Telugu Letter Tha: ಥ), perfectly mimicking large tearful eyes." }
+      { q: "What is the crying Lenny face used for?", a: "The crying Lenny face ( ͡ಥ ͜ʖ ͡ಥ) is used for comic overreaction, dramatic weeping, and playful mock sorrow. It conveys 'I am utterly devastated' in an exaggerated, sarcastic manner that lands as comedy in gaming and group chats." },
+      { q: "How do you make or type the crying eyes character (ಥ)?", a: "The crying eyes use Unicode character U+0C25 (Telugu Letter Tha: ಥ). Since typing international Unicode codes is difficult on standard keyboards, the easiest way is to click any card on our site to copy it instantly." },
+      { q: "Do the tear characters paste correctly on Discord, TikTok, and iPhone?", a: "Yes! All characters in our collection are standard UTF-8 Unicode glyphs supported by iOS, Android, Windows, macOS, and Linux. They will render reliably without missing character boxes (tofu) across Discord, TikTok, Twitch, and WhatsApp." },
+      { q: "What is the difference between Sad Lenny and Crying Lenny?", a: "Sad Lenny ( ͡° ʖ̯ ͡°) features a quiet, disappointed grimace or pout without tears. Crying Lenny ( ͡ಥ ͜ʖ ͡ಥ) escalates the emotion with prominent tearful eyes (ಥ, ཀ, ｡ﾟ) to express dramatic, streaming tears." },
+      { q: "Can I use crying Lenny faces in my social media bio or gaming username?", a: "Yes! Text faces are standard Unicode text, making them fully allowed in Instagram bios, TikTok nicknames, Steam names, and Discord server statuses." }
     ],
     related: [
-      { name: "Sad Lenny", url: "sad-lenny-face.html", sample: "( ͡° ʖ̯ ͡°)" },
-      { name: "Crying Kaomoji", url: "kaomoji/sad.html", sample: "(ノ_<。)" }
+      { name: "Sad Lenny Face", url: "sad-lenny-face.html", sample: "( ͡° ʖ̯ ͡°)" },
+      { name: "Crying Kaomoji", url: "kaomoji/sad.html", sample: "(ノ_<。)" },
+      { name: "Disapproval Face", url: "text-faces/disapproval.html", sample: "ಠ_ಠ" },
+      { name: "Table Flip Faces", url: "text-faces/table-flipping.html", sample: "(ノಠ益ಠ)ノ彡┻━┻" },
+      { name: "Angry Lenny Face", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
+      { name: "Shrug Lenny Face", url: "shrug-lenny-face.html", sample: "¯\\_( ͡° ͜ʖ ͡°)_/¯" }
     ]
   },
   {
@@ -648,6 +741,7 @@ function buildLennySubpages() {
       { name: p.h1.replace(/<[^>]*>?/gm, '').trim(), url: p.slug }
     ];
 
+    // 1. Generate root HTML file (e.g. crying-lenny-face.html)
     const html = generatePageTemplate({
       pageTitle: p.title,
       metaDescription: p.description,
@@ -668,8 +762,122 @@ function buildLennySubpages() {
 
     fs.writeFileSync(path.join(ROOT_DIR, p.slug), html, 'utf8');
     console.log(`  ✓ Generated: ${p.slug}`);
+
+    // 2. Generate clean directory index.html (e.g. /crying-lenny-face/index.html)
+    const dirSlug = p.slug.replace(/\.html$/, '');
+    const cleanDir = path.join(ROOT_DIR, dirSlug);
+    if (!fs.existsSync(cleanDir)) fs.mkdirSync(cleanDir, { recursive: true });
+
+    const cleanBreadcrumbs = [
+      { name: 'Home', url: 'index.html' },
+      { name: 'Lenny Faces', url: 'index.html#browse' },
+      { name: p.h1.replace(/<[^>]*>?/gm, '').trim(), url: `${dirSlug}/` }
+    ];
+
+    const cleanHtml = generatePageTemplate({
+      pageTitle: p.title,
+      metaDescription: p.description,
+      canonicalUrl: `${SITE_URL}/${dirSlug}/`,
+      rootPrefix: '../',
+      breadcrumbs: cleanBreadcrumbs,
+      heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
+      h1Text: p.h1,
+      heroSub: p.heroSub,
+      activeHub: 'lenny',
+      activeSub: p.sub,
+      glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
+      editorialHtml: p.editorial,
+      faqList: p.faqs,
+      relatedCats: p.related,
+      lang: 'en'
+    });
+
+    fs.writeFileSync(path.join(cleanDir, 'index.html'), cleanHtml, 'utf8');
+    console.log(`  ✓ Generated Clean URL: ${dirSlug}/index.html`);
   }
 }
+
+// Specialized Custom Subpage Content for High-Priority Keyword Landers
+const CUSTOM_SUBPAGE_CONTENT = {
+  'emoticons/laughing': {
+    pageTitle: 'Laughing Emoticons :-D & XD — Copy & Paste Funny Text Faces & Kaomoji',
+    metaDescription: 'Copy and paste Laughing Emoticons (:-D, XD, ≧▽≦), funny text faces, and joyful laughing kaomoji in 1-click. 100% Unicode compatible for Discord, WhatsApp & iOS.',
+    h1Text: 'Laughing Emoticons <span>:-D &amp; XD</span>',
+    heroSub: 'From retro ASCII keyboard laughs to hysterical anime kaomoji giggles. Copy laughing emoticons in 1-click.',
+    editorialHtml: `
+      <h2>The Evolution of Laughing Emoticons: From :-D to XD and (≧▽≦)</h2>
+      <p>The <strong>Laughing Emoticon</strong> is the cornerstone of digital joy. Originating in September 1982 when computer scientist Scott Fahlman proposed the smiley <code>:-)</code> on Carnegie Mellon message boards, text laughs quickly expanded into wide-open laughing grins like <code>:-D</code> and <code>:D</code>. During the 2000s MSN Messenger and IRC chat era, the squinting laughter of <code>XD</code> and <code>xDD</code> took over the internet. Today, Japanese kaomoji like <code>(≧▽≦)</code> and <code>ꉂ(ˊᗜˋ*)</code> blend expressive typography with anime-style joy to create the richest text laughter in internet history.</p>
+
+      <h3>Why Text Laughs Hit Harder Than the Generic 😂 Emoji</h3>
+      <p>While the standard "Face with Tears of Joy" emoji (😂) has become oversaturated and corporate, text laughs remain fresh, authentic, and highly personal:</p>
+      <ul>
+        <li><strong>Universal Compatibility:</strong> Standard emojis render differently across Apple, Google, Samsung, and Microsoft devices. Text laughs like <code>:-D</code> and <code>(≧▽≦)</code> look 100% identical on every screen.</li>
+        <li><strong>Intentional Typing:</strong> Copying or typing a text laugh signals genuine engagement rather than tapping a passive reaction button.</li>
+        <li><strong>Nuanced Levels of Humor:</strong> A subtle <code>:D</code> feels warmly cheerful, <code>XD</code> feels retro and self-aware, and <code>ヾ(≧▽≦*)o</code> conveys unstoppable knee-slapping hysterics.</li>
+      </ul>
+
+      <h3>Decoding the Anatomy of Laughing Text Characters</h3>
+      <p>Different cultures created unique visual shorthand for human laughter:</p>
+      <ol>
+        <li><strong>The Western Open Smile (<code>D</code>):</strong> In classic ASCII typography, a colon <code>:</code> (eyes) paired with a capital letter <code>D</code> represents a wide-open, toothy laugh.</li>
+        <li><strong>The Squinting Eyes of "XD":</strong> The capital letter <code>X</code> represents eyes tightly squeezed shut from laughing uncontrollably, paired with the open mouth <code>D</code>.</li>
+        <li><strong>The Japanese Kaomoji Squint (<code>≧ ≦</code>):</strong> In Japanese text art, math symbols greater-than/less-than with equals signs represent joyful squinting eyes, paired with an open triangular mouth <code>▽</code> to make <code>(≧▽≦)</code>.</li>
+        <li><strong>Action Hands &amp; Confetti (<code>ヾ o</code> &amp; <code>*:･ﾟ</code>):</strong> Modern laughing kaomoji add waving arms and celebratory sparkles for full-body laughter like <code>(ﾉ´ヮ\`)ﾉ*: ･ﾟ</code>.</li>
+      </ol>
+
+      <h3>Hierarchy of Laughter: Which One to Send?</h3>
+      <table class="editorial-table" style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--border-color); text-align:left;">
+            <th style="padding:10px;">Emoticon</th>
+            <th style="padding:10px;">Laugh Level</th>
+            <th style="padding:10px;">Meaning &amp; Vibe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:10px; font-weight:700;">:-) / :D</td>
+            <td style="padding:10px;">Mild / Warm</td>
+            <td style="padding:10px;">A friendly grin acknowledging a pleasant comment or polite joke.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:10px; font-weight:700;">XD / xDD</td>
+            <td style="padding:10px;">Medium / Ironic</td>
+            <td style="padding:10px;">Playful meme reaction, gaming irony, or hearty chuckle.</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border-color);">
+            <td style="padding:10px; font-weight:700;">(≧▽≦)</td>
+            <td style="padding:10px;">High / Ecstatic</td>
+            <td style="padding:10px;">Pure anime delight, eyes squeezed shut with wholesome amusement.</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; font-weight:700;">ヾ(≧▽≦*)o</td>
+            <td style="padding:10px;">Maximum / Hysterical</td>
+            <td style="padding:10px;">Slapping your knee, gasping for air, uncontrollable hysterics.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>How to Copy and Paste Laughing Emoticons</h3>
+      <p>Browse our curated table above and tap or click on any laughing face to copy it directly to your device clipboard. Paste seamlessly into Discord, TikTok, WhatsApp, Roblox, Twitter (X), or your personal bio.</p>
+    `,
+    faqList: [
+      { q: "What does (≧▽≦) mean in text?", a: "The kaomoji (≧▽≦) represents hard, joyful laughter. The characters ≧ and ≦ represent eyes squeezed shut from laughing heartily, while the inverted triangle ▽ represents a wide-open laughing mouth." },
+      { q: "What is the difference between xD and XD?", a: "Both convey the same eye-squeezing laughter, but XD with a capital X represents a more intense, dramatic laugh than lowercase xD. In early internet culture (2000s MSN/IRC), multiplying the D (e.g., xDD or XDDD) indicated even longer, louder laughter." },
+      { q: "Why use text laughing emoticons instead of the 😂 emoji?", a: "Text emoticons like :-D, XD, and (≧▽≦) render identically across all operating systems without platform redesigns. They also feel more genuine, personal, and nostalgic than ubiquitous yellow reaction emojis." },
+      { q: "How do I type :-D or XD on mobile phones?", a: "On smartphone keyboards, switch to the symbols layout for the colon ':' and hyphen '-', then return to letters for capital 'D'. Or simply use our 1-click copy button above to paste directly into your chats." },
+      { q: "Are these laughing emoticons compatible with Discord and Instagram?", a: "Yes! All emoticons in our library use universal Unicode and standard ASCII characters, guaranteeing seamless display on Discord, Instagram, WhatsApp, TikTok, Twitch, and Reddit." }
+    ],
+    relatedCats: [
+      { name: "Smiley Emoticons", url: "emoticons/smiley.html", sample: ":-)" },
+      { name: "Happy Lenny Face", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" },
+      { name: "Cute Kaomoji", url: "kaomoji/cute.html", sample: "( ˶ˆ꒳ˆ˵ )" },
+      { name: "Winky Emoticons", url: "emoticons/winky.html", sample: ";-)" },
+      { name: "Heart Emoticons", url: "emoticons/heart.html", sample: "<3" },
+      { name: "Donger Text Faces", url: "text-faces/donger.html", sample: "ヽ༼ຈل͜ຈ༽ﾉ" }
+    ]
+  }
+};
 
 // Build Hub Category Pages (Text Faces, Kaomoji, Emoticons, Symbols, Aesthetic)
 function buildHubPages() {
@@ -850,34 +1058,77 @@ function buildHubPages() {
         { name: sub.name, url: `${hubInfo.dir}/${sub.sub}.html` }
       ];
 
-      const subHtml = generatePageTemplate({
-        pageTitle: `${sub.name} ${sub.sample} — 1-Click Copy and Paste`,
-        metaDescription: `Copy and paste ${sub.name} ${sub.sample} in 1-click. Free Unicode emoticons and text faces for Discord, TikTok, Roblox, and gaming.`,
-        canonicalUrl: `${SITE_URL}/${hubInfo.dir}/${sub.sub}.html`,
-        rootPrefix: '../',
-        breadcrumbs: subBreadcrumbs,
-        heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
-        h1Text: `${sub.name} <span>${sub.sample}</span>`,
-        heroSub: `Browse our curated collection of ${sub.name.toLowerCase()} for profiles, bios, and chat.`,
-        activeHub: hubInfo.hub,
-        activeSub: sub.sub,
-        glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
-        editorialHtml: `
+      const customKey = `${hubInfo.dir}/${sub.sub}`;
+      const customContent = CUSTOM_SUBPAGE_CONTENT[customKey];
+
+      const pageTitle = customContent ? customContent.pageTitle : `${sub.name} ${sub.sample} — 1-Click Copy and Paste`;
+      const metaDescription = customContent ? customContent.metaDescription : `Copy and paste ${sub.name} ${sub.sample} in 1-click. Free Unicode emoticons and text faces for Discord, TikTok, Roblox, and gaming.`;
+      const h1Text = customContent ? customContent.h1Text : `${sub.name} <span>${sub.sample}</span>`;
+      const heroSub = customContent ? customContent.heroSub : `Browse our curated collection of ${sub.name.toLowerCase()} for profiles, bios, and chat.`;
+      const editorialHtml = customContent ? customContent.editorialHtml : `
           <h2>All About ${sub.name} ${sub.sample}</h2>
           <p>The <strong>${sub.name}</strong> collection offers expressive typographical art using international Unicode and special characters. Ideal for standing out on gaming servers, personal bios, and social media captions.</p>
           <h3>How to Use</h3>
           <p>Click any card above to copy the character. Paste into Discord, Roblox, TikTok, or your favorite messaging app with <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
-        `,
-        faqList: [
+      `;
+      const faqList = customContent ? customContent.faqList : [
           { q: `What is the most popular ${sub.name.toLowerCase()}?`, a: `The most iconic symbol in this category is ${sub.sample}, widely recognized across internet culture.` },
           { q: "Can I use these symbols in my bio?", a: "Yes, these characters are 100% compliant with Instagram, TikTok, Twitter, and Discord bio formatting rules." }
-        ],
-        relatedCats: relatedCatCards.filter(r => !r.url.endsWith(`${sub.sub}.html`)).slice(0, 6),
+      ];
+      const relatedCats = customContent ? customContent.relatedCats : relatedCatCards.filter(r => !r.url.endsWith(`${sub.sub}.html`)).slice(0, 6);
+
+      // 1. Root Subpage HTML (e.g. emoticons/laughing.html)
+      const subHtml = generatePageTemplate({
+        pageTitle,
+        metaDescription,
+        canonicalUrl: `${SITE_URL}/${hubInfo.dir}/${sub.sub}.html`,
+        rootPrefix: '../',
+        breadcrumbs: subBreadcrumbs,
+        heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
+        h1Text,
+        heroSub,
+        activeHub: hubInfo.hub,
+        activeSub: sub.sub,
+        glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
+        editorialHtml,
+        faqList,
+        relatedCats,
         lang: 'en'
       });
 
       fs.writeFileSync(path.join(hubDir, `${sub.sub}.html`), subHtml, 'utf8');
       console.log(`    ✓ Generated: ${hubInfo.dir}/${sub.sub}.html`);
+
+      // 2. Clean Directory URL (e.g. emoticons/laughing/index.html)
+      const cleanSubDir = path.join(hubDir, sub.sub);
+      if (!fs.existsSync(cleanSubDir)) fs.mkdirSync(cleanSubDir, { recursive: true });
+
+      const cleanSubBreadcrumbs = [
+        { name: 'Home', url: 'index.html' },
+        { name: hubInfo.title.split('—')[0].trim(), url: `${hubInfo.dir}/` },
+        { name: sub.name, url: `${hubInfo.dir}/${sub.sub}/` }
+      ];
+
+      const cleanSubHtml = generatePageTemplate({
+        pageTitle,
+        metaDescription,
+        canonicalUrl: `${SITE_URL}/${hubInfo.dir}/${sub.sub}/`,
+        rootPrefix: '../../',
+        breadcrumbs: cleanSubBreadcrumbs,
+        heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
+        h1Text,
+        heroSub,
+        activeHub: hubInfo.hub,
+        activeSub: sub.sub,
+        glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
+        editorialHtml,
+        faqList,
+        relatedCats,
+        lang: 'en'
+      });
+
+      fs.writeFileSync(path.join(cleanSubDir, 'index.html'), cleanSubHtml, 'utf8');
+      console.log(`    ✓ Generated Clean URL: ${hubInfo.dir}/${sub.sub}/index.html`);
     }
   }
 }
@@ -1073,7 +1324,7 @@ function buildSitemapAndRobots() {
 
   const allUrls = [
     { loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'daily' },
-    ...LENNY_SUBPAGES.map(p => ({ loc: `${SITE_URL}/${p.slug}`, priority: '0.9', changefreq: 'weekly' })),
+    ...LENNY_SUBPAGES.map(p => ({ loc: `${SITE_URL}/${p.slug.replace(/\.html$/, '')}/`, priority: '0.9', changefreq: 'weekly' })),
     { loc: `${SITE_URL}/text-faces/`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${SITE_URL}/kaomoji/`, priority: '0.9', changefreq: 'weekly' },
     { loc: `${SITE_URL}/emoticons/`, priority: '0.9', changefreq: 'weekly' },
@@ -1087,7 +1338,7 @@ function buildSitemapAndRobots() {
     { loc: `${SITE_URL}/terms.html`, priority: '0.3', changefreq: 'yearly' }
   ];
 
-  // Add all hub subpages
+  // Add all hub subpages with clean URL formatting
   const hubFolders = ['text-faces', 'kaomoji', 'emoticons', 'symbols', 'aesthetic'];
   for (const folder of hubFolders) {
     const folderPath = path.join(ROOT_DIR, folder);
@@ -1095,8 +1346,9 @@ function buildSitemapAndRobots() {
       const files = fs.readdirSync(folderPath);
       for (const file of files) {
         if (file.endsWith('.html') && file !== 'index.html') {
+          const subSlug = file.replace(/\.html$/, '');
           allUrls.push({
-            loc: `${SITE_URL}/${folder}/${file}`,
+            loc: `${SITE_URL}/${folder}/${subSlug}/`,
             priority: '0.8',
             changefreq: 'weekly'
           });
