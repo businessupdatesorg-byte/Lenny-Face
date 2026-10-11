@@ -1155,25 +1155,31 @@ function buildHomePage() {
   if (!fs.existsSync(indexPath)) return;
 
   let indexHtml = fs.readFileSync(indexPath, 'utf8');
-  const topGlyphs = ALL_GLYPHS.slice(0, 64);
-  const cardsHtml = topGlyphs.map(renderStaticCard).join('\n');
+  const allGlyphs = ALL_GLYPHS;
+  const cardsHtml = allGlyphs.map(renderStaticCard).join('\n');
 
   // Replace content between <!-- START_SSR_CARDS --> and <!-- END_SSR_CARDS -->
   if (indexHtml.includes('<!-- START_SSR_CARDS -->') && indexHtml.includes('<!-- END_SSR_CARDS -->')) {
     indexHtml = indexHtml.replace(
       /<!-- START_SSR_CARDS -->[\s\S]*?<!-- END_SSR_CARDS -->/,
-      `<!-- START_SSR_CARDS -->\n        <div class="face-grid" id="face-grid">\n${cardsHtml}\n        </div>\n        <!-- END_SSR_CARDS -->`
+      `<!-- START_SSR_CARDS -->\n        <div class="face-grid" id="face-grid" data-initial-hub="all" data-initial-sub="all">\n${cardsHtml}\n        </div>\n        <!-- END_SSR_CARDS -->`
     );
   } else {
     // Fallback: replace face-grid
     indexHtml = indexHtml.replace(
-      /<div class="face-grid" id="face-grid">[\s\S]*?<\/div>/,
-      `<div class="face-grid" id="face-grid">\n${cardsHtml}\n        </div>`
+      /<div class="face-grid" id="face-grid"[\s\S]*?<\/div>/,
+      `<div class="face-grid" id="face-grid" data-initial-hub="all" data-initial-sub="all">\n${cardsHtml}\n        </div>`
     );
   }
 
+  // Update grid count display
+  indexHtml = indexHtml.replace(
+    /<div class="grid-count">[\s\S]*?<\/div>/,
+    `<div class="grid-count">Showing <strong>${allGlyphs.length}</strong> items in this category</div>`
+  );
+
   fs.writeFileSync(indexPath, indexHtml, 'utf8');
-  console.log(`  ✓ Injected ${topGlyphs.length} pre-rendered cards into index.html`);
+  console.log(`  ✓ Injected ALL ${allGlyphs.length} pre-rendered cards into index.html`);
 }
 
 // Execute All Builders

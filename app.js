@@ -207,6 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return true;
     });
 
+    const gridCountEl = document.querySelector('.grid-count');
+    if (gridCountEl) {
+      gridCountEl.innerHTML = `Showing <strong>${filtered.length}</strong> items in this category`;
+    }
+
     if (filtered.length === 0) {
       faceGrid.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
@@ -346,13 +351,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Initial Render: only render dynamically if grid is empty or on home page
+  // Initial Render: Ensure all items are rendered on homepage or when grid is empty
   const initialHub = faceGrid ? faceGrid.getAttribute('data-initial-hub') : null;
   const initialSub = faceGrid ? faceGrid.getAttribute('data-initial-sub') : null;
   if (initialHub) activeHub = initialHub;
   if (initialSub) activeSub = initialSub;
 
-  if (faceGrid && faceGrid.children.length === 0) {
-    renderGlyphGrid();
+  const isHomeAll = !initialHub || (initialHub === 'all' && (!initialSub || initialSub === 'all'));
+  if (faceGrid) {
+    if (isHomeAll) {
+      if (typeof GLYPH_DATA !== 'undefined' && faceGrid.children.length < GLYPH_DATA.length) {
+        renderGlyphGrid();
+      }
+    } else if (faceGrid.children.length === 0) {
+      renderGlyphGrid();
+    }
   }
 });
