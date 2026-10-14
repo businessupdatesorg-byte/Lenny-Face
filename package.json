@@ -2,10 +2,11 @@
   "name": "lenny-face-pro",
   "version": "1.0.0",
   "description": "Ultra-fast Lenny Face, Text Faces, Kaomoji, Emoticons & Aesthetic Symbols Hub with 100/100 PageSpeed",
+  "main": "server.js",
   "scripts": {
     "build": "node build-site.js",
-    "dev": "node local-dev-server.js",
-    "start": "node local-dev-server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "keywords": [
     "lenny-face",
