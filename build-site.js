@@ -24,6 +24,9 @@ function ensureDir(dirPath) {
 // Full Master Dataset of Glyphs (432+ Items across all 6 hubs)
 const ALL_GLYPHS = require('./glyphs-data.js');
 
+// Master Editorial Knowledge Base (In-depth guides, FAQs, Schemas)
+const { CUSTOM_HUB_CONTENT, CUSTOM_SUBPAGE_CONTENT } = require('./editorial-data.js');
+
 
 // Helper: Escape HTML strings
 function escapeHtml(str) {
@@ -146,6 +149,152 @@ function renderShareBar(title, url) {
       </div>
     </div>
   `;
+}
+
+// Render Pre-rendered Static Subbars with Real Anchor Links for Instant Bottom-Left Preview
+function renderAllSubbars(activeHub, activeSub, rootPrefix) {
+  const lennyChips = [
+    { sub: 'all', name: 'All Lenny', url: `${rootPrefix}index.html#browse` },
+    { sub: 'angry', name: 'Angry', url: `${rootPrefix}angry-lenny-face/` },
+    { sub: 'crying', name: 'Crying', url: `${rootPrefix}crying-lenny-face/` },
+    { sub: 'cute', name: 'Cute', url: `${rootPrefix}cute-lenny-face/` },
+    { sub: 'sad', name: 'Sad', url: `${rootPrefix}sad-lenny-face/` },
+    { sub: 'happy', name: 'Happy', url: `${rootPrefix}happy-lenny-face/` },
+    { sub: 'blushing', name: 'Blushing', url: `${rootPrefix}blushing-lenny-face/` },
+    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}shrug-lenny-face/` },
+    { sub: 'middle-finger', name: 'Middle Finger', url: `${rootPrefix}middle-finger/` },
+    { sub: 'wink', name: 'Wink', url: `${rootPrefix}wink-lenny-face/` },
+    { sub: 'cool', name: 'Cool', url: `${rootPrefix}cool-lenny-face/` },
+    { sub: 'strong', name: 'Strong', url: `${rootPrefix}strong-lenny-face/` },
+    { sub: 'hug', name: 'Hug', url: `${rootPrefix}hug-lenny-face/` },
+    { sub: 'love', name: 'Love', url: `${rootPrefix}love-lenny-face/` },
+    { sub: 'donger', name: 'Donger', url: `${rootPrefix}donger-lenny-face/` },
+    { sub: 'shocked', name: 'Shocked', url: `${rootPrefix}shocked-lenny-face/` },
+    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}sparkle-lenny-face/` },
+    { sub: 'weapons', name: 'Weapons', url: `${rootPrefix}weapons-lenny-face/` }
+  ];
+
+  const kaomojiChips = [
+    { sub: 'all', name: 'All Kaomoji', url: `${rootPrefix}kaomoji/` },
+    { sub: 'cat', name: 'Cat', url: `${rootPrefix}kaomoji/cat/` },
+    { sub: 'cute', name: 'Cute', url: `${rootPrefix}kaomoji/cute/` },
+    { sub: 'heart', name: 'Heart', url: `${rootPrefix}kaomoji/heart/` },
+    { sub: 'happy', name: 'Happy', url: `${rootPrefix}kaomoji/happy/` },
+    { sub: 'hug', name: 'Hug', url: `${rootPrefix}kaomoji/hug/` },
+    { sub: 'kiss', name: 'Kiss', url: `${rootPrefix}kaomoji/kiss/` },
+    { sub: 'sad', name: 'Sad', url: `${rootPrefix}kaomoji/sad/` },
+    { sub: 'angry', name: 'Angry', url: `${rootPrefix}kaomoji/angry/` },
+    { sub: 'dog', name: 'Dog', url: `${rootPrefix}kaomoji/dog/` },
+    { sub: 'bunny', name: 'Bunny', url: `${rootPrefix}kaomoji/bunny/` },
+    { sub: 'bear', name: 'Bear', url: `${rootPrefix}kaomoji/bear/` },
+    { sub: 'spider', name: 'Spider', url: `${rootPrefix}kaomoji/spider/` },
+    { sub: 'begging', name: 'Begging', url: `${rootPrefix}kaomoji/begging/` },
+    { sub: 'determined', name: 'Determined', url: `${rootPrefix}kaomoji/determined/` },
+    { sub: 'dancing', name: 'Dancing', url: `${rootPrefix}kaomoji/dancing/` },
+    { sub: 'sleepy', name: 'Sleepy', url: `${rootPrefix}kaomoji/sleepy/` },
+    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}kaomoji/sparkle/` },
+    { sub: 'shocked', name: 'Shocked', url: `${rootPrefix}kaomoji/shocked/` },
+    { sub: 'scared', name: 'Scared', url: `${rootPrefix}kaomoji/scared/` },
+    { sub: 'tired', name: 'Tired', url: `${rootPrefix}kaomoji/tired/` },
+    { sub: 'nervous', name: 'Nervous', url: `${rootPrefix}kaomoji/nervous/` },
+    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}kaomoji/shrug/` }
+  ];
+
+  const textFacesChips = [
+    { sub: 'all', name: 'All Text Faces', url: `${rootPrefix}text-faces/` },
+    { sub: 'donger', name: 'Donger', url: `${rootPrefix}text-faces/donger/` },
+    { sub: 'table-flipping', name: 'Table Flip', url: `${rootPrefix}text-faces/table-flipping/` },
+    { sub: 'disapproval', name: 'Disapproval', url: `${rootPrefix}text-faces/disapproval/` },
+    { sub: 'fight', name: 'Fighting', url: `${rootPrefix}text-faces/fight/` },
+    { sub: 'bear', name: 'Bear', url: `${rootPrefix}text-faces/bear/` },
+    { sub: 'cat', name: 'Cat', url: `${rootPrefix}text-faces/cat/` },
+    { sub: 'dog', name: 'Dog', url: `${rootPrefix}text-faces/dog/` },
+    { sub: 'hug', name: 'Hug', url: `${rootPrefix}text-faces/hug/` },
+    { sub: 'crying', name: 'Crying', url: `${rootPrefix}text-faces/crying/` },
+    { sub: 'cool', name: 'Cool', url: `${rootPrefix}text-faces/cool/` },
+    { sub: 'happy', name: 'Happy', url: `${rootPrefix}text-faces/happy/` },
+    { sub: 'cute', name: 'Cute', url: `${rootPrefix}text-faces/cute/` },
+    { sub: 'love', name: 'Love', url: `${rootPrefix}text-faces/love/` },
+    { sub: 'sad', name: 'Sad', url: `${rootPrefix}text-faces/sad/` },
+    { sub: 'confused', name: 'Confused', url: `${rootPrefix}text-faces/confused/` },
+    { sub: 'blushing', name: 'Blushing', url: `${rootPrefix}text-faces/blushing/` },
+    { sub: 'sleepy', name: 'Sleepy', url: `${rootPrefix}text-faces/sleepy/` },
+    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}text-faces/shrug/` },
+    { sub: 'gaming', name: 'Gaming', url: `${rootPrefix}text-faces/gaming/` },
+    { sub: 'funny', name: 'Funny', url: `${rootPrefix}text-faces/funny/` }
+  ];
+
+  const emoticonsChips = [
+    { sub: 'all', name: 'All Emoticons', url: `${rootPrefix}emoticons/` },
+    { sub: 'laughing', name: 'Laughing', url: `${rootPrefix}emoticons/laughing/` },
+    { sub: 'smiley', name: 'Smiley', url: `${rootPrefix}emoticons/smiley/` },
+    { sub: 'winky', name: 'Winky', url: `${rootPrefix}emoticons/winky/` },
+    { sub: 'sad', name: 'Sad', url: `${rootPrefix}emoticons/sad/` },
+    { sub: 'mad', name: 'Mad', url: `${rootPrefix}emoticons/mad/` },
+    { sub: 'annoyed', name: 'Annoyed', url: `${rootPrefix}emoticons/annoyed/` },
+    { sub: 'kissy', name: 'Kissy', url: `${rootPrefix}emoticons/kissy/` },
+    { sub: 'heart', name: 'Heart', url: `${rootPrefix}emoticons/heart/` },
+    { sub: 'cute', name: 'Cute', url: `${rootPrefix}emoticons/cute/` },
+    { sub: 'creepy', name: 'Creepy', url: `${rootPrefix}emoticons/creepy/` }
+  ];
+
+  const symbolsChips = [
+    { sub: 'all', name: 'All Symbols', url: `${rootPrefix}symbols/` },
+    { sub: 'heart', name: 'Heart', url: `${rootPrefix}symbols/heart/` },
+    { sub: 'star', name: 'Star', url: `${rootPrefix}symbols/star/` },
+    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}symbols/sparkle/` },
+    { sub: 'flower', name: 'Flower', url: `${rootPrefix}symbols/flower/` },
+    { sub: 'moon', name: 'Moon', url: `${rootPrefix}symbols/moon/` },
+    { sub: 'skull', name: 'Skull', url: `${rootPrefix}symbols/skull/` },
+    { sub: 'crown', name: 'Crown', url: `${rootPrefix}symbols/crown/` },
+    { sub: 'weapons', name: 'Weapons', url: `${rootPrefix}symbols/weapons/` },
+    { sub: 'bow', name: 'Bow', url: `${rootPrefix}symbols/bow/` },
+    { sub: 'music', name: 'Music', url: `${rootPrefix}symbols/music/` },
+    { sub: 'butterfly', name: 'Butterfly', url: `${rootPrefix}symbols/butterfly/` },
+    { sub: 'fire', name: 'Fire', url: `${rootPrefix}symbols/fire/` },
+    { sub: 'snowflake', name: 'Snowflake', url: `${rootPrefix}symbols/snowflake/` },
+    { sub: 'sun', name: 'Sun', url: `${rootPrefix}symbols/sun/` },
+    { sub: 'check-mark', name: 'Check Marks', url: `${rootPrefix}symbols/check-mark/` },
+    { sub: 'bullet-point', name: 'Bullet Points', url: `${rootPrefix}symbols/bullet-point/` },
+    { sub: 'cross', name: 'Crosses', url: `${rootPrefix}symbols/cross/` },
+    { sub: 'arrow', name: 'Arrows', url: `${rootPrefix}symbols/arrow/` }
+  ];
+
+  const aestheticChips = [
+    { sub: 'all', name: 'All Aesthetic', url: `${rootPrefix}aesthetic/` },
+    { sub: 'discord-bio', name: 'Discord Bios', url: `${rootPrefix}aesthetic/discord-bio/` },
+    { sub: 'instagram-bio', name: 'Instagram Bios', url: `${rootPrefix}aesthetic/instagram-bio/` },
+    { sub: 'tiktok-bio', name: 'TikTok Bios', url: `${rootPrefix}aesthetic/tiktok-bio/` },
+    { sub: 'dividers', name: 'Aesthetic Dividers', url: `${rootPrefix}aesthetic/dividers/` },
+    { sub: 'borders', name: 'Fancy Borders', url: `${rootPrefix}aesthetic/borders/` },
+    { sub: 'emoji-combos', name: 'Emoji Combos', url: `${rootPrefix}aesthetic/emoji-combos/` },
+    { sub: 'bio-templates', name: 'Bio Templates', url: `${rootPrefix}aesthetic/bio-templates/` },
+    { sub: 'symbols', name: 'Aesthetic Symbols', url: `${rootPrefix}aesthetic/symbols/` }
+  ];
+
+  const subbars = [
+    { group: 'lenny', chips: lennyChips },
+    { group: 'kaomoji', chips: kaomojiChips },
+    { group: 'text-faces', chips: textFacesChips },
+    { group: 'emoticons', chips: emoticonsChips },
+    { group: 'symbols', chips: symbolsChips },
+    { group: 'aesthetic', chips: aestheticChips }
+  ];
+
+  return subbars.map(sb => {
+    const isVisible = (activeHub === sb.group) || (activeHub === 'all' && sb.group === 'lenny');
+    const chipHtml = sb.chips.map(c => {
+      const isChipActive = isVisible && (activeSub === c.sub || (activeSub === 'all' && c.sub === 'all'));
+      return `<a href="${c.url}" class="sub-chip ${isChipActive ? 'active' : ''}" data-sub="${c.sub}">${escapeHtml(c.name)}</a>`;
+    }).join('\n        ');
+
+    return `
+      <!-- Sub-category Bar: ${sb.group} -->
+      <div class="subbar" id="subbar-${sb.group}" data-hub-group="${sb.group}" style="display: ${isVisible ? 'flex' : 'none'};" role="group" aria-label="${sb.group} subcategories">
+        ${chipHtml}
+      </div>
+    `;
+  }).join('\n');
 }
 
 // Base HTML Page Template
@@ -327,16 +476,20 @@ ${jsonLdContent}
         <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear Search">✕</button>
       </div>
 
-      <!-- Category Filter Chips -->
+      <!-- Category Filter Chips with Real Links & Bottom-Left Link Preview -->
       <div class="hubbar" role="group" aria-label="Category Hubs">
-        <a href="${rootPrefix}index.html" class="hub-chip ${activeHub === 'all' ? 'active' : ''}">All Faces</a>
-        <a href="${rootPrefix}index.html#browse" class="hub-chip ${activeHub === 'lenny' ? 'active' : ''}">Lenny Faces</a>
-        <a href="${rootPrefix}text-faces/index.html" class="hub-chip ${activeHub === 'text-faces' ? 'active' : ''}">Text Faces</a>
-        <a href="${rootPrefix}kaomoji/index.html" class="hub-chip ${activeHub === 'kaomoji' ? 'active' : ''}">Kaomoji</a>
-        <a href="${rootPrefix}emoticons/index.html" class="hub-chip ${activeHub === 'emoticons' ? 'active' : ''}">Emoticons</a>
-        <a href="${rootPrefix}symbols/index.html" class="hub-chip ${activeHub === 'symbols' ? 'active' : ''}">Symbols</a>
-        <a href="${rootPrefix}aesthetic/index.html" class="hub-chip ${activeHub === 'aesthetic' ? 'active' : ''}">Aesthetic Bios</a>
+        <a href="${rootPrefix}index.html" class="hub-chip ${activeHub === 'all' ? 'active' : ''}" data-hub="all">All Faces</a>
+        <button type="button" class="hub-chip ${activeHub === '__favs' ? 'active' : ''}" data-hub="__favs">❤️ Favorites</button>
+        <a href="${rootPrefix}index.html#browse" class="hub-chip ${activeHub === 'lenny' ? 'active' : ''}" data-hub="lenny">Lenny Faces</a>
+        <a href="${rootPrefix}text-faces/index.html" class="hub-chip ${activeHub === 'text-faces' ? 'active' : ''}" data-hub="text-faces">Text Faces</a>
+        <a href="${rootPrefix}kaomoji/index.html" class="hub-chip ${activeHub === 'kaomoji' ? 'active' : ''}" data-hub="kaomoji">Kaomoji</a>
+        <a href="${rootPrefix}emoticons/index.html" class="hub-chip ${activeHub === 'emoticons' ? 'active' : ''}" data-hub="emoticons">Emoticons</a>
+        <a href="${rootPrefix}symbols/index.html" class="hub-chip ${activeHub === 'symbols' ? 'active' : ''}" data-hub="symbols">Symbols</a>
+        <a href="${rootPrefix}aesthetic/index.html" class="hub-chip ${activeHub === 'aesthetic' ? 'active' : ''}" data-hub="aesthetic">Aesthetic Bios</a>
       </div>
+
+      <!-- Pre-rendered Static Subbars with Real Anchor Links -->
+      ${renderAllSubbars(activeHub, activeSub, rootPrefix)}
 
       ${renderShareBar(pageTitle, canonicalUrl)}
     </div>
@@ -724,6 +877,177 @@ const LENNY_SUBPAGES = [
       { name: "Angry Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
       { name: "Fighting Faces", url: "text-faces/fight.html", sample: "(ง'̀-'́)ง" }
     ]
+  },
+  {
+    slug: 'wink-lenny-face.html',
+    title: 'Wink Lenny Face ( ͡~ ͜ʖ ͡°) — Copy & Paste Flirty & Cheeky Winking Faces',
+    description: 'Copy and paste Wink Lenny Face ( ͡~ ͜ʖ ͡°), winking text faces, and flirty kaomojis in 1-click. Free Unicode generator with instant clipboard copy.',
+    h1: 'Wink Lenny Face <span>( ͡~ ͜ʖ ͡°)</span>',
+    heroSub: 'Cheeky winks, inside jokes, and flirtatious banter. Tap any card to copy instantly.',
+    sub: 'wink',
+    editorial: `
+      <h2>The Secret Seduction: Wink Lenny Face ( ͡~ ͜ʖ ͡°)</h2>
+      <p>By substituting one degree mark with a tilde <code>~</code> to simulate a closing eyelid, the <strong>Wink Lenny Face</strong> introduces flirtatious mischief, complicity, and knowing humor to online conversations.</p>
+    `,
+    faqs: [
+      { q: "How is the winking eye made?", a: "The winking eye is constructed using the standard tilde character '~' paired with a degree symbol '°'." }
+    ],
+    related: [
+      { name: "Classic Lenny", url: "index.html", sample: "( ͡° ͜ʖ ͡°)" },
+      { name: "Blushing Lenny", url: "blushing-lenny-face.html", sample: "( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)" }
+    ]
+  },
+  {
+    slug: 'cool-lenny-face.html',
+    title: 'Cool Lenny Face (⌐■ ͜ʖ■) — Copy & Paste Sunglasses & Deal With It Faces',
+    description: 'Copy and paste Cool Lenny Face (⌐■ ͜ʖ■), sunglasses text faces, and Deal With It emoticons in 1-click. 100% Unicode compatible.',
+    h1: 'Cool Lenny Face <span>(⌐■ ͜ʖ■)</span>',
+    heroSub: 'Styling shades, sunglasses, and boss vibes. Tap to copy cool Lenny faces in 1-click.',
+    sub: 'cool',
+    editorial: `
+      <h2>Unshakable Swagger: Cool Lenny Face (⌐■ ͜ʖ■)</h2>
+      <p>Adorned with black block sunglasses <code>⌐■</code>, the <strong>Cool Lenny Face</strong> blends the iconic Lenny smirk with the classic 'Deal With It' attitude. Perfect for flexing a victory or walking away from internet debates in style.</p>
+    `,
+    faqs: [
+      { q: "What character creates the sunglasses?", a: "The sunglasses use the black square Unicode block (■ - U+25A0) combined with angle characters (⌐ - U+2310)." }
+    ],
+    related: [
+      { name: "Strong Lenny", url: "strong-lenny-face.html", sample: "ᕙ( ͡° ͜ʖ ͡°)ᕗ" },
+      { name: "Happy Lenny", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" }
+    ]
+  },
+  {
+    slug: 'strong-lenny-face.html',
+    title: 'Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ — Copy & Paste Muscle Flexing Faces',
+    description: 'Copy and paste Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ, flexed biceps, and buff workout text faces in 1-click. Free Unicode generator.',
+    h1: 'Strong Lenny Face <span>ᕙ( ͡° ͜ʖ ͡°)ᕗ</span>',
+    heroSub: 'Flexed biceps, bodybuilding arms, and triumphant power. Tap to copy strong Lenny faces in 1-click.',
+    sub: 'strong',
+    editorial: `
+      <h2>Peak Performance: Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ</h2>
+      <p>Using Canadian Syllabics <code>ᕙ ᕗ</code> to create flexed muscular arms, the <strong>Strong Lenny Face</strong> is the ultimate gaming flex for gym enthusiasts, ranked match winners, and fitness memes.</p>
+    `,
+    faqs: [
+      { q: "What characters make the flexing arms?", a: "The flexed biceps use Canadian Aboriginal Syllabic characters U+1555 (ᕙ) and U+1557 (ᕗ)." }
+    ],
+    related: [
+      { name: "Angry Boxer Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
+      { name: "Cool Lenny", url: "cool-lenny-face.html", sample: "(⌐■ ͜ʖ■)" }
+    ]
+  },
+  {
+    slug: 'hug-lenny-face.html',
+    title: 'Hug Lenny Face (づ｡◕‿‿◕｡)づ — Copy & Paste Embracing Faces',
+    description: 'Copy and paste Hug Lenny Face, welcoming outstretched arms, and comforting emoticons in 1-click. Instant clipboard copy.',
+    h1: 'Hug Lenny Face <span>(づ｡◕‿‿◕｡)づ</span>',
+    heroSub: 'Virtual hugs, welcoming arms, and wholesome comfort. Tap to copy hug Lenny faces in 1-click.',
+    sub: 'hug',
+    editorial: `
+      <h2>Warm Embraces: Hug Lenny Face (づ｡◕‿‿◕｡)づ</h2>
+      <p>With outstretched welcoming arms <code>づ</code>, the <strong>Hug Lenny Face</strong> turns the cheeky smirk into a wholesome, comforting embrace for friends and community servers.</p>
+    `,
+    faqs: [
+      { q: "What character creates the hugging arms?", a: "The arms are created using the Cyrillic letter Dze (づ - U+3065) or Hiragana tsu with dakuten." }
+    ],
+    related: [
+      { name: "Cute Lenny", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
+      { name: "Love Lenny", url: "love-lenny-face.html", sample: "( ͡♥ ͜ʖ ͡♥)" }
+    ]
+  },
+  {
+    slug: 'love-lenny-face.html',
+    title: 'Love Lenny Face ( ͡♥ ͜ʖ ͡♥) — Copy & Paste Romantic Heart Faces',
+    description: 'Copy and paste Love Lenny Face ( ͡♥ ͜ʖ ͡♥), heart eyes, and affectionate romantic text faces in 1-click. Free Unicode generator.',
+    h1: 'Love Lenny Face <span>( ͡♥ ͜ʖ ͡♥)</span>',
+    heroSub: 'Heart eyes, passionate kisses, and sweet romance. Tap to copy love Lenny faces in 1-click.',
+    sub: 'love',
+    editorial: `
+      <h2>Heart Eyes &amp; Affection: Love Lenny Face ( ͡♥ ͜ʖ ͡♥)</h2>
+      <p>Replacing standard eyes with solid black hearts <code>♥</code>, the <strong>Love Lenny Face</strong> expresses romantic infatuation, deep adoration, or humorous affection across chats.</p>
+    `,
+    faqs: [
+      { q: "How are heart eyes made in Unicode?", a: "The eyes use Unicode Black Heart Suit U+2665 (♥) placed inside the iconic Lenny face brackets." }
+    ],
+    related: [
+      { name: "Heart Kaomoji", url: "kaomoji/heart.html", sample: "(◕‿◕)♡" },
+      { name: "Blushing Lenny", url: "blushing-lenny-face.html", sample: "( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)" }
+    ]
+  },
+  {
+    slug: 'donger-lenny-face.html',
+    title: 'Donger Lenny Face ヽ༼ຈل͜ຈ༽ﾉ — Copy & Paste Donger Hybrids',
+    description: 'Copy and paste Donger Lenny Face hybrids ヽ༼ຈل͜ຈ༽ﾉ and League of Legends Twitch faces in 1-click. 100% Unicode compatible.',
+    h1: 'Donger Lenny Face <span>ヽ༼ຈل͜ຈ༽ﾉ</span>',
+    heroSub: 'The ultimate fusion of the Lenny smirk and the legendary Donger squad. Tap to copy in 1-click.',
+    sub: 'donger',
+    editorial: `
+      <h2>The Ultimate Crossover: Donger Lenny Face ヽ༼ຈل͜ຈ༽ﾉ</h2>
+      <p>When the suggestive Lenny smirk fuses with the triumphant raised arms of the gaming Donger, you get the <strong>Donger Lenny Face</strong>—a favorite for Twitch live chats and esports hype.</p>
+    `,
+    faqs: [
+      { q: "What does this face represent?", a: "It combines the mischievous Lenny Face with the esports Donger celebration." }
+    ],
+    related: [
+      { name: "Donger Text Faces", url: "text-faces/donger.html", sample: "ヽ༼ຈل͜ຈ༽ﾉ" },
+      { name: "Classic Lenny", url: "index.html", sample: "( ͡° ͜ʖ ͡°)" }
+    ]
+  },
+  {
+    slug: 'shocked-lenny-face.html',
+    title: 'Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉) — Copy & Paste Agape & Surprised Faces',
+    description: 'Copy and paste Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉), wide-eyed stares, and stunned text emoticons in 1-click. Instant clipboard copy.',
+    h1: 'Shocked Lenny Face <span>( ͡☉ ͜ʖ ͡☉)</span>',
+    heroSub: 'Wide unblinking stares, jaw-dropped shock, and comic astonishment. Tap to copy in 1-click.',
+    sub: 'shocked',
+    editorial: `
+      <h2>Wide-Eyed Amazement: Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉)</h2>
+      <p>Using circular sun/target glyphs <code>☉</code> for pupils, the <strong>Shocked Lenny Face</strong> captures unblinking disbelief, jaw-dropping surprises, and intense comic stares.</p>
+    `,
+    faqs: [
+      { q: "What symbol creates the wide pupils?", a: "The pupils use Unicode Sun symbol U+2609 (☉)." }
+    ],
+    related: [
+      { name: "Angry Lenny", url: "angry-lenny-face.html", sample: "( ͠° ͟ʖ ͡°)" },
+      { name: "Table Flip", url: "text-faces/table-flipping.html", sample: "(╯°□°)╯︵ ┻━┻" }
+    ]
+  },
+  {
+    slug: 'sparkle-lenny-face.html',
+    title: 'Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧ — Copy & Paste Star & Magical Faces',
+    description: 'Copy and paste Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧, magical twinkling stars, and glitter text faces in 1-click. Free Unicode generator.',
+    h1: 'Sparkle Lenny Face <span>( ͡° ͜ʖ ͡°)✧</span>',
+    heroSub: 'Celestial stardust, glittering eyes, and anime sparkle flairs. Tap to copy in 1-click.',
+    sub: 'sparkle',
+    editorial: `
+      <h2>Magical Flair: Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧</h2>
+      <p>Adding the four-pointed white star <code>✧</code> to the corner of the face, the <strong>Sparkle Lenny Face</strong> conveys a mischievous wink, an epiphany, or a polished anime sparkle.</p>
+    `,
+    faqs: [
+      { q: "What is the sparkle character?", a: "The sparkle is White Four Pointed Star U+2727 (✧)." }
+    ],
+    related: [
+      { name: "Sparkle Symbols", url: "symbols/sparkle.html", sample: "✦" },
+      { name: "Happy Lenny", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" }
+    ]
+  },
+  {
+    slug: 'weapons-lenny-face.html',
+    title: 'Weapons Lenny Face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿ — Copy & Paste Sniper & Gun Faces',
+    description: 'Copy and paste Weapons Lenny Face with sniper rifles, swords, and bows in 1-click. Legendary gaming ASCII art.',
+    h1: 'Weapons Lenny Face <span>( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿</span>',
+    heroSub: 'Sniper rifles, combat firearms, and dual swords. Tap to copy weapons Lenny faces in 1-click.',
+    sub: 'weapons',
+    editorial: `
+      <h2>Tactical Humor: Weapons Lenny Face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿</h2>
+      <p>Equipped with intricate ASCII sniper rifles, swords, and sidearms, the <strong>Weapons Lenny Face</strong> is a legendary staple in Counter-Strike, Call of Duty, and Valorant lobbies.</p>
+    `,
+    faqs: [
+      { q: "How is the sniper rifle constructed?", a: "The rifle combines slashes, equals signs, and Greek epsilon diacritics into a detailed rifle shape." }
+    ],
+    related: [
+      { name: "Angry Boxer Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
+      { name: "Middle Finger Lenny", url: "middle-finger.html", sample: "t( ͡° ͜ʖ ͡° t)" }
+    ]
   }
 ];
 
@@ -741,22 +1065,33 @@ function buildLennySubpages() {
       { name: p.h1.replace(/<[^>]*>?/gm, '').trim(), url: p.slug }
     ];
 
+    const dirSlug = p.slug.replace(/\.html$/, '');
+    const custom = CUSTOM_SUBPAGE_CONTENT[dirSlug];
+
+    const pageTitle = custom ? custom.pageTitle : p.title;
+    const metaDescription = custom ? custom.metaDescription : p.description;
+    const h1Text = custom ? custom.h1Text : p.h1;
+    const heroSub = custom ? custom.heroSub : p.heroSub;
+    const editorialHtml = custom ? custom.editorialHtml : p.editorial;
+    const faqList = custom ? custom.faqList : p.faqs;
+    const relatedCats = custom ? custom.relatedCats : p.related;
+
     // 1. Generate root HTML file (e.g. crying-lenny-face.html)
     const html = generatePageTemplate({
-      pageTitle: p.title,
-      metaDescription: p.description,
+      pageTitle,
+      metaDescription,
       canonicalUrl: `${SITE_URL}/${p.slug}`,
       rootPrefix: '',
       breadcrumbs,
       heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
-      h1Text: p.h1,
-      heroSub: p.heroSub,
+      h1Text,
+      heroSub,
       activeHub: 'lenny',
       activeSub: p.sub,
       glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
-      editorialHtml: p.editorial,
-      faqList: p.faqs,
-      relatedCats: p.related,
+      editorialHtml,
+      faqList,
+      relatedCats,
       lang: 'en'
     });
 
@@ -764,7 +1099,6 @@ function buildLennySubpages() {
     console.log(`  ✓ Generated: ${p.slug}`);
 
     // 2. Generate clean directory index.html (e.g. /crying-lenny-face/index.html)
-    const dirSlug = p.slug.replace(/\.html$/, '');
     const cleanDir = path.join(ROOT_DIR, dirSlug);
     if (!fs.existsSync(cleanDir)) fs.mkdirSync(cleanDir, { recursive: true });
 
@@ -775,20 +1109,20 @@ function buildLennySubpages() {
     ];
 
     const cleanHtml = generatePageTemplate({
-      pageTitle: p.title,
-      metaDescription: p.description,
+      pageTitle,
+      metaDescription,
       canonicalUrl: `${SITE_URL}/${dirSlug}/`,
       rootPrefix: '../',
       breadcrumbs: cleanBreadcrumbs,
       heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
-      h1Text: p.h1,
-      heroSub: p.heroSub,
+      h1Text,
+      heroSub,
       activeHub: 'lenny',
       activeSub: p.sub,
       glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
-      editorialHtml: p.editorial,
-      faqList: p.faqs,
-      relatedCats: p.related,
+      editorialHtml,
+      faqList,
+      relatedCats,
       lang: 'en'
     });
 
@@ -796,88 +1130,6 @@ function buildLennySubpages() {
     console.log(`  ✓ Generated Clean URL: ${dirSlug}/index.html`);
   }
 }
-
-// Specialized Custom Subpage Content for High-Priority Keyword Landers
-const CUSTOM_SUBPAGE_CONTENT = {
-  'emoticons/laughing': {
-    pageTitle: 'Laughing Emoticons :-D & XD — Copy & Paste Funny Text Faces & Kaomoji',
-    metaDescription: 'Copy and paste Laughing Emoticons (:-D, XD, ≧▽≦), funny text faces, and joyful laughing kaomoji in 1-click. 100% Unicode compatible for Discord, WhatsApp & iOS.',
-    h1Text: 'Laughing Emoticons <span>:-D &amp; XD</span>',
-    heroSub: 'From retro ASCII keyboard laughs to hysterical anime kaomoji giggles. Copy laughing emoticons in 1-click.',
-    editorialHtml: `
-      <h2>The Evolution of Laughing Emoticons: From :-D to XD and (≧▽≦)</h2>
-      <p>The <strong>Laughing Emoticon</strong> is the cornerstone of digital joy. Originating in September 1982 when computer scientist Scott Fahlman proposed the smiley <code>:-)</code> on Carnegie Mellon message boards, text laughs quickly expanded into wide-open laughing grins like <code>:-D</code> and <code>:D</code>. During the 2000s MSN Messenger and IRC chat era, the squinting laughter of <code>XD</code> and <code>xDD</code> took over the internet. Today, Japanese kaomoji like <code>(≧▽≦)</code> and <code>ꉂ(ˊᗜˋ*)</code> blend expressive typography with anime-style joy to create the richest text laughter in internet history.</p>
-
-      <h3>Why Text Laughs Hit Harder Than the Generic 😂 Emoji</h3>
-      <p>While the standard "Face with Tears of Joy" emoji (😂) has become oversaturated and corporate, text laughs remain fresh, authentic, and highly personal:</p>
-      <ul>
-        <li><strong>Universal Compatibility:</strong> Standard emojis render differently across Apple, Google, Samsung, and Microsoft devices. Text laughs like <code>:-D</code> and <code>(≧▽≦)</code> look 100% identical on every screen.</li>
-        <li><strong>Intentional Typing:</strong> Copying or typing a text laugh signals genuine engagement rather than tapping a passive reaction button.</li>
-        <li><strong>Nuanced Levels of Humor:</strong> A subtle <code>:D</code> feels warmly cheerful, <code>XD</code> feels retro and self-aware, and <code>ヾ(≧▽≦*)o</code> conveys unstoppable knee-slapping hysterics.</li>
-      </ul>
-
-      <h3>Decoding the Anatomy of Laughing Text Characters</h3>
-      <p>Different cultures created unique visual shorthand for human laughter:</p>
-      <ol>
-        <li><strong>The Western Open Smile (<code>D</code>):</strong> In classic ASCII typography, a colon <code>:</code> (eyes) paired with a capital letter <code>D</code> represents a wide-open, toothy laugh.</li>
-        <li><strong>The Squinting Eyes of "XD":</strong> The capital letter <code>X</code> represents eyes tightly squeezed shut from laughing uncontrollably, paired with the open mouth <code>D</code>.</li>
-        <li><strong>The Japanese Kaomoji Squint (<code>≧ ≦</code>):</strong> In Japanese text art, math symbols greater-than/less-than with equals signs represent joyful squinting eyes, paired with an open triangular mouth <code>▽</code> to make <code>(≧▽≦)</code>.</li>
-        <li><strong>Action Hands &amp; Confetti (<code>ヾ o</code> &amp; <code>*:･ﾟ</code>):</strong> Modern laughing kaomoji add waving arms and celebratory sparkles for full-body laughter like <code>(ﾉ´ヮ\`)ﾉ*: ･ﾟ</code>.</li>
-      </ol>
-
-      <h3>Hierarchy of Laughter: Which One to Send?</h3>
-      <table class="editorial-table" style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
-        <thead>
-          <tr style="border-bottom:2px solid var(--border-color); text-align:left;">
-            <th style="padding:10px;">Emoticon</th>
-            <th style="padding:10px;">Laugh Level</th>
-            <th style="padding:10px;">Meaning &amp; Vibe</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border-color);">
-            <td style="padding:10px; font-weight:700;">:-) / :D</td>
-            <td style="padding:10px;">Mild / Warm</td>
-            <td style="padding:10px;">A friendly grin acknowledging a pleasant comment or polite joke.</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border-color);">
-            <td style="padding:10px; font-weight:700;">XD / xDD</td>
-            <td style="padding:10px;">Medium / Ironic</td>
-            <td style="padding:10px;">Playful meme reaction, gaming irony, or hearty chuckle.</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--border-color);">
-            <td style="padding:10px; font-weight:700;">(≧▽≦)</td>
-            <td style="padding:10px;">High / Ecstatic</td>
-            <td style="padding:10px;">Pure anime delight, eyes squeezed shut with wholesome amusement.</td>
-          </tr>
-          <tr>
-            <td style="padding:10px; font-weight:700;">ヾ(≧▽≦*)o</td>
-            <td style="padding:10px;">Maximum / Hysterical</td>
-            <td style="padding:10px;">Slapping your knee, gasping for air, uncontrollable hysterics.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>How to Copy and Paste Laughing Emoticons</h3>
-      <p>Browse our curated table above and tap or click on any laughing face to copy it directly to your device clipboard. Paste seamlessly into Discord, TikTok, WhatsApp, Roblox, Twitter (X), or your personal bio.</p>
-    `,
-    faqList: [
-      { q: "What does (≧▽≦) mean in text?", a: "The kaomoji (≧▽≦) represents hard, joyful laughter. The characters ≧ and ≦ represent eyes squeezed shut from laughing heartily, while the inverted triangle ▽ represents a wide-open laughing mouth." },
-      { q: "What is the difference between xD and XD?", a: "Both convey the same eye-squeezing laughter, but XD with a capital X represents a more intense, dramatic laugh than lowercase xD. In early internet culture (2000s MSN/IRC), multiplying the D (e.g., xDD or XDDD) indicated even longer, louder laughter." },
-      { q: "Why use text laughing emoticons instead of the 😂 emoji?", a: "Text emoticons like :-D, XD, and (≧▽≦) render identically across all operating systems without platform redesigns. They also feel more genuine, personal, and nostalgic than ubiquitous yellow reaction emojis." },
-      { q: "How do I type :-D or XD on mobile phones?", a: "On smartphone keyboards, switch to the symbols layout for the colon ':' and hyphen '-', then return to letters for capital 'D'. Or simply use our 1-click copy button above to paste directly into your chats." },
-      { q: "Are these laughing emoticons compatible with Discord and Instagram?", a: "Yes! All emoticons in our library use universal Unicode and standard ASCII characters, guaranteeing seamless display on Discord, Instagram, WhatsApp, TikTok, Twitch, and Reddit." }
-    ],
-    relatedCats: [
-      { name: "Smiley Emoticons", url: "emoticons/smiley.html", sample: ":-)" },
-      { name: "Happy Lenny Face", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" },
-      { name: "Cute Kaomoji", url: "kaomoji/cute.html", sample: "( ˶ˆ꒳ˆ˵ )" },
-      { name: "Winky Emoticons", url: "emoticons/winky.html", sample: ";-)" },
-      { name: "Heart Emoticons", url: "emoticons/heart.html", sample: "<3" },
-      { name: "Donger Text Faces", url: "text-faces/donger.html", sample: "ヽ༼ຈل͜ຈ༽ﾉ" }
-    ]
-  }
-};
 
 // Build Hub Category Pages (Text Faces, Kaomoji, Emoticons, Symbols, Aesthetic)
 function buildHubPages() {
@@ -1020,28 +1272,36 @@ function buildHubPages() {
       count: 'Explore'
     }));
 
-    const hubHtml = generatePageTemplate({
-      pageTitle: hubInfo.title,
-      metaDescription: hubInfo.description,
-      canonicalUrl: `${SITE_URL}/${hubInfo.dir}/`,
-      rootPrefix: '../',
-      breadcrumbs: hubBreadcrumbs,
-      heroBadge: '⚡ 1-Click Copy • 1,000+ Items',
-      h1Text: hubInfo.h1,
-      heroSub: hubInfo.heroSub,
-      activeHub: hubInfo.hub,
-      activeSub: 'all',
-      glyphs: hubGlyphs,
-      editorialHtml: `
+    const hubCustom = CUSTOM_HUB_CONTENT[hubInfo.hub];
+    const pageTitle = hubCustom ? hubCustom.pageTitle : hubInfo.title;
+    const metaDescription = hubCustom ? hubCustom.metaDescription : hubInfo.description;
+    const h1Text = hubCustom ? hubCustom.h1Text : hubInfo.h1;
+    const heroSub = hubCustom ? hubCustom.heroSub : hubInfo.heroSub;
+    const editorialHtml = hubCustom ? hubCustom.editorialHtml : `
         <h2>Comprehensive Guide to ${hubInfo.title.split('—')[0].trim()}</h2>
         <p>Welcome to the ultimate directory of <strong>${hubInfo.title.split('—')[0].trim()}</strong>. Whether you are styling your Discord profile bio, commenting on viral TikTok videos, or chatting in Twitch streams, our curated collection delivers zero-lag, instant 1-click clipboard copying across all operating systems.</p>
         <h3>Category Highlights</h3>
         <p>Explore specialized sub-collections below to find the exact emotion or aesthetic design for your mood.</p>
-      `,
-      faqList: [
+    `;
+    const faqList = hubCustom ? hubCustom.faqList : [
         { q: `How do I copy these ${hubInfo.title.split('—')[0].trim()}?`, a: "Simply tap or click any card box on this page to copy directly to your clipboard. A toast notification will verify the copy." },
         { q: "Are these characters compatible on iPhone and Android?", a: "Yes! All characters use universal Unicode standards, ensuring flawless rendering on iOS, Android, macOS, Windows, and Linux." }
-      ],
+    ];
+
+    const hubHtml = generatePageTemplate({
+      pageTitle,
+      metaDescription,
+      canonicalUrl: `${SITE_URL}/${hubInfo.dir}/`,
+      rootPrefix: '../',
+      breadcrumbs: hubBreadcrumbs,
+      heroBadge: '⚡ 1-Click Copy • 1,000+ Items',
+      h1Text,
+      heroSub,
+      activeHub: hubInfo.hub,
+      activeSub: 'all',
+      glyphs: hubGlyphs,
+      editorialHtml,
+      faqList,
       relatedCats: relatedCatCards,
       lang: 'en'
     });
@@ -1402,7 +1662,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 // Pre-render static cards into index.html
 function buildHomePage() {
-  console.log('Injecting pre-rendered cards into index.html...');
+  console.log('Injecting pre-rendered cards and subbars into index.html...');
   const indexPath = path.join(ROOT_DIR, 'index.html');
   if (!fs.existsSync(indexPath)) return;
 
@@ -1424,6 +1684,34 @@ function buildHomePage() {
     );
   }
 
+  // Pre-render Hubbar & Subbars
+  const hubbarSection = `<!-- Hub Category Filter Chips with Real Links & Bottom-Left Link Preview -->
+      <div class="hubbar" role="group" aria-label="Category Hubs">
+        <a href="index.html" class="hub-chip active" data-hub="all">All Faces</a>
+        <button type="button" class="hub-chip" data-hub="__favs">❤️ Favorites</button>
+        <a href="index.html#browse" class="hub-chip" data-hub="lenny">Lenny Faces</a>
+        <a href="text-faces/index.html" class="hub-chip" data-hub="text-faces">Text Faces</a>
+        <a href="kaomoji/index.html" class="hub-chip" data-hub="kaomoji">Kaomoji</a>
+        <a href="emoticons/index.html" class="hub-chip" data-hub="emoticons">Emoticons</a>
+        <a href="symbols/index.html" class="hub-chip" data-hub="symbols">Symbols</a>
+        <a href="aesthetic/index.html" class="hub-chip" data-hub="aesthetic">Aesthetic Bios</a>
+      </div>
+
+      <!-- Pre-rendered Static Subbars with Real Anchor Links -->
+      ${renderAllSubbars('lenny', 'all', '')}`;
+
+  if (indexHtml.includes('<!-- Hub Category Filter Chips') && indexHtml.includes('<!-- Social Share Buttons -->')) {
+    indexHtml = indexHtml.replace(
+      /<!-- Hub Category Filter Chips[\s\S]*?(?=<!-- Social Share Buttons -->)/,
+      hubbarSection + '\n\n      '
+    );
+  } else if (indexHtml.includes('<div class="hubbar"') && indexHtml.includes('<!-- Social Share Buttons -->')) {
+    indexHtml = indexHtml.replace(
+      /<div class="hubbar"[\s\S]*?(?=<!-- Social Share Buttons -->)/,
+      hubbarSection + '\n\n      '
+    );
+  }
+
   // Update grid count display
   indexHtml = indexHtml.replace(
     /<div class="grid-count">[\s\S]*?<\/div>/,
@@ -1431,7 +1719,7 @@ function buildHomePage() {
   );
 
   fs.writeFileSync(indexPath, indexHtml, 'utf8');
-  console.log(`  ✓ Injected ALL ${allGlyphs.length} pre-rendered cards into index.html`);
+  console.log(`  ✓ Injected ALL ${allGlyphs.length} pre-rendered cards and subbars into index.html`);
 }
 
 // Execute All Builders

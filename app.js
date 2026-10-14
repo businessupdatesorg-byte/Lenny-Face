@@ -270,54 +270,77 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/'/g, "&#039;");
   }
 
-  // Hub Category Chips Handling
-  hubChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      hubChips.forEach(c => c.classList.remove('active'));
+  // Hub Category Chips Handling (Instant In-Place Filtering with Native Link Support)
+  document.querySelectorAll('.hub-chip').forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      // Allow middle click, Ctrl-click, Cmd-click, Shift-click to open in new tab
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+
+      const targetHub = chip.getAttribute('data-hub');
+      if (!targetHub) return;
+
+      e.preventDefault();
+
+      document.querySelectorAll('.hub-chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
-      activeHub = chip.getAttribute('data-hub');
+
+      activeHub = targetHub;
       activeSub = 'all';
-      updateSubbar();
+
+      updateSubbarVisibility();
       renderGlyphGrid();
     });
   });
 
-  function updateSubbar() {
-    if (!subbar || typeof GLYPH_DATA === 'undefined') return;
+  function updateSubbarVisibility() {
+    const allSubbars = document.querySelectorAll('.subbar');
+    if (allSubbars.length === 0) return;
 
-    if (activeHub === 'all' || activeHub === '__favs') {
-      subbar.style.display = 'none';
-      return;
-    }
+    allSubbars.forEach(sb => {
+      const group = sb.getAttribute('data-hub-group');
+      let shouldShow = false;
 
-    // Get unique subs for active hub
-    const hubItems = GLYPH_DATA.filter(i => i.hub === activeHub);
-    const uniqueSubs = Array.from(new Set(hubItems.map(i => i.sub)));
+      if (activeHub === '__favs') {
+        shouldShow = false;
+      } else if (activeHub === 'all') {
+        shouldShow = (group === 'lenny');
+      } else {
+        shouldShow = (group === activeHub);
+      }
 
-    if (uniqueSubs.length <= 1) {
-      subbar.style.display = 'none';
-      return;
-    }
+      sb.style.display = shouldShow ? 'flex' : 'none';
 
-    subbar.style.display = 'flex';
-    subbar.innerHTML = `
-      <button type="button" class="sub-chip ${activeSub === 'all' ? 'active' : ''}" data-sub="all">All ${activeHub}</button>
-      ${uniqueSubs.map(sub => `
-        <button type="button" class="sub-chip ${activeSub === sub ? 'active' : ''}" data-sub="${sub}">
-          ${sub.replace('-', ' ')}
-        </button>
-      `).join('')}
-    `;
-
-    subbar.querySelectorAll('.sub-chip').forEach(btn => {
-      btn.addEventListener('click', () => {
-        subbar.querySelectorAll('.sub-chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeSub = btn.getAttribute('data-sub');
-        renderGlyphGrid();
-      });
+      if (shouldShow) {
+        sb.querySelectorAll('.sub-chip').forEach(sc => {
+          if (sc.getAttribute('data-sub') === 'all') {
+            sc.classList.add('active');
+          } else {
+            sc.classList.remove('active');
+          }
+        });
+      }
     });
   }
+
+  // Sub-category Filter Delegation (In-place filtering on normal left click)
+  document.addEventListener('click', (e) => {
+    const subChip = e.target.closest('.sub-chip');
+    if (!subChip) return;
+
+    // Allow middle click / new tab modifiers
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+
+    e.preventDefault();
+
+    const parentSubbar = subChip.closest('.subbar');
+    if (parentSubbar) {
+      parentSubbar.querySelectorAll('.sub-chip').forEach(sc => sc.classList.remove('active'));
+    }
+    subChip.classList.add('active');
+
+    activeSub = subChip.getAttribute('data-sub') || 'all';
+    renderGlyphGrid();
+  });
 
   // Search Input Handling
   if (searchInput) {

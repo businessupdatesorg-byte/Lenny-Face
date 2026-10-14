@@ -301,6 +301,11 @@ a:hover {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .hub-chip:hover, .hub-chip.active {
@@ -333,6 +338,11 @@ a:hover {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
 
 .sub-chip:hover, .sub-chip.active {

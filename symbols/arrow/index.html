@@ -194,16 +194,150 @@
         <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear Search">✕</button>
       </div>
 
-      <!-- Category Filter Chips -->
+      <!-- Category Filter Chips with Real Links & Bottom-Left Link Preview -->
       <div class="hubbar" role="group" aria-label="Category Hubs">
-        <a href="../../index.html" class="hub-chip ">All Faces</a>
-        <a href="../../index.html#browse" class="hub-chip ">Lenny Faces</a>
-        <a href="../../text-faces/index.html" class="hub-chip ">Text Faces</a>
-        <a href="../../kaomoji/index.html" class="hub-chip ">Kaomoji</a>
-        <a href="../../emoticons/index.html" class="hub-chip ">Emoticons</a>
-        <a href="../../symbols/index.html" class="hub-chip active">Symbols</a>
-        <a href="../../aesthetic/index.html" class="hub-chip ">Aesthetic Bios</a>
+        <a href="../../index.html" class="hub-chip " data-hub="all">All Faces</a>
+        <button type="button" class="hub-chip " data-hub="__favs">❤️ Favorites</button>
+        <a href="../../index.html#browse" class="hub-chip " data-hub="lenny">Lenny Faces</a>
+        <a href="../../text-faces/index.html" class="hub-chip " data-hub="text-faces">Text Faces</a>
+        <a href="../../kaomoji/index.html" class="hub-chip " data-hub="kaomoji">Kaomoji</a>
+        <a href="../../emoticons/index.html" class="hub-chip " data-hub="emoticons">Emoticons</a>
+        <a href="../../symbols/index.html" class="hub-chip active" data-hub="symbols">Symbols</a>
+        <a href="../../aesthetic/index.html" class="hub-chip " data-hub="aesthetic">Aesthetic Bios</a>
       </div>
+
+      <!-- Pre-rendered Static Subbars with Real Anchor Links -->
+      
+      <!-- Sub-category Bar: lenny -->
+      <div class="subbar" id="subbar-lenny" data-hub-group="lenny" style="display: none;" role="group" aria-label="lenny subcategories">
+        <a href="../../index.html#browse" class="sub-chip " data-sub="all">All Lenny</a>
+        <a href="../../angry-lenny-face/" class="sub-chip " data-sub="angry">Angry</a>
+        <a href="../../crying-lenny-face/" class="sub-chip " data-sub="crying">Crying</a>
+        <a href="../../cute-lenny-face/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="../../sad-lenny-face/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="../../happy-lenny-face/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="../../blushing-lenny-face/" class="sub-chip " data-sub="blushing">Blushing</a>
+        <a href="../../shrug-lenny-face/" class="sub-chip " data-sub="shrug">Shrug</a>
+        <a href="../../middle-finger/" class="sub-chip " data-sub="middle-finger">Middle Finger</a>
+        <a href="../../wink-lenny-face/" class="sub-chip " data-sub="wink">Wink</a>
+        <a href="../../cool-lenny-face/" class="sub-chip " data-sub="cool">Cool</a>
+        <a href="../../strong-lenny-face/" class="sub-chip " data-sub="strong">Strong</a>
+        <a href="../../hug-lenny-face/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="../../love-lenny-face/" class="sub-chip " data-sub="love">Love</a>
+        <a href="../../donger-lenny-face/" class="sub-chip " data-sub="donger">Donger</a>
+        <a href="../../shocked-lenny-face/" class="sub-chip " data-sub="shocked">Shocked</a>
+        <a href="../../sparkle-lenny-face/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="../../weapons-lenny-face/" class="sub-chip " data-sub="weapons">Weapons</a>
+      </div>
+    
+
+      <!-- Sub-category Bar: kaomoji -->
+      <div class="subbar" id="subbar-kaomoji" data-hub-group="kaomoji" style="display: none;" role="group" aria-label="kaomoji subcategories">
+        <a href="../../kaomoji/" class="sub-chip " data-sub="all">All Kaomoji</a>
+        <a href="../../kaomoji/cat/" class="sub-chip " data-sub="cat">Cat</a>
+        <a href="../../kaomoji/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="../../kaomoji/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="../../kaomoji/happy/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="../../kaomoji/hug/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="../../kaomoji/kiss/" class="sub-chip " data-sub="kiss">Kiss</a>
+        <a href="../../kaomoji/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="../../kaomoji/angry/" class="sub-chip " data-sub="angry">Angry</a>
+        <a href="../../kaomoji/dog/" class="sub-chip " data-sub="dog">Dog</a>
+        <a href="../../kaomoji/bunny/" class="sub-chip " data-sub="bunny">Bunny</a>
+        <a href="../../kaomoji/bear/" class="sub-chip " data-sub="bear">Bear</a>
+        <a href="../../kaomoji/spider/" class="sub-chip " data-sub="spider">Spider</a>
+        <a href="../../kaomoji/begging/" class="sub-chip " data-sub="begging">Begging</a>
+        <a href="../../kaomoji/determined/" class="sub-chip " data-sub="determined">Determined</a>
+        <a href="../../kaomoji/dancing/" class="sub-chip " data-sub="dancing">Dancing</a>
+        <a href="../../kaomoji/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
+        <a href="../../kaomoji/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="../../kaomoji/shocked/" class="sub-chip " data-sub="shocked">Shocked</a>
+        <a href="../../kaomoji/scared/" class="sub-chip " data-sub="scared">Scared</a>
+        <a href="../../kaomoji/tired/" class="sub-chip " data-sub="tired">Tired</a>
+        <a href="../../kaomoji/nervous/" class="sub-chip " data-sub="nervous">Nervous</a>
+        <a href="../../kaomoji/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
+      </div>
+    
+
+      <!-- Sub-category Bar: text-faces -->
+      <div class="subbar" id="subbar-text-faces" data-hub-group="text-faces" style="display: none;" role="group" aria-label="text-faces subcategories">
+        <a href="../../text-faces/" class="sub-chip " data-sub="all">All Text Faces</a>
+        <a href="../../text-faces/donger/" class="sub-chip " data-sub="donger">Donger</a>
+        <a href="../../text-faces/table-flipping/" class="sub-chip " data-sub="table-flipping">Table Flip</a>
+        <a href="../../text-faces/disapproval/" class="sub-chip " data-sub="disapproval">Disapproval</a>
+        <a href="../../text-faces/fight/" class="sub-chip " data-sub="fight">Fighting</a>
+        <a href="../../text-faces/bear/" class="sub-chip " data-sub="bear">Bear</a>
+        <a href="../../text-faces/cat/" class="sub-chip " data-sub="cat">Cat</a>
+        <a href="../../text-faces/dog/" class="sub-chip " data-sub="dog">Dog</a>
+        <a href="../../text-faces/hug/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="../../text-faces/crying/" class="sub-chip " data-sub="crying">Crying</a>
+        <a href="../../text-faces/cool/" class="sub-chip " data-sub="cool">Cool</a>
+        <a href="../../text-faces/happy/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="../../text-faces/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="../../text-faces/love/" class="sub-chip " data-sub="love">Love</a>
+        <a href="../../text-faces/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="../../text-faces/confused/" class="sub-chip " data-sub="confused">Confused</a>
+        <a href="../../text-faces/blushing/" class="sub-chip " data-sub="blushing">Blushing</a>
+        <a href="../../text-faces/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
+        <a href="../../text-faces/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
+        <a href="../../text-faces/gaming/" class="sub-chip " data-sub="gaming">Gaming</a>
+        <a href="../../text-faces/funny/" class="sub-chip " data-sub="funny">Funny</a>
+      </div>
+    
+
+      <!-- Sub-category Bar: emoticons -->
+      <div class="subbar" id="subbar-emoticons" data-hub-group="emoticons" style="display: none;" role="group" aria-label="emoticons subcategories">
+        <a href="../../emoticons/" class="sub-chip " data-sub="all">All Emoticons</a>
+        <a href="../../emoticons/laughing/" class="sub-chip " data-sub="laughing">Laughing</a>
+        <a href="../../emoticons/smiley/" class="sub-chip " data-sub="smiley">Smiley</a>
+        <a href="../../emoticons/winky/" class="sub-chip " data-sub="winky">Winky</a>
+        <a href="../../emoticons/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="../../emoticons/mad/" class="sub-chip " data-sub="mad">Mad</a>
+        <a href="../../emoticons/annoyed/" class="sub-chip " data-sub="annoyed">Annoyed</a>
+        <a href="../../emoticons/kissy/" class="sub-chip " data-sub="kissy">Kissy</a>
+        <a href="../../emoticons/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="../../emoticons/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="../../emoticons/creepy/" class="sub-chip " data-sub="creepy">Creepy</a>
+      </div>
+    
+
+      <!-- Sub-category Bar: symbols -->
+      <div class="subbar" id="subbar-symbols" data-hub-group="symbols" style="display: flex;" role="group" aria-label="symbols subcategories">
+        <a href="../../symbols/" class="sub-chip " data-sub="all">All Symbols</a>
+        <a href="../../symbols/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="../../symbols/star/" class="sub-chip " data-sub="star">Star</a>
+        <a href="../../symbols/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="../../symbols/flower/" class="sub-chip " data-sub="flower">Flower</a>
+        <a href="../../symbols/moon/" class="sub-chip " data-sub="moon">Moon</a>
+        <a href="../../symbols/skull/" class="sub-chip " data-sub="skull">Skull</a>
+        <a href="../../symbols/crown/" class="sub-chip " data-sub="crown">Crown</a>
+        <a href="../../symbols/weapons/" class="sub-chip " data-sub="weapons">Weapons</a>
+        <a href="../../symbols/bow/" class="sub-chip " data-sub="bow">Bow</a>
+        <a href="../../symbols/music/" class="sub-chip " data-sub="music">Music</a>
+        <a href="../../symbols/butterfly/" class="sub-chip " data-sub="butterfly">Butterfly</a>
+        <a href="../../symbols/fire/" class="sub-chip " data-sub="fire">Fire</a>
+        <a href="../../symbols/snowflake/" class="sub-chip " data-sub="snowflake">Snowflake</a>
+        <a href="../../symbols/sun/" class="sub-chip " data-sub="sun">Sun</a>
+        <a href="../../symbols/check-mark/" class="sub-chip " data-sub="check-mark">Check Marks</a>
+        <a href="../../symbols/bullet-point/" class="sub-chip " data-sub="bullet-point">Bullet Points</a>
+        <a href="../../symbols/cross/" class="sub-chip " data-sub="cross">Crosses</a>
+        <a href="../../symbols/arrow/" class="sub-chip active" data-sub="arrow">Arrows</a>
+      </div>
+    
+
+      <!-- Sub-category Bar: aesthetic -->
+      <div class="subbar" id="subbar-aesthetic" data-hub-group="aesthetic" style="display: none;" role="group" aria-label="aesthetic subcategories">
+        <a href="../../aesthetic/" class="sub-chip " data-sub="all">All Aesthetic</a>
+        <a href="../../aesthetic/discord-bio/" class="sub-chip " data-sub="discord-bio">Discord Bios</a>
+        <a href="../../aesthetic/instagram-bio/" class="sub-chip " data-sub="instagram-bio">Instagram Bios</a>
+        <a href="../../aesthetic/tiktok-bio/" class="sub-chip " data-sub="tiktok-bio">TikTok Bios</a>
+        <a href="../../aesthetic/dividers/" class="sub-chip " data-sub="dividers">Aesthetic Dividers</a>
+        <a href="../../aesthetic/borders/" class="sub-chip " data-sub="borders">Fancy Borders</a>
+        <a href="../../aesthetic/emoji-combos/" class="sub-chip " data-sub="emoji-combos">Emoji Combos</a>
+        <a href="../../aesthetic/bio-templates/" class="sub-chip " data-sub="bio-templates">Bio Templates</a>
+        <a href="../../aesthetic/symbols/" class="sub-chip " data-sub="symbols">Aesthetic Symbols</a>
+      </div>
+    
 
       
     <!-- Social Share Buttons -->
