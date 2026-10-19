@@ -14,5 +14,8 @@
     "aesthetic-bio"
   ],
   "author": "Lenny Face Pro",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
 }

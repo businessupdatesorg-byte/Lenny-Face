@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT_DIR = __dirname;
-const SITE_URL = 'https://thelennyfacepro.com';
+const SITE_URL = 'https://thelennyfaces.com';
 
 // Ensure directories exist
 function ensureDir(dirPath) {
@@ -421,6 +421,15 @@ function generatePageTemplate({
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(metaDescription)}">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon & Site Icons -->
+  <link rel="icon" type="image/svg+xml" href="${rootPrefix}favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="${rootPrefix}favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="${rootPrefix}favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="${rootPrefix}favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="${rootPrefix}apple-touch-icon.png">
+  <link rel="manifest" href="${rootPrefix}site.webmanifest">
+  <meta name="theme-color" content="#10b981">
 
   <link rel="stylesheet" href="${rootPrefix}styles.css">
 
