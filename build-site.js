@@ -569,15 +569,15 @@ function generatePageTemplate({
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon & Site Icons -->
-  <link rel="icon" type="image/svg+xml" href="${rootPrefix}favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="${rootPrefix}favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="${rootPrefix}favicon-16x16.png">
-  <link rel="icon" type="image/x-icon" href="${rootPrefix}favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="${rootPrefix}apple-touch-icon.png">
-  <link rel="manifest" href="${rootPrefix}site.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#10b981">
 
-  <link rel="stylesheet" href="${rootPrefix}styles.css">
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -723,7 +723,7 @@ ${editorialHtml}
             <li><a href="${getLangUrl('symbols/sparkle/', lang)}">${lang === 'es' ? 'Símbolos de Brillo' : lang === 'ja' ? 'キラキラ記号' : lang === 'ko' ? '반짝이 특수문자' : 'Sparkle Symbols'}</a></li>
             <li><a href="${getLangUrl('aesthetic/discord-bio/', lang)}">${lang === 'es' ? 'Biografías Discord' : lang === 'ja' ? 'Discord用バイオ' : lang === 'ko' ? '디스코드 소개글' : 'Discord Bios'}</a></li>
             <li><a href="${getLangUrl('aesthetic/dividers/', lang)}">${lang === 'es' ? 'Separadores Estéticos' : lang === 'ja' ? 'おしゃれ飾り罫線' : lang === 'ko' ? '감성 구분선' : 'Aesthetic Dividers'}</a></li>
-            <li><a href="${rootPrefix}sitemap.xml">XML Sitemap</a></li>
+            <li><a href="/sitemap.xml">XML Sitemap</a></li>
           </ul>
         </div>
       </div>
@@ -739,8 +739,8 @@ ${editorialHtml}
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Client-side Scripts -->
-  <script src="${rootPrefix}data.js"></script>
-  <script src="${rootPrefix}app.js"></script>
+  <script src="/data.js"></script>
+  <script src="/app.js"></script>
 </body>
 </html>`;
 }
