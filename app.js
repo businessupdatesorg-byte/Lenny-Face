@@ -1,11 +1,134 @@
 /**
  * Lenny Face Pro - Client Application Engine
- * Features: One-Click Copy, Live Generator, Favorites, Search
+ * Features: One-Click Copy, Live Generator, Favorites, Search, Multilingual Switcher
  */
+
+// Language switcher handler with preference persistence
+window.handleLangSelect = function(url) {
+  if (url.includes('/es/')) {
+    localStorage.setItem('lenny_lang_pref', 'es');
+  } else if (url.includes('/jp/')) {
+    localStorage.setItem('lenny_lang_pref', 'ja');
+  } else if (url.includes('/kr/')) {
+    localStorage.setItem('lenny_lang_pref', 'ko');
+  } else {
+    localStorage.setItem('lenny_lang_pref', 'en');
+  }
+  window.location.href = url;
+};
+
+// Client-side Geo/Language Detection for first-time visitors on root homepage (Google International SEO compliant)
+(function checkGeoLanguage() {
+  const path = window.location.pathname;
+  const isRoot = (path === '/' || path === '/index.html' || path === '');
+  if (!isRoot) return;
+
+  const savedPref = localStorage.getItem('lenny_lang_pref');
+  if (savedPref) {
+    if (savedPref === 'es') window.location.replace('/es/');
+    else if (savedPref === 'ja') window.location.replace('/jp/');
+    else if (savedPref === 'ko') window.location.replace('/kr/');
+    return;
+  }
+
+  // Detect browser language preferences for first-time visitors
+  const userLangs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (const l of userLangs) {
+    const langLower = (l || '').toLowerCase();
+    if (langLower.startsWith('es')) {
+      localStorage.setItem('lenny_lang_pref', 'es');
+      window.location.replace('/es/');
+      break;
+    } else if (langLower.startsWith('ja')) {
+      localStorage.setItem('lenny_lang_pref', 'ja');
+      window.location.replace('/jp/');
+      break;
+    } else if (langLower.startsWith('ko')) {
+      localStorage.setItem('lenny_lang_pref', 'ko');
+      window.location.replace('/kr/');
+      break;
+    }
+  }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
   // Always clean permanent light mode
   document.documentElement.setAttribute('data-theme', 'light');
+
+  const currentLang = document.documentElement.lang || 'en';
+
+  const I18N_RUNTIME = {
+    en: {
+      copiedBtn: 'Copied! ✔',
+      copyBtn: 'Copy',
+      copiedToast: (d) => `Copied "${d}" to clipboard!`,
+      favAdd: '❤️ Saved to Favorites!',
+      favRemove: '🤍 Removed from Favorites',
+      showing: 'Showing',
+      items: 'items in this category',
+      noItemsTitle: 'No matching text faces found',
+      noItemsSub: 'Try searching for different keywords or select "All" categories.',
+      linkCopied: '🔗 Page link copied to clipboard!',
+      shareTitle: 'Share Text Face',
+      cancelBtn: 'Cancel',
+      favTitleAdd: 'Add to favorites',
+      favTitleRemove: 'Remove from favorites',
+      shareFaceTitle: 'Share this text face'
+    },
+    es: {
+      copiedBtn: '¡Copiado! ✔',
+      copyBtn: 'Copiar',
+      copiedToast: (d) => `¡Copiado "${d}" al portapapeles!`,
+      favAdd: '❤️ ¡Guardado en Favoritos!',
+      favRemove: '🤍 Eliminado de Favoritos',
+      showing: 'Mostrando',
+      items: 'elementos en esta categoría',
+      noItemsTitle: 'No se encontraron caritas coincidentes',
+      noItemsSub: 'Prueba a buscar con otras palabras o selecciona "Todas las Caritas".',
+      linkCopied: '🔗 ¡Enlace de página copiado al portapapeles!',
+      shareTitle: 'Compartir Cara de Texto',
+      cancelBtn: 'Cancelar',
+      favTitleAdd: 'Añadir a favoritos',
+      favTitleRemove: 'Eliminar de favoritos',
+      shareFaceTitle: 'Compartir esta carita'
+    },
+    ja: {
+      copiedBtn: 'コピー完了! ✔',
+      copyBtn: 'コピー',
+      copiedToast: (d) => `"${d}" をクリップボードにコピーしました！`,
+      favAdd: '❤️ お気に入りに追加しました！',
+      favRemove: '🤍 お気に入りから削除しました',
+      showing: '表示中:',
+      items: '件の顔文字',
+      noItemsTitle: '一致する顔文字が見つかりませんでした',
+      noItemsSub: '別のキーワードで検索するか、「すべての顔文字」を選択してください。',
+      linkCopied: '🔗 リンクをクリップボードにコピーしました！',
+      shareTitle: '顔文字をシェア',
+      cancelBtn: '閉じる',
+      favTitleAdd: 'お気に入りに追加',
+      favTitleRemove: 'お気に入りから削除',
+      shareFaceTitle: 'この顔文字をシェア'
+    },
+    ko: {
+      copiedBtn: '복사 완료! ✔',
+      copyBtn: '복사',
+      copiedToast: (d) => `"${d}" 클립보드에 복사되었습니다!`,
+      favAdd: '❤️ 즐겨찾기에 저장되었습니다!',
+      favRemove: '🤍 즐겨찾기에서 제거되었습니다',
+      showing: '표시 중:',
+      items: '개 이모티콘',
+      noItemsTitle: '일치하는 텍스트 얼굴이 없습니다',
+      noItemsSub: '다른 검색어를 입력하거나 "전체 이모티콘"을 선택해보세요.',
+      linkCopied: '🔗 페이지 링크가 클립보드에 복사되었습니다!',
+      shareTitle: '텍스트 얼굴 공유하기',
+      cancelBtn: '닫기',
+      favTitleAdd: '즐겨찾기에 추가',
+      favTitleRemove: '즐겨찾기에서 제거',
+      shareFaceTitle: '이 텍스트 얼굴 공유하기'
+    }
+  };
+
+  const ui = I18N_RUNTIME[currentLang] || I18N_RUNTIME.en;
 
   // Favorites Management
   let favorites = JSON.parse(localStorage.getItem('lenny_favs')) || [];
@@ -18,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     localStorage.setItem('lenny_favs', JSON.stringify(favorites));
     renderGlyphGrid();
-    showToast(favorites.includes(glyph) ? '❤️ Saved to Favorites!' : '🤍 Removed from Favorites');
+    showToast(favorites.includes(glyph) ? ui.favAdd : ui.favRemove);
   }
 
   // Toast System
@@ -42,10 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.copyGlyph = function(glyph, btnElement) {
     const displayText = glyph.length > 20 ? glyph.substring(0, 18) + '...' : glyph;
     
-    // Optional button visual feedback
+    // Button visual feedback
     if (btnElement) {
       const origText = btnElement.innerText;
-      btnElement.innerText = 'Copied! ✔';
+      btnElement.innerText = ui.copiedBtn;
       btnElement.classList.add('copied');
       setTimeout(() => {
         btnElement.innerText = origText;
@@ -55,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(glyph).then(() => {
-        showToast(`Copied "${displayText}" to clipboard!`);
+        showToast(ui.copiedToast(displayText));
       }).catch(() => {
         fallbackCopy(glyph, displayText);
       });
@@ -74,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    showToast(`Copied "${displayText}" to clipboard!`);
+    showToast(ui.copiedToast(displayText));
   }
 
   // Social Share: Copy Page Link
@@ -82,11 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUrl = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(currentUrl).then(() => {
-        showToast('🔗 Page link copied to clipboard!');
+        showToast(ui.linkCopied);
       });
     } else {
       fallbackCopy(currentUrl, currentUrl);
-      showToast('🔗 Page link copied!');
+      showToast(ui.linkCopied);
     }
   };
 
@@ -134,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalBackdrop.innerHTML = `
       <div class="share-modal-card" onclick="event.stopPropagation()">
-        <div class="share-modal-title">Share Text Face</div>
+        <div class="share-modal-title">${escapeHtml(ui.shareTitle)}</div>
         <div class="share-modal-sub">${escapeHtml(name || 'Lenny Face')}</div>
         <div class="share-modal-glyph">${escapeHtml(glyph)}</div>
         <div class="share-modal-grid">
@@ -152,10 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </a>
           <button type="button" class="share-btn share-btn-copylink" onclick="copyGlyph('${escapeHtml(glyph)}'); closeShareModal();">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <span>Copy Face</span>
+            <span>${escapeHtml(ui.copyBtn)} Face</span>
           </button>
         </div>
-        <button type="button" class="share-modal-close-btn" onclick="closeShareModal()">Cancel</button>
+        <button type="button" class="share-modal-close-btn" onclick="closeShareModal()">${escapeHtml(ui.cancelBtn)}</button>
       </div>
     `;
 
@@ -209,15 +332,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const gridCountEl = document.querySelector('.grid-count');
     if (gridCountEl) {
-      gridCountEl.innerHTML = `Showing <strong>${filtered.length}</strong> items in this category`;
+      gridCountEl.innerHTML = `${escapeHtml(ui.showing)} <strong>${filtered.length}</strong> ${escapeHtml(ui.items)}`;
     }
 
     if (filtered.length === 0) {
       faceGrid.innerHTML = `
         <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
           <div style="font-size: 3rem; margin-bottom: 1rem;">(ノ_<。)</div>
-          <h3>No matching text faces found</h3>
-          <p>Try searching for different keywords or select "All" categories.</p>
+          <h3>${escapeHtml(ui.noItemsTitle)}</h3>
+          <p>${escapeHtml(ui.noItemsSub)}</p>
         </div>
       `;
       return;
@@ -238,17 +361,17 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="face-actions" onclick="event.stopPropagation()">
               <button type="button" class="face-action-btn ${isFav ? 'is-fav' : ''}" 
                 onclick="event.stopPropagation(); toggleFavAction('${escapeHtml(item.glyph)}')" 
-                title="${isFav ? 'Remove from favorites' : 'Add to favorites'}">
+                title="${isFav ? ui.favTitleRemove : ui.favTitleAdd}">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               </button>
               <button type="button" class="face-share-btn" 
                 onclick="event.stopPropagation(); shareGlyph('${escapeHtml(item.glyph)}', '${escapeHtml(item.name)}')" 
-                title="Share this text face">
+                title="${escapeHtml(ui.shareFaceTitle)}">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
               </button>
-              <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph('${escapeHtml(item.glyph)}', this)" title="Copy text face">
+              <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph('${escapeHtml(item.glyph)}', this)" title="${escapeHtml(ui.copyBtn)}">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                <span>Copy</span>
+                <span>${escapeHtml(ui.copyBtn)}</span>
               </button>
             </div>
           </div>

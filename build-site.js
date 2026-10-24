@@ -1,11 +1,11 @@
 /**
- * Lenny Face Pro - Static Site Generator (build-site.js)
+ * Lenny Face Pro - Multilingual Static Site Generator (build-site.js)
  * Generates 100/100 Core Web Vitals HTML pages with:
- * - Pre-rendered SSR static cards
+ * - Pre-rendered SSR static cards across all language clusters
  * - Rich JSON-LD schemas (WebApplication, FAQPage, BreadcrumbList, ItemList)
- * - In-depth editorial guides (800-1200+ words per page)
- * - Hreflang multilingual support (EN, ES, JA, KO)
- * - XML Sitemap & robots.txt
+ * - In-depth editorial guides & localized FAQs
+ * - Complete Hreflang multilingual support (EN, ES, JA, KO) for all pages
+ * - XML Sitemap & robots.txt with XHTML hreflang links
  */
 
 const fs = require('fs');
@@ -21,12 +21,18 @@ function ensureDir(dirPath) {
   }
 }
 
-// Full Master Dataset of Glyphs (432+ Items across all 6 hubs)
+// Master Datasets
 const ALL_GLYPHS = require('./glyphs-data.js');
-
-// Master Editorial Knowledge Base (In-depth guides, FAQs, Schemas)
 const { CUSTOM_HUB_CONTENT, CUSTOM_SUBPAGE_CONTENT } = require('./editorial-data.js');
-
+const LENNY_SUBPAGES = require('./lenny-subpages-data.js');
+const {
+  LANGUAGES,
+  UI_STRINGS,
+  HOMEPAGE_I18N,
+  LENNY_SUBPAGES_I18N,
+  HUBS_I18N,
+  SUBPAGES_I18N
+} = require('./i18n-data.js');
 
 // Helper: Escape HTML strings
 function escapeHtml(str) {
@@ -39,8 +45,115 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-// Generate static card HTML with green copy button and share button
-function renderStaticCard(item) {
+// Helper: Build relative or root-relative URL for a language
+function getLangUrl(cleanPath, lang = 'en') {
+  let prefix = '';
+  if (lang === 'es') prefix = 'es/';
+  else if (lang === 'ja') prefix = 'jp/';
+  else if (lang === 'ko') prefix = 'kr/';
+
+  const clean = (cleanPath || '').replace(/^\/+/, '');
+  if (!clean) {
+    return prefix ? `/${prefix}` : '/';
+  }
+  return `/${prefix}${clean}`;
+}
+
+// Helper: Build absolute canonical/hreflang URL for a language
+function getAbsoluteLangUrl(cleanPath, lang = 'en') {
+  return `${SITE_URL}${getLangUrl(cleanPath, lang)}`;
+}
+
+// Helper: Calculate rootPrefix (../ relative to root) based on output file path
+function calculateRootPrefix(filePath) {
+  const rel = path.relative(path.dirname(filePath), ROOT_DIR);
+  return rel ? rel.replace(/\\/g, '/') + '/' : '';
+}
+
+// Helper: Generate authentic, non-stuffed editorial content for non-English pages
+function getLocalizedEditorial(name, sample, lang) {
+  const safeSample = sample ? escapeHtml(sample) : '';
+  if (lang === 'es') {
+    return `
+      <h2>Guía Completa de ${escapeHtml(name)} ${safeSample}</h2>
+      <p>Bienvenido a nuestra colección especializada de <strong>${escapeHtml(name)}</strong>. Esta selección incluye los mejores caracteres y emoticones diseñados con el estándar Unicode internacional para transmitir emociones precisas en tus mensajes y publicaciones.</p>
+      
+      <h3>¿Dónde Utilizar Estos Emoticones?</h3>
+      <p>Nuestras caritas y símbolos funcionan en cualquier plataforma moderna sin requerir fuentes especiales:</p>
+      <ul>
+        <li><strong>Discord y Twitch:</strong> Dale estilo a tus comentarios, apodos y mensajes de servidor.</li>
+        <li><strong>Redes Sociales:</strong> Ideales para destacar en biografías y descripciones de TikTok, Instagram, Twitter (X) y WhatsApp.</li>
+        <li><strong>Videojuegos:</strong> Totalmente compatibles con el chat de Minecraft, Roblox, Valorant y League of Legends.</li>
+      </ul>
+
+      <h3>¿Cómo Copiar y Pegar en 1 Clic?</h3>
+      <p>Copia cualquier cara o símbolo pulsando directamente sobre su tarjeta. Luego pégalo en tu aplicación preferida con <kbd>Ctrl</kbd> + <kbd>V</kbd> (Windows) o <kbd>Cmd</kbd> + <kbd>V</kbd> (Mac). En teléfonos celulares, mantén presionada la pantalla y selecciona "Pegar".</p>
+    `;
+  }
+  if (lang === 'ja') {
+    return `
+      <h2>${escapeHtml(name)} ${safeSample} のコピペと使い方まとめ</h2>
+      <p>ワンクリックでコピーできる<strong>${escapeHtml(name)}</strong>の厳選コレクションです。Unicode（ユニコード）の文字コードを組み合わせたテキストアートなので、画像を使わずに感情やニュアンスを表情豊かに伝えられます。</p>
+      
+      <h3>おすすめの利用シーン</h3>
+      <ul>
+        <li><strong>SNSでのコミュニケーション:</strong> Twitter (X)、LINE、Instagramのリプライやプロフィール装飾に。</li>
+        <li><strong>ゲーム内チャット:</strong> Discord、APEX、VALORANT、Fortniteなどのチャット欄で手軽に使えます。</li>
+        <li><strong>個性的なテキスト表現:</strong> メールやメッセージでちょっとしたアクセントを加えたい時に最適です。</li>
+      </ul>
+
+      <h3>ワンクリックで簡単コピペ</h3>
+      <p>お好きなカードをタップまたはクリックするだけで、端末のクリップボードに自動的にコピーされます。<kbd>Ctrl</kbd> + <kbd>V</kbd>（Macは<kbd>Cmd</kbd> + <kbd>V</kbd>）でどこにでも貼り付け可能です。</p>
+    `;
+  }
+  if (lang === 'ko') {
+    return `
+      <h2>${escapeHtml(name)} ${safeSample} 완벽 활용 가이드</h2>
+      <p>원클릭으로 간편하게 복사할 수 있는 <strong>${escapeHtml(name)}</strong> 컬렉션입니다. 별도의 폰트 설치나 이미지 파일 없이 유니코드(Unicode) 텍스트 형태로 깔끔하게 표현됩니다.</p>
+      
+      <h3>추천 활용처</h3>
+      <ul>
+        <li><strong>커뮤니티 및 SNS:</strong> 인스타그램 바이오(소개글), 틱톡 캡션, 유튜브 댓글 등에서 시선을 끄는 텍스트 장식.</li>
+        <li><strong>게임 및 보이스 채팅:</strong> 디스코드(Discord), 롤, 발로란트 게임 채팅에서 나만의 감정 표현.</li>
+        <li><strong>메신저 대화:</strong> 카카오톡 및 모바일 메신저에서 빠르고 개성 넘치는 리액션 전달.</li>
+      </ul>
+
+      <h3>원클릭 간편 복사 안내</h3>
+      <p>원하는 카드를 클릭하거나 탭하면 즉시 클립보드에 복사됩니다. <kbd>Ctrl</kbd> + <kbd>V</kbd> (Mac은 <kbd>Cmd</kbd> + <kbd>V</kbd>)로 원하는 입력창에 붙여넣어 바로 사용할 수 있습니다.</p>
+    `;
+  }
+  return '';
+}
+
+// Helper: Localized FAQs
+function getLocalizedFaqs(name, sample, lang) {
+  if (lang === 'es') {
+    return [
+      { q: `¿Cómo copio ${name.toLowerCase()} al portapapeles?`, a: "Simplemente pulsa o haz clic en cualquier tarjeta para copiarla directamente a tu portapapeles en 1 solo segundo." },
+      { q: "¿Son compatibles con iPhone, Android y consolas?", a: "¡Sí! Todos los símbolos utilizan caracteres estándar de Unicode UTF-8, por lo que se visualizan sin fallas ni cuadros vacíos en todos los dispositivos modernos." },
+      { q: "¿Puedo usarlos en mi biografía de redes sociales?", a: "Totalmente. Son ideales para biografías de Instagram, TikTok, Discord y estados de WhatsApp." }
+    ];
+  }
+  if (lang === 'ja') {
+    return [
+      { q: `${name}はどうやってコピーしますか？`, a: "カードをタップまたはクリックするだけで、自動的にお使いの端末のクリップボードにコピーされます。" },
+      { q: "スマホやDiscordで文字化けしませんか？", a: "はい。当サイトのテキストはすべて世界標準のUnicode文字を使用しているため、iPhone、Android、PC環境で崩れずきれいに表示されます。" },
+      { q: "お気に入りに登録することはできますか？", a: "各カードのハートアイコンをクリックすると、ローカルのお気に入りリストに保存され、いつでもワンクリックで再利用できます。" }
+    ];
+  }
+  if (lang === 'ko') {
+    return [
+      { q: `${name} 이모티콘을 어떻게 복사하나요?`, a: "원하는 카드를 터치하거나 클릭하면 즉시 클립보드에 복사되며, 원하는 입력창에 바로 붙여넣기(Ctrl+V)할 수 있습니다." },
+      { q: "모바일 스마트폰에서도 깨짐 없이 표시되나요?", a: "네! 아이폰, 갤럭시, PC 등 모든 표준 유니코드 지원 환경에서 글자 깨짐 없이 선명하게 표시됩니다." },
+      { q: "자주 쓰는 이모티콘을 저장할 수 있나요?", a: "카드 오른쪽 상단의 하트 아이콘을 누르면 즐겨찾기 목록에 저장되어 언제든 간편하게 꺼내 쓸 수 있습니다." }
+    ];
+  }
+  return [];
+}
+
+// Generate static card HTML with localized green copy button and share button
+function renderStaticCard(item, lang = 'en') {
+  const ui = UI_STRINGS[lang] || UI_STRINGS.en;
   const badgeHtml = item.badge ? `<span class="face-badge">${escapeHtml(item.badge)}</span>` : '';
   const escapedGlyph = escapeHtml(item.glyph);
   const singleLineGlyph = escapedGlyph.replace(/\n/g, '<br>');
@@ -56,15 +169,15 @@ function renderStaticCard(item) {
       <div class="face-meta">
         <span class="face-tag">${escapeHtml(item.name)}</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(\`${safeAttr.replace(/`/g, '\\`')}\`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(\`${safeAttr.replace(/`/g, '\\`')}\`)" title="${escapeHtml(ui.hubFavs)}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(\`${safeAttr.replace(/`/g, '\\`')}\`, \`${safeName.replace(/`/g, '\\`')}\`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(\`${safeAttr.replace(/`/g, '\\`')}\`, \`${safeName.replace(/`/g, '\\`')}\`)" title="${escapeHtml(ui.shareTitle)}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(\`${safeAttr.replace(/`/g, '\\`')}\`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(\`${safeAttr.replace(/`/g, '\\`')}\`, this)" title="${escapeHtml(ui.copyBtn)}">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span>Copy</span>
+            <span>${escapeHtml(ui.copyBtn)}</span>
           </button>
         </div>
       </div>
@@ -73,13 +186,15 @@ function renderStaticCard(item) {
 }
 
 // Render Breadcrumb Component
-function renderBreadcrumbs(crumbs, rootPrefix) {
+function renderBreadcrumbs(crumbs, lang = 'en') {
+  if (!crumbs || crumbs.length === 0) return '';
   const crumbHtml = crumbs.map((c, idx) => {
     const isLast = idx === crumbs.length - 1;
     if (isLast) {
       return `<span class="current">${escapeHtml(c.name)}</span>`;
     }
-    return `<a href="${rootPrefix}${c.url}">${escapeHtml(c.name)}</a><span class="sep">/</span>`;
+    const href = (c.url.startsWith('http') || c.url.startsWith('/')) ? c.url : getLangUrl(c.url, lang);
+    return `<a href="${href}">${escapeHtml(c.name)}</a><span class="sep">/</span>`;
   }).join(' ');
 
   return `
@@ -90,26 +205,31 @@ function renderBreadcrumbs(crumbs, rootPrefix) {
 }
 
 // Render Related Categories Grid Component
-function renderRelatedCategories(relatedCats, rootPrefix) {
+function renderRelatedCategories(relatedCats, lang = 'en') {
   if (!relatedCats || relatedCats.length === 0) return '';
+  const ui = UI_STRINGS[lang] || UI_STRINGS.en;
   return `
     <div style="margin-top: 3rem;">
-      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem;">Explore Related Categories</h3>
+      <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem;">${escapeHtml(ui.exploreRelated)}</h3>
       <div class="category-card-grid">
-        ${relatedCats.map(cat => `
-          <a href="${rootPrefix}${cat.url}" class="cat-card">
+        ${relatedCats.map(cat => {
+          const href = (cat.url.startsWith('http') || cat.url.startsWith('/')) ? cat.url : getLangUrl(cat.url, lang);
+          return `
+          <a href="${href}" class="cat-card">
             <span class="cat-sample">${cat.sample}</span>
-            <span class="cat-name">${cat.name}</span>
-            <span class="cat-count">${cat.count || 'View Collection'}</span>
+            <span class="cat-name">${escapeHtml(cat.name)}</span>
+            <span class="cat-count">${escapeHtml(cat.count || 'Explore')}</span>
           </a>
-        `).join('')}
+        `;
+        }).join('')}
       </div>
     </div>
   `;
 }
 
 // Render Social Share Bar Component
-function renderShareBar(title, url) {
+function renderShareBar(title, url, lang = 'en') {
+  const ui = UI_STRINGS[lang] || UI_STRINGS.en;
   const encUrl = encodeURIComponent(url);
   const encTitle = encodeURIComponent(title);
   const waText = encodeURIComponent(`${title} — Copy & paste in 1-click! ${url}`);
@@ -119,7 +239,7 @@ function renderShareBar(title, url) {
     <div class="share-bar-container">
       <div class="share-bar-label">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-        <span>Share Collection With Friends</span>
+        <span>${escapeHtml(ui.shareTitle)}</span>
       </div>
       <div class="share-buttons-group">
         <a href="https://api.whatsapp.com/send?text=${waText}" target="_blank" rel="noopener noreferrer" class="share-btn share-btn-whatsapp" title="Share on WhatsApp" aria-label="Share on WhatsApp">
@@ -144,7 +264,7 @@ function renderShareBar(title, url) {
 
         <button type="button" class="share-btn share-btn-copylink" onclick="copyCurrentUrl()" title="Copy Page Link" aria-label="Copy Link">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          <span>Copy Link</span>
+          <span>${escapeHtml(ui.copyBtn)} Link</span>
         </button>
       </div>
     </div>
@@ -152,124 +272,145 @@ function renderShareBar(title, url) {
 }
 
 // Render Pre-rendered Static Subbars with Real Anchor Links for Instant Bottom-Left Preview
-function renderAllSubbars(activeHub, activeSub, rootPrefix) {
+function renderAllSubbars(activeHub, activeSub, lang = 'en') {
+  function getSubName(group, subKey, fallback) {
+    if (subKey === 'all') {
+      const ui = UI_STRINGS[lang] || UI_STRINGS.en;
+      if (group === 'lenny') return ui.hubLenny;
+      if (group === 'kaomoji') return ui.hubKaomoji;
+      if (group === 'text-faces') return ui.hubTextFaces;
+      if (group === 'emoticons') return ui.hubEmoticons;
+      if (group === 'symbols') return ui.hubSymbols;
+      if (group === 'aesthetic') return ui.hubAesthetic;
+      return ui.hubAll;
+    }
+    if (group === 'lenny' && LENNY_SUBPAGES_I18N[subKey] && LENNY_SUBPAGES_I18N[subKey][lang]) {
+      return LENNY_SUBPAGES_I18N[subKey][lang].name;
+    }
+    const fullKey = `${group}/${subKey}`;
+    if (SUBPAGES_I18N[fullKey] && SUBPAGES_I18N[fullKey][lang]) {
+      return SUBPAGES_I18N[fullKey][lang].name;
+    }
+    return fallback;
+  }
+
   const lennyChips = [
-    { sub: 'all', name: 'All Lenny', url: `${rootPrefix}index.html#browse` },
-    { sub: 'angry', name: 'Angry', url: `${rootPrefix}angry-lenny-face/` },
-    { sub: 'crying', name: 'Crying', url: `${rootPrefix}crying-lenny-face/` },
-    { sub: 'cute', name: 'Cute', url: `${rootPrefix}cute-lenny-face/` },
-    { sub: 'sad', name: 'Sad', url: `${rootPrefix}sad-lenny-face/` },
-    { sub: 'happy', name: 'Happy', url: `${rootPrefix}happy-lenny-face/` },
-    { sub: 'blushing', name: 'Blushing', url: `${rootPrefix}blushing-lenny-face/` },
-    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}shrug-lenny-face/` },
-    { sub: 'middle-finger', name: 'Middle Finger', url: `${rootPrefix}middle-finger/` },
-    { sub: 'wink', name: 'Wink', url: `${rootPrefix}wink-lenny-face/` },
-    { sub: 'cool', name: 'Cool', url: `${rootPrefix}cool-lenny-face/` },
-    { sub: 'strong', name: 'Strong', url: `${rootPrefix}strong-lenny-face/` },
-    { sub: 'hug', name: 'Hug', url: `${rootPrefix}hug-lenny-face/` },
-    { sub: 'love', name: 'Love', url: `${rootPrefix}love-lenny-face/` },
-    { sub: 'donger', name: 'Donger', url: `${rootPrefix}donger-lenny-face/` },
-    { sub: 'shocked', name: 'Shocked', url: `${rootPrefix}shocked-lenny-face/` },
-    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}sparkle-lenny-face/` },
-    { sub: 'weapons', name: 'Weapons', url: `${rootPrefix}weapons-lenny-face/` }
+    { sub: 'all', name: getSubName('lenny', 'all', 'All Lenny'), url: getLangUrl('', lang) + '#browse' },
+    { sub: 'angry', name: getSubName('lenny', 'angry', 'Angry'), url: getLangUrl('angry-lenny-face/', lang) },
+    { sub: 'crying', name: getSubName('lenny', 'crying', 'Crying'), url: getLangUrl('crying-lenny-face/', lang) },
+    { sub: 'cute', name: getSubName('lenny', 'cute', 'Cute'), url: getLangUrl('cute-lenny-face/', lang) },
+    { sub: 'sad', name: getSubName('lenny', 'sad', 'Sad'), url: getLangUrl('sad-lenny-face/', lang) },
+    { sub: 'happy', name: getSubName('lenny', 'happy', 'Happy'), url: getLangUrl('happy-lenny-face/', lang) },
+    { sub: 'blushing', name: getSubName('lenny', 'blushing', 'Blushing'), url: getLangUrl('blushing-lenny-face/', lang) },
+    { sub: 'shrug', name: getSubName('lenny', 'shrug', 'Shrug'), url: getLangUrl('shrug-lenny-face/', lang) },
+    { sub: 'middle-finger', name: getSubName('lenny', 'middle-finger', 'Middle Finger'), url: getLangUrl('middle-finger/', lang) },
+    { sub: 'wink', name: getSubName('lenny', 'wink', 'Wink'), url: getLangUrl('wink-lenny-face/', lang) },
+    { sub: 'cool', name: getSubName('lenny', 'cool', 'Cool'), url: getLangUrl('cool-lenny-face/', lang) },
+    { sub: 'strong', name: getSubName('lenny', 'strong', 'Strong'), url: getLangUrl('strong-lenny-face/', lang) },
+    { sub: 'hug', name: getSubName('lenny', 'hug', 'Hug'), url: getLangUrl('hug-lenny-face/', lang) },
+    { sub: 'love', name: getSubName('lenny', 'love', 'Love'), url: getLangUrl('love-lenny-face/', lang) },
+    { sub: 'donger', name: getSubName('lenny', 'donger', 'Donger'), url: getLangUrl('donger-lenny-face/', lang) },
+    { sub: 'shocked', name: getSubName('lenny', 'shocked', 'Shocked'), url: getLangUrl('shocked-lenny-face/', lang) },
+    { sub: 'sparkle', name: getSubName('lenny', 'sparkle', 'Sparkle'), url: getLangUrl('sparkle-lenny-face/', lang) },
+    { sub: 'weapons', name: getSubName('lenny', 'weapons', 'Weapons'), url: getLangUrl('weapons-lenny-face/', lang) }
   ];
 
   const kaomojiChips = [
-    { sub: 'all', name: 'All Kaomoji', url: `${rootPrefix}kaomoji/` },
-    { sub: 'cat', name: 'Cat', url: `${rootPrefix}kaomoji/cat/` },
-    { sub: 'cute', name: 'Cute', url: `${rootPrefix}kaomoji/cute/` },
-    { sub: 'heart', name: 'Heart', url: `${rootPrefix}kaomoji/heart/` },
-    { sub: 'happy', name: 'Happy', url: `${rootPrefix}kaomoji/happy/` },
-    { sub: 'hug', name: 'Hug', url: `${rootPrefix}kaomoji/hug/` },
-    { sub: 'kiss', name: 'Kiss', url: `${rootPrefix}kaomoji/kiss/` },
-    { sub: 'sad', name: 'Sad', url: `${rootPrefix}kaomoji/sad/` },
-    { sub: 'angry', name: 'Angry', url: `${rootPrefix}kaomoji/angry/` },
-    { sub: 'dog', name: 'Dog', url: `${rootPrefix}kaomoji/dog/` },
-    { sub: 'bunny', name: 'Bunny', url: `${rootPrefix}kaomoji/bunny/` },
-    { sub: 'bear', name: 'Bear', url: `${rootPrefix}kaomoji/bear/` },
-    { sub: 'spider', name: 'Spider', url: `${rootPrefix}kaomoji/spider/` },
-    { sub: 'begging', name: 'Begging', url: `${rootPrefix}kaomoji/begging/` },
-    { sub: 'determined', name: 'Determined', url: `${rootPrefix}kaomoji/determined/` },
-    { sub: 'dancing', name: 'Dancing', url: `${rootPrefix}kaomoji/dancing/` },
-    { sub: 'sleepy', name: 'Sleepy', url: `${rootPrefix}kaomoji/sleepy/` },
-    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}kaomoji/sparkle/` },
-    { sub: 'shocked', name: 'Shocked', url: `${rootPrefix}kaomoji/shocked/` },
-    { sub: 'scared', name: 'Scared', url: `${rootPrefix}kaomoji/scared/` },
-    { sub: 'tired', name: 'Tired', url: `${rootPrefix}kaomoji/tired/` },
-    { sub: 'nervous', name: 'Nervous', url: `${rootPrefix}kaomoji/nervous/` },
-    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}kaomoji/shrug/` }
+    { sub: 'all', name: getSubName('kaomoji', 'all', 'All Kaomoji'), url: getLangUrl('kaomoji/', lang) },
+    { sub: 'cat', name: getSubName('kaomoji', 'cat', 'Cat'), url: getLangUrl('kaomoji/cat/', lang) },
+    { sub: 'cute', name: getSubName('kaomoji', 'cute', 'Cute'), url: getLangUrl('kaomoji/cute/', lang) },
+    { sub: 'heart', name: getSubName('kaomoji', 'heart', 'Heart'), url: getLangUrl('kaomoji/heart/', lang) },
+    { sub: 'happy', name: getSubName('kaomoji', 'happy', 'Happy'), url: getLangUrl('kaomoji/happy/', lang) },
+    { sub: 'hug', name: getSubName('kaomoji', 'hug', 'Hug'), url: getLangUrl('kaomoji/hug/', lang) },
+    { sub: 'kiss', name: getSubName('kaomoji', 'kiss', 'Kiss'), url: getLangUrl('kaomoji/kiss/', lang) },
+    { sub: 'sad', name: getSubName('kaomoji', 'sad', 'Sad'), url: getLangUrl('kaomoji/sad/', lang) },
+    { sub: 'angry', name: getSubName('kaomoji', 'angry', 'Angry'), url: getLangUrl('kaomoji/angry/', lang) },
+    { sub: 'dog', name: getSubName('kaomoji', 'dog', 'Dog'), url: getLangUrl('kaomoji/dog/', lang) },
+    { sub: 'bunny', name: getSubName('kaomoji', 'bunny', 'Bunny'), url: getLangUrl('kaomoji/bunny/', lang) },
+    { sub: 'bear', name: getSubName('kaomoji', 'bear', 'Bear'), url: getLangUrl('kaomoji/bear/', lang) },
+    { sub: 'spider', name: getSubName('kaomoji', 'spider', 'Spider'), url: getLangUrl('kaomoji/spider/', lang) },
+    { sub: 'begging', name: getSubName('kaomoji', 'begging', 'Begging'), url: getLangUrl('kaomoji/begging/', lang) },
+    { sub: 'determined', name: getSubName('kaomoji', 'determined', 'Determined'), url: getLangUrl('kaomoji/determined/', lang) },
+    { sub: 'dancing', name: getSubName('kaomoji', 'dancing', 'Dancing'), url: getLangUrl('kaomoji/dancing/', lang) },
+    { sub: 'sleepy', name: getSubName('kaomoji', 'sleepy', 'Sleepy'), url: getLangUrl('kaomoji/sleepy/', lang) },
+    { sub: 'sparkle', name: getSubName('kaomoji', 'sparkle', 'Sparkle'), url: getLangUrl('kaomoji/sparkle/', lang) },
+    { sub: 'shocked', name: getSubName('kaomoji', 'shocked', 'Shocked'), url: getLangUrl('kaomoji/shocked/', lang) },
+    { sub: 'scared', name: getSubName('kaomoji', 'scared', 'Scared'), url: getLangUrl('kaomoji/scared/', lang) },
+    { sub: 'tired', name: getSubName('kaomoji', 'tired', 'Tired'), url: getLangUrl('kaomoji/tired/', lang) },
+    { sub: 'nervous', name: getSubName('kaomoji', 'nervous', 'Nervous'), url: getLangUrl('kaomoji/nervous/', lang) },
+    { sub: 'shrug', name: getSubName('kaomoji', 'shrug', 'Shrug'), url: getLangUrl('kaomoji/shrug/', lang) }
   ];
 
   const textFacesChips = [
-    { sub: 'all', name: 'All Text Faces', url: `${rootPrefix}text-faces/` },
-    { sub: 'donger', name: 'Donger', url: `${rootPrefix}text-faces/donger/` },
-    { sub: 'table-flipping', name: 'Table Flip', url: `${rootPrefix}text-faces/table-flipping/` },
-    { sub: 'disapproval', name: 'Disapproval', url: `${rootPrefix}text-faces/disapproval/` },
-    { sub: 'fight', name: 'Fighting', url: `${rootPrefix}text-faces/fight/` },
-    { sub: 'bear', name: 'Bear', url: `${rootPrefix}text-faces/bear/` },
-    { sub: 'cat', name: 'Cat', url: `${rootPrefix}text-faces/cat/` },
-    { sub: 'dog', name: 'Dog', url: `${rootPrefix}text-faces/dog/` },
-    { sub: 'hug', name: 'Hug', url: `${rootPrefix}text-faces/hug/` },
-    { sub: 'crying', name: 'Crying', url: `${rootPrefix}text-faces/crying/` },
-    { sub: 'cool', name: 'Cool', url: `${rootPrefix}text-faces/cool/` },
-    { sub: 'happy', name: 'Happy', url: `${rootPrefix}text-faces/happy/` },
-    { sub: 'cute', name: 'Cute', url: `${rootPrefix}text-faces/cute/` },
-    { sub: 'love', name: 'Love', url: `${rootPrefix}text-faces/love/` },
-    { sub: 'sad', name: 'Sad', url: `${rootPrefix}text-faces/sad/` },
-    { sub: 'confused', name: 'Confused', url: `${rootPrefix}text-faces/confused/` },
-    { sub: 'blushing', name: 'Blushing', url: `${rootPrefix}text-faces/blushing/` },
-    { sub: 'sleepy', name: 'Sleepy', url: `${rootPrefix}text-faces/sleepy/` },
-    { sub: 'shrug', name: 'Shrug', url: `${rootPrefix}text-faces/shrug/` },
-    { sub: 'gaming', name: 'Gaming', url: `${rootPrefix}text-faces/gaming/` },
-    { sub: 'funny', name: 'Funny', url: `${rootPrefix}text-faces/funny/` }
+    { sub: 'all', name: getSubName('text-faces', 'all', 'All Text Faces'), url: getLangUrl('text-faces/', lang) },
+    { sub: 'donger', name: getSubName('text-faces', 'donger', 'Donger'), url: getLangUrl('text-faces/donger/', lang) },
+    { sub: 'table-flipping', name: getSubName('text-faces', 'table-flipping', 'Table Flip'), url: getLangUrl('text-faces/table-flipping/', lang) },
+    { sub: 'disapproval', name: getSubName('text-faces', 'disapproval', 'Disapproval'), url: getLangUrl('text-faces/disapproval/', lang) },
+    { sub: 'fight', name: getSubName('text-faces', 'fight', 'Fighting'), url: getLangUrl('text-faces/fight/', lang) },
+    { sub: 'bear', name: getSubName('text-faces', 'bear', 'Bear'), url: getLangUrl('text-faces/bear/', lang) },
+    { sub: 'cat', name: getSubName('text-faces', 'cat', 'Cat'), url: getLangUrl('text-faces/cat/', lang) },
+    { sub: 'dog', name: getSubName('text-faces', 'dog', 'Dog'), url: getLangUrl('text-faces/dog/', lang) },
+    { sub: 'hug', name: getSubName('text-faces', 'hug', 'Hug'), url: getLangUrl('text-faces/hug/', lang) },
+    { sub: 'crying', name: getSubName('text-faces', 'crying', 'Crying'), url: getLangUrl('text-faces/crying/', lang) },
+    { sub: 'cool', name: getSubName('text-faces', 'cool', 'Cool'), url: getLangUrl('cool-lenny-face/', lang) },
+    { sub: 'happy', name: getSubName('text-faces', 'happy', 'Happy'), url: getLangUrl('text-faces/happy/', lang) },
+    { sub: 'cute', name: getSubName('text-faces', 'cute', 'Cute'), url: getLangUrl('text-faces/cute/', lang) },
+    { sub: 'love', name: getSubName('text-faces', 'love', 'Love'), url: getLangUrl('text-faces/love/', lang) },
+    { sub: 'sad', name: getSubName('text-faces', 'sad', 'Sad'), url: getLangUrl('text-faces/sad/', lang) },
+    { sub: 'confused', name: getSubName('text-faces', 'confused', 'Confused'), url: getLangUrl('text-faces/confused/', lang) },
+    { sub: 'blushing', name: getSubName('text-faces', 'blushing', 'Blushing'), url: getLangUrl('text-faces/blushing/', lang) },
+    { sub: 'sleepy', name: getSubName('text-faces', 'sleepy', 'Sleepy'), url: getLangUrl('text-faces/sleepy/', lang) },
+    { sub: 'shrug', name: getSubName('text-faces', 'shrug', 'Shrug'), url: getLangUrl('text-faces/shrug/', lang) },
+    { sub: 'gaming', name: getSubName('text-faces', 'gaming', 'Gaming'), url: getLangUrl('text-faces/gaming/', lang) },
+    { sub: 'funny', name: getSubName('text-faces', 'funny', 'Funny'), url: getLangUrl('text-faces/funny/', lang) }
   ];
 
   const emoticonsChips = [
-    { sub: 'all', name: 'All Emoticons', url: `${rootPrefix}emoticons/` },
-    { sub: 'laughing', name: 'Laughing', url: `${rootPrefix}emoticons/laughing/` },
-    { sub: 'smiley', name: 'Smiley', url: `${rootPrefix}emoticons/smiley/` },
-    { sub: 'winky', name: 'Winky', url: `${rootPrefix}emoticons/winky/` },
-    { sub: 'sad', name: 'Sad', url: `${rootPrefix}emoticons/sad/` },
-    { sub: 'mad', name: 'Mad', url: `${rootPrefix}emoticons/mad/` },
-    { sub: 'annoyed', name: 'Annoyed', url: `${rootPrefix}emoticons/annoyed/` },
-    { sub: 'kissy', name: 'Kissy', url: `${rootPrefix}emoticons/kissy/` },
-    { sub: 'heart', name: 'Heart', url: `${rootPrefix}emoticons/heart/` },
-    { sub: 'cute', name: 'Cute', url: `${rootPrefix}emoticons/cute/` },
-    { sub: 'creepy', name: 'Creepy', url: `${rootPrefix}emoticons/creepy/` }
+    { sub: 'all', name: getSubName('emoticons', 'all', 'All Emoticons'), url: getLangUrl('emoticons/', lang) },
+    { sub: 'laughing', name: getSubName('emoticons', 'laughing', 'Laughing'), url: getLangUrl('emoticons/laughing/', lang) },
+    { sub: 'smiley', name: getSubName('emoticons', 'smiley', 'Smiley'), url: getLangUrl('emoticons/smiley/', lang) },
+    { sub: 'winky', name: getSubName('emoticons', 'winky', 'Winky'), url: getLangUrl('emoticons/winky/', lang) },
+    { sub: 'sad', name: getSubName('emoticons', 'sad', 'Sad'), url: getLangUrl('emoticons/sad/', lang) },
+    { sub: 'mad', name: getSubName('emoticons', 'mad', 'Mad'), url: getLangUrl('emoticons/mad/', lang) },
+    { sub: 'annoyed', name: getSubName('emoticons', 'annoyed', 'Annoyed'), url: getLangUrl('emoticons/annoyed/', lang) },
+    { sub: 'kissy', name: getSubName('emoticons', 'kissy', 'Kissy'), url: getLangUrl('emoticons/kissy/', lang) },
+    { sub: 'heart', name: getSubName('emoticons', 'heart', 'Heart'), url: getLangUrl('emoticons/heart/', lang) },
+    { sub: 'cute', name: getSubName('emoticons', 'cute', 'Cute'), url: getLangUrl('emoticons/cute/', lang) },
+    { sub: 'creepy', name: getSubName('emoticons', 'creepy', 'Creepy'), url: getLangUrl('emoticons/creepy/', lang) }
   ];
 
   const symbolsChips = [
-    { sub: 'all', name: 'All Symbols', url: `${rootPrefix}symbols/` },
-    { sub: 'heart', name: 'Heart', url: `${rootPrefix}symbols/heart/` },
-    { sub: 'star', name: 'Star', url: `${rootPrefix}symbols/star/` },
-    { sub: 'sparkle', name: 'Sparkle', url: `${rootPrefix}symbols/sparkle/` },
-    { sub: 'flower', name: 'Flower', url: `${rootPrefix}symbols/flower/` },
-    { sub: 'moon', name: 'Moon', url: `${rootPrefix}symbols/moon/` },
-    { sub: 'skull', name: 'Skull', url: `${rootPrefix}symbols/skull/` },
-    { sub: 'crown', name: 'Crown', url: `${rootPrefix}symbols/crown/` },
-    { sub: 'weapons', name: 'Weapons', url: `${rootPrefix}symbols/weapons/` },
-    { sub: 'bow', name: 'Bow', url: `${rootPrefix}symbols/bow/` },
-    { sub: 'music', name: 'Music', url: `${rootPrefix}symbols/music/` },
-    { sub: 'butterfly', name: 'Butterfly', url: `${rootPrefix}symbols/butterfly/` },
-    { sub: 'fire', name: 'Fire', url: `${rootPrefix}symbols/fire/` },
-    { sub: 'snowflake', name: 'Snowflake', url: `${rootPrefix}symbols/snowflake/` },
-    { sub: 'sun', name: 'Sun', url: `${rootPrefix}symbols/sun/` },
-    { sub: 'check-mark', name: 'Check Marks', url: `${rootPrefix}symbols/check-mark/` },
-    { sub: 'bullet-point', name: 'Bullet Points', url: `${rootPrefix}symbols/bullet-point/` },
-    { sub: 'cross', name: 'Crosses', url: `${rootPrefix}symbols/cross/` },
-    { sub: 'arrow', name: 'Arrows', url: `${rootPrefix}symbols/arrow/` }
+    { sub: 'all', name: getSubName('symbols', 'all', 'All Symbols'), url: getLangUrl('symbols/', lang) },
+    { sub: 'heart', name: getSubName('symbols', 'heart', 'Heart'), url: getLangUrl('symbols/heart/', lang) },
+    { sub: 'star', name: getSubName('symbols', 'star', 'Star'), url: getLangUrl('symbols/star/', lang) },
+    { sub: 'sparkle', name: getSubName('symbols', 'sparkle', 'Sparkle'), url: getLangUrl('symbols/sparkle/', lang) },
+    { sub: 'flower', name: getSubName('symbols', 'flower', 'Flower'), url: getLangUrl('symbols/flower/', lang) },
+    { sub: 'moon', name: getSubName('symbols', 'moon', 'Moon'), url: getLangUrl('symbols/moon/', lang) },
+    { sub: 'skull', name: getSubName('symbols', 'skull', 'Skull'), url: getLangUrl('symbols/skull/', lang) },
+    { sub: 'crown', name: getSubName('symbols', 'crown', 'Crown'), url: getLangUrl('symbols/crown/', lang) },
+    { sub: 'weapons', name: getSubName('symbols', 'weapons', 'Weapons'), url: getLangUrl('symbols/weapons/', lang) },
+    { sub: 'bow', name: getSubName('symbols', 'bow', 'Bow'), url: getLangUrl('symbols/bow/', lang) },
+    { sub: 'music', name: getSubName('symbols', 'music', 'Music'), url: getLangUrl('symbols/music/', lang) },
+    { sub: 'butterfly', name: getSubName('symbols', 'butterfly', 'Butterfly'), url: getLangUrl('symbols/butterfly/', lang) },
+    { sub: 'fire', name: getSubName('symbols', 'fire', 'Fire'), url: getLangUrl('symbols/fire/', lang) },
+    { sub: 'snowflake', name: getSubName('symbols', 'snowflake', 'Snowflake'), url: getLangUrl('symbols/snowflake/', lang) },
+    { sub: 'sun', name: getSubName('symbols', 'sun', 'Sun'), url: getLangUrl('symbols/sun/', lang) },
+    { sub: 'check-mark', name: getSubName('symbols', 'check-mark', 'Check Marks'), url: getLangUrl('symbols/check-mark/', lang) },
+    { sub: 'bullet-point', name: getSubName('symbols', 'bullet-point', 'Bullet Points'), url: getLangUrl('symbols/bullet-point/', lang) },
+    { sub: 'cross', name: getSubName('symbols', 'cross', 'Crosses'), url: getLangUrl('symbols/cross/', lang) },
+    { sub: 'arrow', name: getSubName('symbols', 'arrow', 'Arrows'), url: getLangUrl('symbols/arrow/', lang) }
   ];
 
   const aestheticChips = [
-    { sub: 'all', name: 'All Aesthetic', url: `${rootPrefix}aesthetic/` },
-    { sub: 'discord-bio', name: 'Discord Bios', url: `${rootPrefix}aesthetic/discord-bio/` },
-    { sub: 'instagram-bio', name: 'Instagram Bios', url: `${rootPrefix}aesthetic/instagram-bio/` },
-    { sub: 'tiktok-bio', name: 'TikTok Bios', url: `${rootPrefix}aesthetic/tiktok-bio/` },
-    { sub: 'dividers', name: 'Aesthetic Dividers', url: `${rootPrefix}aesthetic/dividers/` },
-    { sub: 'borders', name: 'Fancy Borders', url: `${rootPrefix}aesthetic/borders/` },
-    { sub: 'emoji-combos', name: 'Emoji Combos', url: `${rootPrefix}aesthetic/emoji-combos/` },
-    { sub: 'bio-templates', name: 'Bio Templates', url: `${rootPrefix}aesthetic/bio-templates/` },
-    { sub: 'symbols', name: 'Aesthetic Symbols', url: `${rootPrefix}aesthetic/symbols/` }
+    { sub: 'all', name: getSubName('aesthetic', 'all', 'All Aesthetic'), url: getLangUrl('aesthetic/', lang) },
+    { sub: 'discord-bio', name: getSubName('aesthetic', 'discord-bio', 'Discord Bios'), url: getLangUrl('aesthetic/discord-bio/', lang) },
+    { sub: 'instagram-bio', name: getSubName('aesthetic', 'instagram-bio', 'Instagram Bios'), url: getLangUrl('aesthetic/instagram-bio/', lang) },
+    { sub: 'tiktok-bio', name: getSubName('aesthetic', 'tiktok-bio', 'TikTok Bios'), url: getLangUrl('aesthetic/tiktok-bio/', lang) },
+    { sub: 'dividers', name: getSubName('aesthetic', 'dividers', 'Aesthetic Dividers'), url: getLangUrl('aesthetic/dividers/', lang) },
+    { sub: 'borders', name: getSubName('aesthetic', 'borders', 'Fancy Borders'), url: getLangUrl('aesthetic/borders/', lang) },
+    { sub: 'emoji-combos', name: getSubName('aesthetic', 'emoji-combos', 'Emoji Combos'), url: getLangUrl('aesthetic/emoji-combos/', lang) },
+    { sub: 'bio-templates', name: getSubName('aesthetic', 'bio-templates', 'Bio Templates'), url: getLangUrl('aesthetic/bio-templates/', lang) },
+    { sub: 'symbols', name: getSubName('aesthetic', 'symbols', 'Aesthetic Symbols'), url: getLangUrl('aesthetic/symbols/', lang) }
   ];
 
   const subbars = [
@@ -301,7 +442,7 @@ function renderAllSubbars(activeHub, activeSub, rootPrefix) {
 function generatePageTemplate({
   pageTitle,
   metaDescription,
-  canonicalUrl,
+  cleanPath = '',
   rootPrefix = '',
   breadcrumbs = [],
   heroBadge = '⚡ 1-Click Copy • Unicode Compatible',
@@ -315,18 +456,20 @@ function generatePageTemplate({
   relatedCats = [],
   lang = 'en'
 }) {
-  const cardsHtml = glyphs.map(renderStaticCard).join('\n');
+  const ui = UI_STRINGS[lang] || UI_STRINGS.en;
+  const canonicalUrl = getAbsoluteLangUrl(cleanPath, lang);
+  const cardsHtml = glyphs.map(g => renderStaticCard(g, lang)).join('\n');
 
   // Breadcrumb schema
-  const breadcrumbSchema = {
+  const breadcrumbSchema = breadcrumbs.length > 0 ? {
     "@type": "BreadcrumbList",
     "itemListElement": breadcrumbs.map((c, i) => ({
       "@type": "ListItem",
       "position": i + 1,
       "name": c.name,
-      "item": `${SITE_URL}/${c.url.replace(/^\//, '')}`
+      "item": c.url.startsWith('http') ? c.url : getAbsoluteLangUrl(c.url, lang)
     }))
-  };
+  } : null;
 
   // FAQ Schema
   const faqSchema = faqList.length > 0 ? {
@@ -360,10 +503,10 @@ function generatePageTemplate({
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "All",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-    },
-    breadcrumbSchema
+    }
   ];
 
+  if (breadcrumbSchema) schemaGraph.push(breadcrumbSchema);
   if (faqSchema) schemaGraph.push(faqSchema);
   if (itemListSchema) schemaGraph.push(itemListSchema);
 
@@ -377,8 +520,8 @@ function generatePageTemplate({
     <section class="faq-section" id="faq">
       <div class="container">
         <div class="editorial-header">
-          <h2>Frequently Asked Questions</h2>
-          <p>Quick answers about copying, compatibility, and using text faces on Discord, TikTok, and mobile.</p>
+          <h2>${lang === 'es' ? 'Preguntas Frecuentes' : lang === 'ja' ? 'よくある質問' : lang === 'ko' ? '자주 묻는 질문' : 'Frequently Asked Questions'}</h2>
+          <p>${lang === 'es' ? 'Respuestas rápidas sobre cómo copiar, compatibilidad y uso en Discord, WhatsApp y videojuegos.' : lang === 'ja' ? 'コピー方法、スマホ対応、Discord・LINEでの使い方に関するQ&Aまとめ。' : lang === 'ko' ? '복사 방법, 모바일 호환성 및 디스코드 활용에 관한 빠른 답변.' : 'Quick answers about copying, compatibility, and using text faces on Discord, TikTok, and mobile.'}</p>
         </div>
         <div class="faq-grid">
           ${faqList.map((f, i) => `
@@ -397,6 +540,8 @@ function generatePageTemplate({
     </section>
   ` : '';
 
+  const ogLocale = (lang === 'es' ? 'es_ES' : lang === 'ja' ? 'ja_JP' : lang === 'ko' ? 'ko_KR' : 'en_US');
+
   return `<!DOCTYPE html>
 <html lang="${lang}">
 <head>
@@ -409,17 +554,18 @@ function generatePageTemplate({
   <link rel="canonical" href="${canonicalUrl}">
 
   <!-- Hreflang Tags for Multi-language Clusters -->
-  <link rel="alternate" hreflang="x-default" href="${SITE_URL}/">
-  <link rel="alternate" hreflang="en" href="${canonicalUrl}">
-  <link rel="alternate" hreflang="es" href="${SITE_URL}/es/">
-  <link rel="alternate" hreflang="ja" href="${SITE_URL}/jp/">
-  <link rel="alternate" hreflang="ko" href="${SITE_URL}/kr/">
+  <link rel="alternate" hreflang="x-default" href="${getAbsoluteLangUrl(cleanPath, 'en')}">
+  <link rel="alternate" hreflang="en" href="${getAbsoluteLangUrl(cleanPath, 'en')}">
+  <link rel="alternate" hreflang="es" href="${getAbsoluteLangUrl(cleanPath, 'es')}">
+  <link rel="alternate" hreflang="ja" href="${getAbsoluteLangUrl(cleanPath, 'ja')}">
+  <link rel="alternate" hreflang="ko" href="${getAbsoluteLangUrl(cleanPath, 'ko')}">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(metaDescription)}">
+  <meta property="og:locale" content="${ogLocale}">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon & Site Icons -->
@@ -443,28 +589,28 @@ ${jsonLdContent}
   <!-- Header -->
   <header class="header">
     <div class="container header-nav">
-      <a href="${rootPrefix}index.html" class="brand-logo" title="Lenny Face Pro">
+      <a href="${getLangUrl('', lang)}" class="brand-logo" title="${escapeHtml(ui.siteName)} Pro">
         <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
         <span>Lenny<span class="highlight">Pro</span></span>
       </a>
 
       <nav>
         <ul class="nav-links">
-          <li><a href="${rootPrefix}index.html#browse">Browse All</a></li>
-          <li><a href="${rootPrefix}text-faces/index.html">Text Faces</a></li>
-          <li><a href="${rootPrefix}kaomoji/index.html">Kaomoji</a></li>
-          <li><a href="${rootPrefix}emoticons/index.html">Emoticons</a></li>
-          <li><a href="${rootPrefix}symbols/index.html">Symbols</a></li>
-          <li><a href="${rootPrefix}aesthetic/index.html">Aesthetic</a></li>
+          <li><a href="${getLangUrl('', lang)}#browse">${escapeHtml(ui.navBrowse)}</a></li>
+          <li><a href="${getLangUrl('text-faces/', lang)}">${escapeHtml(ui.navTextFaces)}</a></li>
+          <li><a href="${getLangUrl('kaomoji/', lang)}">${escapeHtml(ui.navKaomoji)}</a></li>
+          <li><a href="${getLangUrl('emoticons/', lang)}">${escapeHtml(ui.navEmoticons)}</a></li>
+          <li><a href="${getLangUrl('symbols/', lang)}">${escapeHtml(ui.navSymbols)}</a></li>
+          <li><a href="${getLangUrl('aesthetic/', lang)}">${escapeHtml(ui.navAesthetic)}</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
-          <option value="${rootPrefix}index.html" ${lang === 'en' ? 'selected' : ''}>🇺🇸 English</option>
-          <option value="${rootPrefix}es/index.html" ${lang === 'es' ? 'selected' : ''}>🇪🇸 Español</option>
-          <option value="${rootPrefix}jp/index.html" ${lang === 'ja' ? 'selected' : ''}>🇯🇵 日本語</option>
-          <option value="${rootPrefix}kr/index.html" ${lang === 'ko' ? 'selected' : ''}>🇰🇷 한국어</option>
+        <select class="lang-select" id="lang-select" onchange="handleLangSelect(this.value)" aria-label="Select Language">
+          <option value="${getLangUrl(cleanPath, 'en')}" ${lang === 'en' ? 'selected' : ''}>🇺🇸 English</option>
+          <option value="${getLangUrl(cleanPath, 'es')}" ${lang === 'es' ? 'selected' : ''}>🇪🇸 Español</option>
+          <option value="${getLangUrl(cleanPath, 'ja')}" ${lang === 'ja' ? 'selected' : ''}>🇯🇵 日本語</option>
+          <option value="${getLangUrl(cleanPath, 'ko')}" ${lang === 'ko' ? 'selected' : ''}>🇰🇷 한국어</option>
         </select>
       </div>
     </div>
@@ -473,7 +619,7 @@ ${jsonLdContent}
   <!-- Hero Section -->
   <section class="hero" id="browse">
     <div class="container">
-      ${renderBreadcrumbs(breadcrumbs, rootPrefix)}
+      ${renderBreadcrumbs(breadcrumbs, lang)}
       <div class="hero-badge">${escapeHtml(heroBadge)}</div>
       <h1>${h1Text}</h1>
       <p>${escapeHtml(heroSub)}</p>
@@ -481,34 +627,34 @@ ${jsonLdContent}
       <!-- Global Live Search -->
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="search-input" class="search-input" placeholder="Search faces & keywords..." aria-label="Search text faces">
+        <input type="text" id="search-input" class="search-input" placeholder="${escapeHtml(ui.searchPlaceholder)}" aria-label="Search text faces">
         <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear Search">✕</button>
       </div>
 
       <!-- Category Filter Chips with Real Links & Bottom-Left Link Preview -->
       <div class="hubbar" role="group" aria-label="Category Hubs">
-        <a href="${rootPrefix}index.html" class="hub-chip ${activeHub === 'all' ? 'active' : ''}" data-hub="all">All Faces</a>
-        <button type="button" class="hub-chip ${activeHub === '__favs' ? 'active' : ''}" data-hub="__favs">❤️ Favorites</button>
-        <a href="${rootPrefix}index.html#browse" class="hub-chip ${activeHub === 'lenny' ? 'active' : ''}" data-hub="lenny">Lenny Faces</a>
-        <a href="${rootPrefix}text-faces/index.html" class="hub-chip ${activeHub === 'text-faces' ? 'active' : ''}" data-hub="text-faces">Text Faces</a>
-        <a href="${rootPrefix}kaomoji/index.html" class="hub-chip ${activeHub === 'kaomoji' ? 'active' : ''}" data-hub="kaomoji">Kaomoji</a>
-        <a href="${rootPrefix}emoticons/index.html" class="hub-chip ${activeHub === 'emoticons' ? 'active' : ''}" data-hub="emoticons">Emoticons</a>
-        <a href="${rootPrefix}symbols/index.html" class="hub-chip ${activeHub === 'symbols' ? 'active' : ''}" data-hub="symbols">Symbols</a>
-        <a href="${rootPrefix}aesthetic/index.html" class="hub-chip ${activeHub === 'aesthetic' ? 'active' : ''}" data-hub="aesthetic">Aesthetic Bios</a>
+        <a href="${getLangUrl('', lang)}" class="hub-chip ${activeHub === 'all' ? 'active' : ''}" data-hub="all">${escapeHtml(ui.hubAll)}</a>
+        <button type="button" class="hub-chip ${activeHub === '__favs' ? 'active' : ''}" data-hub="__favs">${escapeHtml(ui.hubFavs)}</button>
+        <a href="${getLangUrl('', lang)}#browse" class="hub-chip ${activeHub === 'lenny' ? 'active' : ''}" data-hub="lenny">${escapeHtml(ui.hubLenny)}</a>
+        <a href="${getLangUrl('text-faces/', lang)}" class="hub-chip ${activeHub === 'text-faces' ? 'active' : ''}" data-hub="text-faces">${escapeHtml(ui.hubTextFaces)}</a>
+        <a href="${getLangUrl('kaomoji/', lang)}" class="hub-chip ${activeHub === 'kaomoji' ? 'active' : ''}" data-hub="kaomoji">${escapeHtml(ui.hubKaomoji)}</a>
+        <a href="${getLangUrl('emoticons/', lang)}" class="hub-chip ${activeHub === 'emoticons' ? 'active' : ''}" data-hub="emoticons">${escapeHtml(ui.hubEmoticons)}</a>
+        <a href="${getLangUrl('symbols/', lang)}" class="hub-chip ${activeHub === 'symbols' ? 'active' : ''}" data-hub="symbols">${escapeHtml(ui.hubSymbols)}</a>
+        <a href="${getLangUrl('aesthetic/', lang)}" class="hub-chip ${activeHub === 'aesthetic' ? 'active' : ''}" data-hub="aesthetic">${escapeHtml(ui.hubAesthetic)}</a>
       </div>
 
       <!-- Pre-rendered Static Subbars with Real Anchor Links -->
-      ${renderAllSubbars(activeHub, activeSub, rootPrefix)}
+      ${renderAllSubbars(activeHub, activeSub, lang)}
 
-      ${renderShareBar(pageTitle, canonicalUrl)}
+      ${renderShareBar(pageTitle, canonicalUrl, lang)}
     </div>
   </section>
 
   <!-- Main Grid Section -->
   <main class="container">
     <div class="grid-controls">
-      <div class="grid-count">Showing <strong>${glyphs.length}</strong> items in this category</div>
-      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">💡 Click any card to copy instantly</div>
+      <div class="grid-count">${escapeHtml(ui.showingItems)} <strong>${glyphs.length}</strong> ${escapeHtml(ui.itemsInCategory)}</div>
+      <div style="font-size: 0.85rem; color: var(--emerald); font-weight: 700;">${escapeHtml(ui.clickToCopy)}</div>
     </div>
 
     <!-- Static Pre-rendered Grid (SSR for Instant 100/100 CWV & SEO) -->
@@ -516,7 +662,7 @@ ${jsonLdContent}
 ${cardsHtml}
     </div>
 
-    ${renderRelatedCategories(relatedCats, rootPrefix)}
+    ${renderRelatedCategories(relatedCats, lang)}
   </main>
 
   <!-- Comprehensive In-depth Editorial Section (SEO Dominance) -->
@@ -541,50 +687,50 @@ ${editorialHtml}
             <span>Lenny<span class="highlight">Pro</span></span>
           </div>
           <p style="color: var(--text-muted); font-size: 0.875rem; max-width: 320px; line-height: 1.6;">
-            Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, kaomoji, aesthetic emoticons, and text symbols in 1-click. Free Lenny Face generator with cute, angry, sad, and custom styles.
+            ${escapeHtml(ui.footerDesc)}
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>Lenny Face Styles</h4>
+          <h4>${escapeHtml(ui.footerLennyStyles)}</h4>
           <ul>
-            <li><a href="${rootPrefix}cute-lenny-face.html">Cute Lenny Face</a></li>
-            <li><a href="${rootPrefix}sad-lenny-face.html">Sad Lenny Face</a></li>
-            <li><a href="${rootPrefix}happy-lenny-face.html">Happy Lenny Face</a></li>
-            <li><a href="${rootPrefix}angry-lenny-face.html">Angry Lenny Face</a></li>
-            <li><a href="${rootPrefix}crying-lenny-face.html">Crying Lenny Face</a></li>
-            <li><a href="${rootPrefix}middle-finger.html">Middle Finger Face</a></li>
-            <li><a href="${rootPrefix}shrug-lenny-face.html">Shrug Lenny Face</a></li>
+            <li><a href="${getLangUrl('cute-lenny-face/', lang)}">${lang === 'es' ? 'Caritas Tiernas' : lang === 'ja' ? 'かわいいレニー' : lang === 'ko' ? '귀여운 레니' : 'Cute Lenny Face'}</a></li>
+            <li><a href="${getLangUrl('sad-lenny-face/', lang)}">${lang === 'es' ? 'Caritas Tristes' : lang === 'ja' ? '悲しいレニー' : lang === 'ko' ? '슬픈 레니' : 'Sad Lenny Face'}</a></li>
+            <li><a href="${getLangUrl('happy-lenny-face/', lang)}">${lang === 'es' ? 'Caritas Felices' : lang === 'ja' ? '笑顔のレニー' : lang === 'ko' ? '행복한 레니' : 'Happy Lenny Face'}</a></li>
+            <li><a href="${getLangUrl('angry-lenny-face/', lang)}">${lang === 'es' ? 'Caritas Enojadas' : lang === 'ja' ? '怒るレニー' : lang === 'ko' ? '화난 레니' : 'Angry Lenny Face'}</a></li>
+            <li><a href="${getLangUrl('crying-lenny-face/', lang)}">${lang === 'es' ? 'Caritas Llorando' : lang === 'ja' ? '泣くレニー' : lang === 'ko' ? '우는 레니' : 'Crying Lenny Face'}</a></li>
+            <li><a href="${getLangUrl('middle-finger/', lang)}">${lang === 'es' ? 'Dedo Medio' : lang === 'ja' ? '中指レニー' : lang === 'ko' ? '손가락 욕 레니' : 'Middle Finger Face'}</a></li>
+            <li><a href="${getLangUrl('shrug-lenny-face/', lang)}">${lang === 'es' ? 'Encogerse de Hombros' : lang === 'ja' ? 'やれやれ肩すくめ' : lang === 'ko' ? '어깨 으쓱 레니' : 'Shrug Lenny Face'}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Kaomoji & Emoticons</h4>
+          <h4>${escapeHtml(ui.footerKaomojiEmoticons)}</h4>
           <ul>
-            <li><a href="${rootPrefix}kaomoji/cat.html">Cat Kaomoji</a></li>
-            <li><a href="${rootPrefix}kaomoji/hug.html">Hug Kaomoji</a></li>
-            <li><a href="${rootPrefix}kaomoji/heart.html">Heart Kaomoji</a></li>
-            <li><a href="${rootPrefix}emoticons/smiley.html">Smiley Emoticons</a></li>
-            <li><a href="${rootPrefix}text-faces/donger.html">Donger Faces</a></li>
-            <li><a href="${rootPrefix}text-faces/table-flipping.html">Table Flip Faces</a></li>
+            <li><a href="${getLangUrl('kaomoji/cat/', lang)}">${lang === 'es' ? 'Kaomojis de Gato' : lang === 'ja' ? '猫の顔文字' : lang === 'ko' ? '고양이 카오모지' : 'Cat Kaomoji'}</a></li>
+            <li><a href="${getLangUrl('kaomoji/hug/', lang)}">${lang === 'es' ? 'Kaomojis de Abrazo' : lang === 'ja' ? '抱擁の顔文字' : lang === 'ko' ? '포옹 카오모지' : 'Hug Kaomoji'}</a></li>
+            <li><a href="${getLangUrl('kaomoji/heart/', lang)}">${lang === 'es' ? 'Kaomojis con Corazón' : lang === 'ja' ? 'ハートの顔文字' : lang === 'ko' ? '하트 카오모지' : 'Heart Kaomoji'}</a></li>
+            <li><a href="${getLangUrl('emoticons/smiley/', lang)}">${lang === 'es' ? 'Emoticones Sonrientes' : lang === 'ja' ? 'スマイリー絵文字' : lang === 'ko' ? '스마일리 이모티콘' : 'Smiley Emoticons'}</a></li>
+            <li><a href="${getLangUrl('text-faces/donger/', lang)}">${lang === 'es' ? 'Caritas Donger' : lang === 'ja' ? 'ドンガー顔文字' : lang === 'ko' ? '동거 이모티콘' : 'Donger Faces'}</a></li>
+            <li><a href="${getLangUrl('text-faces/table-flipping/', lang)}">${lang === 'es' ? 'Voltear Mesa' : lang === 'ja' ? 'ちゃぶ台返し' : lang === 'ko' ? '밥상 뒤집기' : 'Table Flip Faces'}</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Symbols & Aesthetic</h4>
+          <h4>${escapeHtml(ui.footerSymbolsAesthetic)}</h4>
           <ul>
-            <li><a href="${rootPrefix}symbols/heart.html">Heart Symbols</a></li>
-            <li><a href="${rootPrefix}symbols/sparkle.html">Sparkle Symbols</a></li>
-            <li><a href="${rootPrefix}aesthetic/discord-bio.html">Discord Bios</a></li>
-            <li><a href="${rootPrefix}aesthetic/dividers.html">Aesthetic Dividers</a></li>
+            <li><a href="${getLangUrl('symbols/heart/', lang)}">${lang === 'es' ? 'Símbolos de Corazón' : lang === 'ja' ? 'ハート記号' : lang === 'ko' ? '하트 특수문자' : 'Heart Symbols'}</a></li>
+            <li><a href="${getLangUrl('symbols/sparkle/', lang)}">${lang === 'es' ? 'Símbolos de Brillo' : lang === 'ja' ? 'キラキラ記号' : lang === 'ko' ? '반짝이 특수문자' : 'Sparkle Symbols'}</a></li>
+            <li><a href="${getLangUrl('aesthetic/discord-bio/', lang)}">${lang === 'es' ? 'Biografías Discord' : lang === 'ja' ? 'Discord用バイオ' : lang === 'ko' ? '디스코드 소개글' : 'Discord Bios'}</a></li>
+            <li><a href="${getLangUrl('aesthetic/dividers/', lang)}">${lang === 'es' ? 'Separadores Estéticos' : lang === 'ja' ? 'おしゃれ飾り罫線' : lang === 'ko' ? '감성 구분선' : 'Aesthetic Dividers'}</a></li>
             <li><a href="${rootPrefix}sitemap.xml">XML Sitemap</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Lenny Face Pro. All rights reserved.</p>
-        <p><a href="${rootPrefix}privacy.html">Privacy Policy</a> | <a href="${rootPrefix}terms.html">Terms of Service</a> | <a href="${rootPrefix}about.html">About Us</a></p>
+        <p>&copy; 2026 Lenny Face Pro. ${escapeHtml(ui.allRightsReserved)}</p>
+        <p><a href="${getLangUrl('privacy.html', lang)}">${escapeHtml(ui.privacy)}</a> | <a href="${getLangUrl('terms.html', lang)}">${escapeHtml(ui.terms)}</a> | <a href="${getLangUrl('about.html', lang)}">${escapeHtml(ui.about)}</a></p>
       </div>
     </div>
   </footer>
@@ -600,548 +746,205 @@ ${editorialHtml}
 }
 
 // ----------------------------------------------------
-// DEFINITIONS FOR PROGRAMMATIC SUBPAGES
-// ----------------------------------------------------
-
-const LENNY_SUBPAGES = [
-  {
-    slug: 'cute-lenny-face.html',
-    title: 'Cute Lenny Face ( ͜° ͜ʊ ͜°) — Copy & Paste Kawaii Lenny Faces',
-    description: 'Copy and paste Cute Lenny Faces ( ͜° ͜ʊ ͜°), kawaii text faces, and sweet smiling kaomojis in 1-click. Free Unicode generator with instant clipboard copy.',
-    h1: 'Cute Lenny Face <span>( ͜° ͜ʊ ͜°)</span>',
-    heroSub: 'Explore our complete collection of cute, innocent, and kawaii Lenny faces. Tap any face to copy instantly.',
-    sub: 'cute',
-    editorial: `
-      <h2>The Ultimate Guide to Cute Lenny Faces ( ͜° ͜ʊ ͜°)</h2>
-      <p>While the original Lenny Face <code>( ͡° ͜ʖ ͡°)</code> is notorious for its cheeky smirk and internet mischief, the <strong>Cute Lenny Face</strong> softens the iconic expression into an innocent, adorable, and friendly kaomoji. By substituting sharp degreemarks and eyebrow diacritics with rounded lips like <code>͜ʊ</code> or sweet blushing cheeks, creators transformed an edgier meme into a wholesome social staple.</p>
-      
-      <h3>Where to Use Cute Lenny Faces</h3>
-      <ul>
-        <li><strong>Discord Server Greetings:</strong> Welcome new community members with a friendly <code>( ͜° ͜ʊ ͜°)ノ</code>.</li>
-        <li><strong>Roblox & Minecraft Chat:</strong> Express joy and playful innocence during multiplayer sessions without getting flagged by chat filters.</li>
-        <li><strong>TikTok & Instagram Comments:</strong> Add an aesthetic typographic charm to your replies and video captions.</li>
-      </ul>
-
-      <h3>Anatomy of a Cute Lenny Face</h3>
-      <p>A cute text face relies on harmonious Unicode glyphs:</p>
-      <table class="shortcut-table">
-        <thead><tr><th>Component</th><th>Unicode Character</th><th>Description</th></tr></thead>
-        <tbody>
-          <tr><td>Cheeks / Blushes</td><td><code>✿</code> or <code>🌸</code></td><td>Adds a delicate floral blush effect.</td></tr>
-          <tr><td>Soft Mouth</td><td><code>͜ʊ</code> (U+028A)</td><td>Creates the signature sweet curved smile.</td></tr>
-          <tr><td>Innocent Eyes</td><td><code>•</code> or <code>°</code></td><td>Replaces skeptical stares with wide, bright eyes.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>How to Type Cute Lenny Faces on Any Device</h3>
-      <p>Because these symbols utilize specialized Unicode combining characters, typing them on standard QWERTY keyboards requires cumbersome Alt codes or character map lookups. Using our 1-click copy tool above is the fastest method: just tap any box to copy directly to your clipboard, then press <kbd>Ctrl</kbd> + <kbd>V</kbd> (Windows) or <kbd>Cmd</kbd> + <kbd>V</kbd> (Mac) to paste!</p>
-    `,
-    faqs: [
-      { q: "What does the cute Lenny face mean?", a: "It represents friendly joy, innocent happiness, or playful affection, acting as a wholesome alternative to the suggestive smirk of the classic Lenny face." },
-      { q: "Does this cute text face work on Discord?", a: "Yes! All characters in our collection are standard Unicode symbols that render perfectly across Discord, iOS, Android, and PC." },
-      { q: "How do I save my favorite cute faces?", a: "Click the heart icon on any card to save it to your local Favorites list for instant access anytime." }
-    ],
-    related: [
-      { name: "Blushing Lenny", url: "blushing-lenny-face.html", sample: "( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)" },
-      { name: "Happy Lenny", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" },
-      { name: "Cute Kaomoji", url: "kaomoji/cute.html", sample: "( ˶ˆ꒳ˆ˵ )" },
-      { name: "Cat Faces", url: "text-faces/cat.html", sample: "(=^･ω･^=)" }
-    ]
-  },
-  {
-    slug: 'sad-lenny-face.html',
-    title: 'Sad Lenny Face ( ͡° ʖ̯ ͡°) — Copy & Paste Frown & Depressed Faces',
-    description: 'Copy and paste Sad Lenny Faces ( ͡° ʖ̯ ͡°), frowning text faces, and bummed kaomojis in 1-click. Free Unicode generator with instant clipboard copy.',
-    h1: 'Sad Lenny Face <span>( ͡° ʖ̯ ͡°)</span>',
-    heroSub: 'Express disappointment, melancholy, and heartbreak with sad Lenny faces. Tap any card to copy instantly.',
-    sub: 'sad',
-    editorial: `
-      <h2>The Cultural Meaning of the Sad Lenny Face ( ͡° ʖ̯ ͡°)</h2>
-      <p>The <strong>Sad Lenny Face</strong> <code>( ͡° ʖ̯ ͡°)</code> represents the universal experience of internet disappointment, defeat, or playful sorrow. Crafted by turning the classic smiling mouth upside down into a downturned lip <code>ʖ̯</code>, this text face quickly became a sensation on gaming streams, Reddit threads, and Twitter replies.</p>
-
-      <h3>When to Deploy Sad Text Faces</h3>
-      <p>Gamers and social media users frequently deploy the sad Lenny face during:</p>
-      <ul>
-        <li><strong>Losing a match:</strong> When your teammate drops out or you miss the winning shot in Valorant or CS:GO.</li>
-        <li><strong>Announced delays:</strong> When your favorite game or anime season gets delayed.</li>
-        <li><strong>Melodramatic reactions:</strong> When a minor inconvenience occurs, such as running out of coffee or waking up on a Monday.</li>
-      </ul>
-
-      <h3>Unicode Breakdown</h3>
-      <p>The sorrowful grimace is produced by Unicode Character <code>U+028F</code> (Latin Small Letter Y with Stroke) or downturned combining diacritics. Unlike basic emojis like 😢, text faces carry a nuanced, ironic tone favored by digital communities.</p>
-    `,
-    faqs: [
-      { q: "How do you make a sad Lenny face?", a: "The sad mouth is created using Unicode combining symbol U+028F (ʖ̯). Simply copy it from our tool for instant use." },
-      { q: "Is the sad Lenny face different from crying faces?", a: "Yes. The sad Lenny expresses a quiet, disappointed pout, whereas crying faces feature tears like ( ͡ಥ ʖ̯ ͡ಥ) or (╥﹏╥)." }
-    ],
-    related: [
-      { name: "Crying Lenny", url: "crying-lenny-face.html", sample: "( ͡ಥ ʖ̯ ͡ಥ)" },
-      { name: "Shrug Lenny", url: "shrug-lenny-face.html", sample: "¯\\_( ͡° ͜ʖ ͡°)_/¯" },
-      { name: "Disapproval Face", url: "text-faces/disapproval.html", sample: "ಠ_ಠ" }
-    ]
-  },
-  {
-    slug: 'happy-lenny-face.html',
-    title: 'Happy Lenny Face ( ͡ᵔ ͜ʖ ͡ᵔ) — Copy & Paste Joyful & Smiling Text Faces',
-    description: 'Copy and paste Happy Lenny Faces ( ͡ᵔ ͜ʖ ͡ᵔ), smiling text faces, and cheerful kaomoji in 1-click. Instant clipboard copy and custom maker.',
-    h1: 'Happy Lenny Face <span>( ͡ᵔ ͜ʖ ͡ᵔ)</span>',
-    heroSub: 'Spread positive vibes with cheerful, joyful, and smiling Lenny faces. Tap to copy in 1-click.',
-    sub: 'happy',
-    editorial: `
-      <h2>Spreading Cheer with Happy Lenny Faces ( ͡ᵔ ͜ʖ ͡ᵔ)</h2>
-      <p>The <strong>Happy Lenny Face</strong> radiates pure delight and triumphant satisfaction. By combining joyful squinting eyes <code>ᵔ</code> or grinning arcs with the iconic cheek structure, this emoticon is the gold standard for celebrating victories, good news, or playful banter online.</p>
-    `,
-    faqs: [
-      { q: "What makes the happy Lenny face smile?", a: "The eyes are constructed with Unicode U+1D54 (modifier letter small e with diaeresis or rounded curves), evoking squinting eyes of genuine laughter." }
-    ],
-    related: [
-      { name: "Cute Lenny", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
-      { name: "Dancing Kaomoji", url: "kaomoji/dancing.html", sample: "ヽ(>∀<☆)ノ" }
-    ]
-  },
-  {
-    slug: 'angry-lenny-face.html',
-    title: 'Angry Lenny Face ( ͠° ͟ʖ ͡°) — Copy & Paste Mad, Boxer & Rage Text Faces',
-    description: 'Copy and paste Angry Lenny Face ( ͠° ͟ʖ ͡°), fighting boxer lenny (ง ͠° ͟ل͜ ͡°)ง, and rage text faces in 1-click. Free Unicode generator for Discord, Twitch & gaming.',
-    h1: 'Angry Lenny Face <span>( ͠° ͟ʖ ͡°)</span>',
-    heroSub: 'Furrowed brows, clenched boxer fists, and mock rage. Tap to copy angry Lenny faces and fighting emoticons in 1-click.',
-    sub: 'angry',
-    editorial: `
-      <h2>Master the Angry Lenny Face ( ͠° ͟ʖ ͡°): Mock Outrage &amp; Fighting Spirit</h2>
-      <p>The <strong>Angry Lenny Face</strong> <code>( ͠° ͟ʖ ͡°)</code> tilts the brows down and hardens the stare into a fierce, battle-ready glare. Outfitted with furrowed forehead diacritics, clenched teeth, or raised boxing fists <code>(ง ͠° ͟ل͜ ͡°)ง</code>, this emoticon converts aggression into pure internet comedy. Rather than causing genuine hostility, posting an angry Lenny face communicates mock outrage, playful rivalry, or hilarious exasperation in gaming lobbies, Twitch chats, and comment sections.</p>
-
-      <h3>Unicode Breakdown: The Secret of Furrowed Brows &amp; Boxing Fists</h3>
-      <p>To give the friendly Lenny smirk an aggressive makeover, the internet creatively borrowed typographic symbols from across the globe:</p>
-      <ul>
-        <li><strong>Combining Double Tilde (<code> ͠ </code> - U+0360) &amp; Combining Low Line (<code> ͟ </code> - U+035F):</strong> These combining diacritics sit above and below the brow line, creating the menacing furrowed brow of <code>( ͠° ͟ʖ ͡°)</code>.</li>
-        <li><strong>Thai Consonant Ngor Ngu (<code>ง</code> - U+0E07):</strong> Flanking either side of the face, this Thai character mimics clenched boxer fists raised in a sparring stance: <code>(ง ͠° ͟ل͜ ͡°)ง</code>.</li>
-        <li><strong>Japanese Kanji Totsu (<code>凸</code> - U+51F8):</strong> Meaning 'convex', this character resembles a raised middle finger, creating brazen defiance in <code>凸( ͠° ͟ʖ ͡°)凸</code>.</li>
-        <li><strong>Telugu Letter Gha (<code>ಠ</code> - U+0C20):</strong> Borrowed from the Look of Disapproval <code>ಠ_ಠ</code>, it produces the unforgiving glare of <code>( ͡ಠ ʖ̯ ͡ಠ)</code>.</li>
-      </ul>
-
-      <h3>The 4 Escalation Levels of the Angry Lenny Face</h3>
-      <p>To maximize comedic effect during online banter, escalate through the collection as the conversation heats up:</p>
-      <ol>
-        <li><strong>Level 1: The Suspicious Glare <code>( ͠° ͟ʖ ͡°)</code>:</strong> When someone makes a suspicious claim or posts a dubious meme. A squint of mild distrust.</li>
-        <li><strong>Level 2: The Square-Up Boxer <code>(ง ͠° ͟ل͜ ͡°)ง</code>:</strong> Internet shorthand for "1v1 me on Rust" or "square up." Signals playful combat readiness in gaming lobbies.</li>
-        <li><strong>Level 3: Table-Flipping Rage <code>(ノಠ益ಠ)ノ彡┻━┻</code>:</strong> When pure frustration boils over from a ranked game loss or lag spike.</li>
-        <li><strong>Level 4: Disrespect &amp; Defiance <code>凸( ͠° ͟ʖ ͡°)凸</code> or Sniper Chaos <code>( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/'̿̿ ̿ ̿ ̿ ̿ ̿</code>:</strong> Maximum comedic disrespect for friends who talk too much smack.</li>
-      </ol>
-
-      <h3>Best Platforms for Angry Lenny Faces</h3>
-      <p>Angry Lenny faces are a permanent staple on high-velocity community platforms:</p>
-      <ul>
-        <li><strong>Twitch Live Chat:</strong> Spamming <code>(ง ͠° ͟ل͜ ͡°)ง</code> during hype esports tournaments or boss fights.</li>
-        <li><strong>Discord Servers:</strong> Reacting to server rule reminders, bot errors, or gaming defeat screens.</li>
-        <li><strong>Steam Profile Customization:</strong> Showcasing intimidating or hilarious ASCII art in your Steam summary box.</li>
-        <li><strong>Reddit Comment Battles:</strong> Disarming intense debates with absurd typographic anger.</li>
-      </ul>
-
-      <h3>How to Copy in 1-Click</h3>
-      <p>Click or tap on any angry Lenny face card on this page to copy it to your clipboard instantly. Paste anywhere using <kbd>Ctrl</kbd> + <kbd>V</kbd> (Windows) or <kbd>Cmd</kbd> + <kbd>V</kbd> (Mac).</p>
-    `,
-    faqs: [
-      { q: "What does the angry Lenny face mean?", a: "The angry Lenny face ( ͠° ͟ʖ ͡°) expresses playful irritation, skepticism, or mock outrage. The angled brow characters over the iconic smirk read as an aggressive glare without genuine malice, making it ideal for banter." },
-      { q: "What do the 'ง' characters represent in the boxing Lenny face?", a: "The characters 'ง' on either side of (ง ͠° ͟ل͜ ͡°)ง are the Thai letter Ngor Ngu (U+0E07). In internet ASCII art, they are universally used to depict clenched boxing gloves or fists raised in a fight stance." },
-      { q: "Is there a weapon or sniper rifle version of the angry Lenny face?", a: "Yes! Our collection includes the famous sniper rifle face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/'̿̿ ̿ ̿ ̿ ̿ ̿ as well as dual middle finger variants 凸( ͠° ͟ʖ ͡°)凸 for ultimate comedic firepower." },
-      { q: "Do angry Lenny faces display properly on mobile phones?", a: "Yes! All eyebrow marks and arm characters use standardized Unicode UTF-8, rendering crisply on iPhone, iPad, Android, Mac, and Windows devices without broken squares." },
-      { q: "How can I make an angry Lenny face on my keyboard without copying?", a: "Typing the combining tilde (U+0360) and combining low line (U+035F) manually requires complex Alt codes or special character palettes. The easiest and fastest method is using our 1-click copy button." }
-    ],
-    related: [
-      { name: "Middle Finger Lenny", url: "middle-finger.html", sample: "t( ͡° ͜ʖ ͡° t)" },
-      { name: "Fighting Text Faces", url: "text-faces/fight.html", sample: "(ง'̀-'́)ง" },
-      { name: "Table Flip Faces", url: "text-faces/table-flipping.html", sample: "(ノಠ益ಠ)ノ彡┻━┻" },
-      { name: "Disapproval Face", url: "text-faces/disapproval.html", sample: "ಠ_ಠ" },
-      { name: "Mad Emoticons", url: "emoticons/mad.html", sample: ">:-(" },
-      { name: "Crying Lenny Face", url: "crying-lenny-face.html", sample: "( ͡ಥ ͜ʖ ͡ಥ)" }
-    ]
-  },
-  {
-    slug: 'crying-lenny-face.html',
-    title: 'Crying Lenny Face ( ͡ಥ ͜ʖ ͡ಥ) — Copy & Paste Tears & Weeping Text Faces',
-    description: 'Copy and paste Crying Lenny Face ( ͡ಥ ͜ʖ ͡ಥ), sobbing text faces, and crying kaomojis in 1-click. Free Unicode generator with sad, tears of joy, and dramatic weeping faces.',
-    h1: 'Crying Lenny Face <span>( ͡ಥ ͜ʖ ͡ಥ)</span>',
-    heroSub: 'From dramatic sobbing and bittersweet tears of joy to anime waterfall weeping, copy crying Lenny faces instantly.',
-    sub: 'crying',
-    editorial: `
-      <h2>Complete Guide to Crying Lenny Faces ( ͡ಥ ͜ʖ ͡ಥ) &amp; Tearful Text Emoticons</h2>
-      <p>The <strong>Crying Lenny Face</strong> <code>( ͡ಥ ͜ʖ ͡ಥ)</code> is one of the most recognizable and versatile emoticons on the modern web. Born as an emotional mutation of the legendary 2012 Finnish imageboard smirk <code>( ͡° ͜ʖ ͡°)</code>, the crying variant replaces standard eyes with tear-filled or streaming characters to create a melodramatic, comic reaction. Whether used in Discord gaming chats, Twitch live streams, Reddit comment chains, or Twitter/X banter, it provides an ironic, exaggerated expression of grief, sympathy, or bittersweet joy.</p>
-
-      <h3>Anatomy &amp; Unicode Breakdown: How ( ͡ಥ ͜ʖ ͡ಥ) and ( ཀ ʖ̯ ཀ) are Created</h3>
-      <p>Unlike standard emojis like 😭 or 😢 that look identical and cartoonish on every platform, the crying Lenny face relies on exotic international Unicode typography to deliver authentic character:</p>
-      <ul>
-        <li><strong>Telugu Letter Tha (<code>ಥ</code> - U+0C25):</strong> The iconic wide, tear-rimmed eyes are actually characters from the Indian Telugu language. The curved glyph resembles an eye overflowing with tears.</li>
-        <li><strong>Tibetan Script (<code>ཀ</code> - U+0F40):</strong> In heavy weeping faces like <code>( ཀ ʖ̯ ཀ)</code>, Tibetan consonants produce a furrowed, tortured brow and sorrowful eye socket.</li>
-        <li><strong>Combining Ring Below &amp; Diacritics (<code> ̥̥̥̥̥̥̥̥ </code> - U+0325):</strong> Stacked below the face, these dots simulate water droplets splashing downwards, producing waterfall crying effects like <code>( ͡° ̥̥̥̥̥̥̥̥ ͜ʖ ͡° ̥̥̥̥̥̥̥̥ )</code>.</li>
-        <li><strong>Downturned Frown Mouth (<code>ʖ̯</code> - U+028F + U+032F):</strong> Combining Latin small letter Y with inverted breve diacritics creates the unmistakable quivering lip.</li>
-      </ul>
-
-      <h3>When &amp; Where to Use Crying Lenny Faces</h3>
-      <p>The beauty of text faces is their nuanced comedic timing. Here are prime situations where crying Lenny faces outperform standard emojis:</p>
-      <ol>
-        <li><strong>Gaming Misery &amp; Clutch Fails:</strong> Missing a game-winning shot in <em>Valorant</em>, losing your diamond armor in <em>Minecraft</em>, or watching your team throw in <em>League of Legends</em>.</li>
-        <li><strong>Comic Overreaction to Minor Inconveniences:</strong> Dropping your toast butter-side down, finding out your favorite series was delayed, or running out of coffee on a Monday morning.</li>
-        <li><strong>Tears of Pride &amp; Joy:</strong> Celebrating an unexpected victory or cheering for a friend's achievement with bittersweet weeping <code>(｡T ω T｡)</code>.</li>
-        <li><strong>Faking Devastation in Group Chats:</strong> Feigning mock heartbreak when someone doesn't agree with your hot take.</li>
-      </ol>
-
-      <h3>Comparison: Crying Lenny Face vs. Standard Emojis (😭 vs. ͡ಥ ͜ʖ ͡ಥ)</h3>
-      <table class="editorial-table" style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
-        <thead>
-          <tr style="border-bottom:2px solid var(--border-color); text-align:left;">
-            <th style="padding:10px;">Format</th>
-            <th style="padding:10px;">Tone &amp; Feeling</th>
-            <th style="padding:10px;">Cross-Platform Rendering</th>
-            <th style="padding:10px;">Best Context</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--border-color);">
-            <td style="padding:10px; font-weight:700;">( ͡ಥ ͜ʖ ͡ಥ) Text Face</td>
-            <td style="padding:10px;">Ironic, witty, melodramatic, self-aware</td>
-            <td style="padding:10px; color:var(--emerald); font-weight:700;">100% Identical Everywhere (Pure Unicode)</td>
-            <td style="padding:10px;">Discord, Twitch, Reddit, Gaming Lobbies</td>
-          </tr>
-          <tr>
-            <td style="padding:10px; font-weight:700;">😭 Graphic Emoji</td>
-            <td style="padding:10px;">Generic, often reads as literal crying or screaming</td>
-            <td style="padding:10px; color:var(--text-muted);">Varies by OS (Apple vs Google vs Samsung)</td>
-            <td style="padding:10px;">Casual SMS, Instagram Stories, Family chats</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>How to Copy and Paste Crying Lenny Faces</h3>
-      <p>To use any crying Lenny face from our directory, simply tap or click on any card box above. The emoticon is immediately copied to your clipboard, and a green confirmation toast will appear. Press <kbd>Ctrl</kbd> + <kbd>V</kbd> on Windows or <kbd>Cmd</kbd> + <kbd>V</kbd> on Mac, or long-press on mobile to paste instantly into Discord, TikTok, WhatsApp, Roblox, or your bio.</p>
-    `,
-    faqs: [
-      { q: "What is the crying Lenny face used for?", a: "The crying Lenny face ( ͡ಥ ͜ʖ ͡ಥ) is used for comic overreaction, dramatic weeping, and playful mock sorrow. It conveys 'I am utterly devastated' in an exaggerated, sarcastic manner that lands as comedy in gaming and group chats." },
-      { q: "How do you make or type the crying eyes character (ಥ)?", a: "The crying eyes use Unicode character U+0C25 (Telugu Letter Tha: ಥ). Since typing international Unicode codes is difficult on standard keyboards, the easiest way is to click any card on our site to copy it instantly." },
-      { q: "Do the tear characters paste correctly on Discord, TikTok, and iPhone?", a: "Yes! All characters in our collection are standard UTF-8 Unicode glyphs supported by iOS, Android, Windows, macOS, and Linux. They will render reliably without missing character boxes (tofu) across Discord, TikTok, Twitch, and WhatsApp." },
-      { q: "What is the difference between Sad Lenny and Crying Lenny?", a: "Sad Lenny ( ͡° ʖ̯ ͡°) features a quiet, disappointed grimace or pout without tears. Crying Lenny ( ͡ಥ ͜ʖ ͡ಥ) escalates the emotion with prominent tearful eyes (ಥ, ཀ, ｡ﾟ) to express dramatic, streaming tears." },
-      { q: "Can I use crying Lenny faces in my social media bio or gaming username?", a: "Yes! Text faces are standard Unicode text, making them fully allowed in Instagram bios, TikTok nicknames, Steam names, and Discord server statuses." }
-    ],
-    related: [
-      { name: "Sad Lenny Face", url: "sad-lenny-face.html", sample: "( ͡° ʖ̯ ͡°)" },
-      { name: "Crying Kaomoji", url: "kaomoji/sad.html", sample: "(ノ_<。)" },
-      { name: "Disapproval Face", url: "text-faces/disapproval.html", sample: "ಠ_ಠ" },
-      { name: "Table Flip Faces", url: "text-faces/table-flipping.html", sample: "(ノಠ益ಠ)ノ彡┻━┻" },
-      { name: "Angry Lenny Face", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
-      { name: "Shrug Lenny Face", url: "shrug-lenny-face.html", sample: "¯\\_( ͡° ͜ʖ ͡°)_/¯" }
-    ]
-  },
-  {
-    slug: 'blushing-lenny-face.html',
-    title: 'Blushing Lenny Face ( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°) — Copy & Paste Flirty & Shy Faces',
-    description: 'Copy and paste Blushing Lenny Faces ( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°), flirty text faces, and shy kaomoji in 1-click. Instant clipboard copy.',
-    h1: 'Blushing Lenny Face <span>( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)</span>',
-    heroSub: 'Flustered, shy, or flirty? Copy blushing Lenny faces with diagonal blush marks and floral accents.',
-    sub: 'blushing',
-    editorial: `
-      <h2>Flustered and Flirty: The Blushing Lenny Face</h2>
-      <p>With diagonal slash lines <code>⁄ ⁄</code> representing red Anime blush marks or delicate cherry blossom petals <code>🌸</code>, the <strong>Blushing Lenny Face</strong> brings shy flirtation and comedic embarrassment to chat logs.</p>
-    `,
-    faqs: [
-      { q: "How do you make the blush effect?", a: "Double fraction slashes (U+2044) or floral Unicode characters are placed inside the parentheses beside the eyes." }
-    ],
-    related: [
-      { name: "Cute Lenny", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
-      { name: "Heart Kaomoji", url: "kaomoji/heart.html", sample: "(◕‿◕)♡" }
-    ]
-  },
-  {
-    slug: 'shrug-lenny-face.html',
-    title: 'Shrug Lenny Face ¯\\_( ͡° ͜ʖ ͡°)_/¯ — Copy & Paste Smug Shrugging Faces',
-    description: 'Copy and paste Shrug Lenny Face ¯\\_( ͡° ͜ʖ ͡°)_/¯, smug shrugs, and "whatever" text faces in 1-click. Free Unicode generator.',
-    h1: 'Shrug Lenny Face <span>¯\\_( ͡° ͜ʖ ͡°)_/¯</span>',
-    heroSub: 'The ultimate fusion of the smug Lenny smirk and the careless shrug. Tap to copy in 1-click.',
-    sub: 'shrug',
-    editorial: `
-      <h2>The Smug Masterpiece: Shrug Lenny Face ¯\\_( ͡° ͜ʖ ͡°)_/¯</h2>
-      <p>Combining the famous Japanese Katakana shruggie <code>¯\\_(ツ)_/¯</code> with the infamous Lenny smirk <code>( ͡° ͜ʖ ͡°)</code> yields the ultimate internet shrug: careless, knowing, and deeply smug.</p>
-    `,
-    faqs: [
-      { q: "Why does the arm sometimes disappear in Reddit comments?", a: "Markdown uses the backslash '\\' as an escape character. On Reddit, you often need to type a double or triple backslash to prevent the arm from vanishing!" }
-    ],
-    related: [
-      { name: "Classic Lenny", url: "index.html", sample: "( ͡° ͜ʖ ͡°)" },
-      { name: "Table Flip", url: "text-faces/table-flipping.html", sample: "(노ಠ益ಠ)노彡┻━┻" }
-    ]
-  },
-  {
-    slug: 'middle-finger.html',
-    title: 'Middle Finger Lenny Face t( ͡° ͜ʖ ͡° t) — Copy & Paste Rude Text Faces',
-    description: 'Copy and paste Middle Finger Lenny Face t( ͡° ͜ʖ ͡° t), flipping off emoticons, and rude text faces in 1-click. Unicode compatible.',
-    h1: 'Middle Finger Lenny Face <span>t( ͡° ͜ʖ ͡° t)</span>',
-    heroSub: 'Send a cheeky or rebellious middle finger text face. Tap any card to copy instantly.',
-    sub: 'middle-finger',
-    editorial: `
-      <h2>Rebellious Humor: Middle Finger Lenny Faces</h2>
-      <p>Created by flanking the face with <code>t</code>, <code>凸</code>, or <code>╭∩╮</code>, the <strong>Middle Finger Lenny Face</strong> conveys comedic disrespect and cheeky defiance in online gaming and banter.</p>
-    `,
-    faqs: [
-      { q: "What does the 凸 symbol represent?", a: "It is a Chinese/Japanese Kanji character (totsu) meaning convex, which closely resembles a middle finger gesture in ASCII art." }
-    ],
-    related: [
-      { name: "Angry Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
-      { name: "Fighting Faces", url: "text-faces/fight.html", sample: "(ง'̀-'́)ง" }
-    ]
-  },
-  {
-    slug: 'wink-lenny-face.html',
-    title: 'Wink Lenny Face ( ͡~ ͜ʖ ͡°) — Copy & Paste Flirty & Cheeky Winking Faces',
-    description: 'Copy and paste Wink Lenny Face ( ͡~ ͜ʖ ͡°), winking text faces, and flirty kaomojis in 1-click. Free Unicode generator with instant clipboard copy.',
-    h1: 'Wink Lenny Face <span>( ͡~ ͜ʖ ͡°)</span>',
-    heroSub: 'Cheeky winks, inside jokes, and flirtatious banter. Tap any card to copy instantly.',
-    sub: 'wink',
-    editorial: `
-      <h2>The Secret Seduction: Wink Lenny Face ( ͡~ ͜ʖ ͡°)</h2>
-      <p>By substituting one degree mark with a tilde <code>~</code> to simulate a closing eyelid, the <strong>Wink Lenny Face</strong> introduces flirtatious mischief, complicity, and knowing humor to online conversations.</p>
-    `,
-    faqs: [
-      { q: "How is the winking eye made?", a: "The winking eye is constructed using the standard tilde character '~' paired with a degree symbol '°'." }
-    ],
-    related: [
-      { name: "Classic Lenny", url: "index.html", sample: "( ͡° ͜ʖ ͡°)" },
-      { name: "Blushing Lenny", url: "blushing-lenny-face.html", sample: "( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)" }
-    ]
-  },
-  {
-    slug: 'cool-lenny-face.html',
-    title: 'Cool Lenny Face (⌐■ ͜ʖ■) — Copy & Paste Sunglasses & Deal With It Faces',
-    description: 'Copy and paste Cool Lenny Face (⌐■ ͜ʖ■), sunglasses text faces, and Deal With It emoticons in 1-click. 100% Unicode compatible.',
-    h1: 'Cool Lenny Face <span>(⌐■ ͜ʖ■)</span>',
-    heroSub: 'Styling shades, sunglasses, and boss vibes. Tap to copy cool Lenny faces in 1-click.',
-    sub: 'cool',
-    editorial: `
-      <h2>Unshakable Swagger: Cool Lenny Face (⌐■ ͜ʖ■)</h2>
-      <p>Adorned with black block sunglasses <code>⌐■</code>, the <strong>Cool Lenny Face</strong> blends the iconic Lenny smirk with the classic 'Deal With It' attitude. Perfect for flexing a victory or walking away from internet debates in style.</p>
-    `,
-    faqs: [
-      { q: "What character creates the sunglasses?", a: "The sunglasses use the black square Unicode block (■ - U+25A0) combined with angle characters (⌐ - U+2310)." }
-    ],
-    related: [
-      { name: "Strong Lenny", url: "strong-lenny-face.html", sample: "ᕙ( ͡° ͜ʖ ͡°)ᕗ" },
-      { name: "Happy Lenny", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" }
-    ]
-  },
-  {
-    slug: 'strong-lenny-face.html',
-    title: 'Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ — Copy & Paste Muscle Flexing Faces',
-    description: 'Copy and paste Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ, flexed biceps, and buff workout text faces in 1-click. Free Unicode generator.',
-    h1: 'Strong Lenny Face <span>ᕙ( ͡° ͜ʖ ͡°)ᕗ</span>',
-    heroSub: 'Flexed biceps, bodybuilding arms, and triumphant power. Tap to copy strong Lenny faces in 1-click.',
-    sub: 'strong',
-    editorial: `
-      <h2>Peak Performance: Strong Lenny Face ᕙ( ͡° ͜ʖ ͡°)ᕗ</h2>
-      <p>Using Canadian Syllabics <code>ᕙ ᕗ</code> to create flexed muscular arms, the <strong>Strong Lenny Face</strong> is the ultimate gaming flex for gym enthusiasts, ranked match winners, and fitness memes.</p>
-    `,
-    faqs: [
-      { q: "What characters make the flexing arms?", a: "The flexed biceps use Canadian Aboriginal Syllabic characters U+1555 (ᕙ) and U+1557 (ᕗ)." }
-    ],
-    related: [
-      { name: "Angry Boxer Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
-      { name: "Cool Lenny", url: "cool-lenny-face.html", sample: "(⌐■ ͜ʖ■)" }
-    ]
-  },
-  {
-    slug: 'hug-lenny-face.html',
-    title: 'Hug Lenny Face (づ｡◕‿‿◕｡)づ — Copy & Paste Embracing Faces',
-    description: 'Copy and paste Hug Lenny Face, welcoming outstretched arms, and comforting emoticons in 1-click. Instant clipboard copy.',
-    h1: 'Hug Lenny Face <span>(づ｡◕‿‿◕｡)づ</span>',
-    heroSub: 'Virtual hugs, welcoming arms, and wholesome comfort. Tap to copy hug Lenny faces in 1-click.',
-    sub: 'hug',
-    editorial: `
-      <h2>Warm Embraces: Hug Lenny Face (づ｡◕‿‿◕｡)づ</h2>
-      <p>With outstretched welcoming arms <code>づ</code>, the <strong>Hug Lenny Face</strong> turns the cheeky smirk into a wholesome, comforting embrace for friends and community servers.</p>
-    `,
-    faqs: [
-      { q: "What character creates the hugging arms?", a: "The arms are created using the Cyrillic letter Dze (づ - U+3065) or Hiragana tsu with dakuten." }
-    ],
-    related: [
-      { name: "Cute Lenny", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
-      { name: "Love Lenny", url: "love-lenny-face.html", sample: "( ͡♥ ͜ʖ ͡♥)" }
-    ]
-  },
-  {
-    slug: 'love-lenny-face.html',
-    title: 'Love Lenny Face ( ͡♥ ͜ʖ ͡♥) — Copy & Paste Romantic Heart Faces',
-    description: 'Copy and paste Love Lenny Face ( ͡♥ ͜ʖ ͡♥), heart eyes, and affectionate romantic text faces in 1-click. Free Unicode generator.',
-    h1: 'Love Lenny Face <span>( ͡♥ ͜ʖ ͡♥)</span>',
-    heroSub: 'Heart eyes, passionate kisses, and sweet romance. Tap to copy love Lenny faces in 1-click.',
-    sub: 'love',
-    editorial: `
-      <h2>Heart Eyes &amp; Affection: Love Lenny Face ( ͡♥ ͜ʖ ͡♥)</h2>
-      <p>Replacing standard eyes with solid black hearts <code>♥</code>, the <strong>Love Lenny Face</strong> expresses romantic infatuation, deep adoration, or humorous affection across chats.</p>
-    `,
-    faqs: [
-      { q: "How are heart eyes made in Unicode?", a: "The eyes use Unicode Black Heart Suit U+2665 (♥) placed inside the iconic Lenny face brackets." }
-    ],
-    related: [
-      { name: "Heart Kaomoji", url: "kaomoji/heart.html", sample: "(◕‿◕)♡" },
-      { name: "Blushing Lenny", url: "blushing-lenny-face.html", sample: "( ͡° ⁄ ⁄ ͜ʖ ⁄ ⁄ ͡°)" }
-    ]
-  },
-  {
-    slug: 'donger-lenny-face.html',
-    title: 'Donger Lenny Face ヽ༼ຈل͜ຈ༽ﾉ — Copy & Paste Donger Hybrids',
-    description: 'Copy and paste Donger Lenny Face hybrids ヽ༼ຈل͜ຈ༽ﾉ and League of Legends Twitch faces in 1-click. 100% Unicode compatible.',
-    h1: 'Donger Lenny Face <span>ヽ༼ຈل͜ຈ༽ﾉ</span>',
-    heroSub: 'The ultimate fusion of the Lenny smirk and the legendary Donger squad. Tap to copy in 1-click.',
-    sub: 'donger',
-    editorial: `
-      <h2>The Ultimate Crossover: Donger Lenny Face ヽ༼ຈل͜ຈ༽ﾉ</h2>
-      <p>When the suggestive Lenny smirk fuses with the triumphant raised arms of the gaming Donger, you get the <strong>Donger Lenny Face</strong>—a favorite for Twitch live chats and esports hype.</p>
-    `,
-    faqs: [
-      { q: "What does this face represent?", a: "It combines the mischievous Lenny Face with the esports Donger celebration." }
-    ],
-    related: [
-      { name: "Donger Text Faces", url: "text-faces/donger.html", sample: "ヽ༼ຈل͜ຈ༽ﾉ" },
-      { name: "Classic Lenny", url: "index.html", sample: "( ͡° ͜ʖ ͡°)" }
-    ]
-  },
-  {
-    slug: 'shocked-lenny-face.html',
-    title: 'Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉) — Copy & Paste Agape & Surprised Faces',
-    description: 'Copy and paste Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉), wide-eyed stares, and stunned text emoticons in 1-click. Instant clipboard copy.',
-    h1: 'Shocked Lenny Face <span>( ͡☉ ͜ʖ ͡☉)</span>',
-    heroSub: 'Wide unblinking stares, jaw-dropped shock, and comic astonishment. Tap to copy in 1-click.',
-    sub: 'shocked',
-    editorial: `
-      <h2>Wide-Eyed Amazement: Shocked Lenny Face ( ͡☉ ͜ʖ ͡☉)</h2>
-      <p>Using circular sun/target glyphs <code>☉</code> for pupils, the <strong>Shocked Lenny Face</strong> captures unblinking disbelief, jaw-dropping surprises, and intense comic stares.</p>
-    `,
-    faqs: [
-      { q: "What symbol creates the wide pupils?", a: "The pupils use Unicode Sun symbol U+2609 (☉)." }
-    ],
-    related: [
-      { name: "Angry Lenny", url: "angry-lenny-face.html", sample: "( ͠° ͟ʖ ͡°)" },
-      { name: "Table Flip", url: "text-faces/table-flipping.html", sample: "(╯°□°)╯︵ ┻━┻" }
-    ]
-  },
-  {
-    slug: 'sparkle-lenny-face.html',
-    title: 'Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧ — Copy & Paste Star & Magical Faces',
-    description: 'Copy and paste Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧, magical twinkling stars, and glitter text faces in 1-click. Free Unicode generator.',
-    h1: 'Sparkle Lenny Face <span>( ͡° ͜ʖ ͡°)✧</span>',
-    heroSub: 'Celestial stardust, glittering eyes, and anime sparkle flairs. Tap to copy in 1-click.',
-    sub: 'sparkle',
-    editorial: `
-      <h2>Magical Flair: Sparkle Lenny Face ( ͡° ͜ʖ ͡°)✧</h2>
-      <p>Adding the four-pointed white star <code>✧</code> to the corner of the face, the <strong>Sparkle Lenny Face</strong> conveys a mischievous wink, an epiphany, or a polished anime sparkle.</p>
-    `,
-    faqs: [
-      { q: "What is the sparkle character?", a: "The sparkle is White Four Pointed Star U+2727 (✧)." }
-    ],
-    related: [
-      { name: "Sparkle Symbols", url: "symbols/sparkle.html", sample: "✦" },
-      { name: "Happy Lenny", url: "happy-lenny-face.html", sample: "( ͡ᵔ ͜ʖ ͡ᵔ)" }
-    ]
-  },
-  {
-    slug: 'weapons-lenny-face.html',
-    title: 'Weapons Lenny Face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿ — Copy & Paste Sniper & Gun Faces',
-    description: 'Copy and paste Weapons Lenny Face with sniper rifles, swords, and bows in 1-click. Legendary gaming ASCII art.',
-    h1: 'Weapons Lenny Face <span>( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿</span>',
-    heroSub: 'Sniper rifles, combat firearms, and dual swords. Tap to copy weapons Lenny faces in 1-click.',
-    sub: 'weapons',
-    editorial: `
-      <h2>Tactical Humor: Weapons Lenny Face ( ͠° ͟ʖ ͡°)=ε/̵͇̿̿/\'̿̿</h2>
-      <p>Equipped with intricate ASCII sniper rifles, swords, and sidearms, the <strong>Weapons Lenny Face</strong> is a legendary staple in Counter-Strike, Call of Duty, and Valorant lobbies.</p>
-    `,
-    faqs: [
-      { q: "How is the sniper rifle constructed?", a: "The rifle combines slashes, equals signs, and Greek epsilon diacritics into a detailed rifle shape." }
-    ],
-    related: [
-      { name: "Angry Boxer Lenny", url: "angry-lenny-face.html", sample: "(ง ͠° ͟ل͜ ͡°)ง" },
-      { name: "Middle Finger Lenny", url: "middle-finger.html", sample: "t( ͡° ͜ʖ ͡° t)" }
-    ]
-  }
-];
-
-// ----------------------------------------------------
 // BUILD FUNCTIONS
 // ----------------------------------------------------
 
-function buildLennySubpages() {
-  console.log('Building Lenny Subpages...');
-  for (const p of LENNY_SUBPAGES) {
-    const glyphs = ALL_GLYPHS.filter(g => g.sub === p.sub || (g.hub === 'lenny' && g.sub === p.sub));
-    const breadcrumbs = [
-      { name: 'Home', url: 'index.html' },
-      { name: 'Lenny Faces', url: 'index.html#browse' },
-      { name: p.h1.replace(/<[^>]*>?/gm, '').trim(), url: p.slug }
-    ];
+// 1. Build Homepages (/, /es/, /jp/, /kr/)
+function buildHomePage() {
+  console.log('Building Multilingual Homepages...');
 
-    const dirSlug = p.slug.replace(/\.html$/, '');
-    const custom = CUSTOM_SUBPAGE_CONTENT[dirSlug];
+  for (const langObj of LANGUAGES) {
+    const lang = langObj.code;
+    const isEn = (lang === 'en');
+    const outDir = langObj.dir ? path.join(ROOT_DIR, langObj.dir) : ROOT_DIR;
+    ensureDir(outDir);
 
-    const pageTitle = custom ? custom.pageTitle : p.title;
-    const metaDescription = custom ? custom.metaDescription : p.description;
-    const h1Text = custom ? custom.h1Text : p.h1;
-    const heroSub = custom ? custom.heroSub : p.heroSub;
-    const editorialHtml = custom ? custom.editorialHtml : p.editorial;
-    const faqList = custom ? custom.faqList : p.faqs;
-    const relatedCats = custom ? custom.relatedCats : p.related;
+    const outPath = path.join(outDir, 'index.html');
+    const rootPrefix = calculateRootPrefix(outPath);
 
-    // 1. Generate root HTML file (e.g. crying-lenny-face.html)
+    let pageTitle, metaDescription, h1Text, heroSub, heroBadge, editorialHtml, faqList;
+
+    if (isEn) {
+      pageTitle = 'Lenny Face ( ͡° ͜ʖ ͡°) — 1-Click Copy and Paste Text Faces, Kaomoji & Emoticons';
+      metaDescription = 'Copy and paste Lenny Face ( ͡° ͜ʖ ͡°), text faces, Japanese kaomojis, and aesthetic symbols in 1-click. Free Unicode generator with cute, angry, sad, and custom styles.';
+      h1Text = 'Lenny Face Pro <span>( ͡° ͜ʖ ͡°)</span>';
+      heroSub = 'Click any face card to copy directly to your clipboard. Instant Unicode text emoticons for Discord, TikTok, Roblox, and gaming.';
+      heroBadge = '⚡ 1-Click Copy • Unicode Compatible';
+      editorialHtml = `
+        <h2>The Complete Guide to Lenny Face ( ͡° ͜ʖ ͡°) &amp; Unicode Emoticons</h2>
+        <p>Born on internet imageboards in November 2012, the <strong>Lenny Face ( ͡° ͜ʖ ͡°)</strong>—often called "Deg Deg" or "Le Lenny Face"—has become one of the most recognizable typographic memes in digital history. Created using exotic international Unicode characters, it expresses mischievous innuendo, playful skepticism, or knowing sarcasm without uttering a single word.</p>
+
+        <h3>Why Text Faces Outperform Standard Emojis</h3>
+        <p>While standard graphical emojis like 😉 or 😏 render differently across Apple, Google, and Samsung devices, text faces constructed with Unicode characters look 100% consistent across all platforms. Whether you paste them into Discord channels, Twitch chat, Minecraft servers, or social media bios, they preserve their exact aesthetic and ironic nuance.</p>
+
+        <h3>Key Emoticon Categories</h3>
+        <ul>
+          <li><strong>Lenny Face Variants:</strong> Cute <code>( ͜° ͜ʊ ͜°)</code>, angry boxer <code>(ง ͠° ͟ل͜ ͡°)ง</code>, weeping <code>( ͡ಥ ͜ʖ ͡ಥ)</code>, and shrugs <code>¯\\_( ͡° ͜ʖ ͡°)_/¯</code>.</li>
+          <li><strong>Japanese Kaomoji:</strong> Delicate anime expressions, playful cats <code>/ᐠ｡ꞈ｡ᐟ\\</code>, and sweet smiles <code>( ˶ˆ꒳ˆ˵ )</code>.</li>
+          <li><strong>Text Faces &amp; Dongers:</strong> Table flippers <code>(╯°□°)╯︵ ┻━┻</code>, disapproval stares <code>ಠ_ಠ</code>, and Twitch fight faces.</li>
+          <li><strong>Aesthetic Symbols:</strong> Sparkles <code>✦</code>, stars <code>★</code>, and hearts <code>♡</code> for social profiles.</li>
+        </ul>
+
+        <h3>How to Copy in 1-Click</h3>
+        <p>Click or tap any card in our directory to copy it directly to your clipboard. Paste anywhere using <kbd>Ctrl</kbd> + <kbd>V</kbd> (Windows) or <kbd>Cmd</kbd> + <kbd>V</kbd> (Mac).</p>
+      `;
+      faqList = [
+        { q: "What does the Lenny Face ( ͡° ͜ʖ ͡°) mean?", a: "The Lenny Face represents a cheeky, knowing smirk suggesting innuendo, sarcasm, or mischievous humor ('if you know what I mean')." },
+        { q: "How do I type the Lenny Face on a keyboard?", a: "Because it requires combining Unicode characters (like degree signs and Bengali diacritics), typing it manually is difficult. Using our 1-click copy tool is the fastest and most reliable method." },
+        { q: "Does this work on mobile (iOS / Android) and Discord?", a: "Yes! All symbols in our master dataset are standard Unicode UTF-8 glyphs, rendering crisply on iPhones, Android devices, Discord, TikTok, and gaming chats." }
+      ];
+    } else {
+      const i18n = HOMEPAGE_I18N[lang];
+      pageTitle = i18n.title;
+      metaDescription = i18n.description;
+      h1Text = i18n.h1;
+      heroSub = i18n.heroSub;
+      heroBadge = i18n.heroBadge || '⚡ 1-Click Copy • Unicode Compatible';
+      editorialHtml = i18n.editorialHtml;
+      faqList = i18n.faqList;
+    }
+
     const html = generatePageTemplate({
       pageTitle,
       metaDescription,
-      canonicalUrl: `${SITE_URL}/${p.slug}`,
-      rootPrefix: '',
-      breadcrumbs,
-      heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
+      cleanPath: '',
+      rootPrefix,
+      breadcrumbs: [],
+      heroBadge,
       h1Text,
       heroSub,
-      activeHub: 'lenny',
-      activeSub: p.sub,
-      glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
+      activeHub: 'all',
+      activeSub: 'all',
+      glyphs: ALL_GLYPHS,
       editorialHtml,
       faqList,
-      relatedCats,
-      lang: 'en'
+      relatedCats: [
+        { name: lang === 'es' ? 'Caritas Tiernas' : lang === 'ja' ? 'かわいいレニー' : lang === 'ko' ? '귀여운 레니' : 'Cute Lenny Face', url: 'cute-lenny-face/', sample: '( ͜° ͜ʊ ͜°)' },
+        { name: lang === 'es' ? 'Caritas Enojadas' : lang === 'ja' ? '怒るレニー' : lang === 'ko' ? '화난 레니' : 'Angry Lenny Face', url: 'angry-lenny-face/', sample: '(ง ͠° ͟ل͜ ͡°)ง' },
+        { name: lang === 'es' ? 'Kaomojis de Gato' : lang === 'ja' ? '猫の顔文字' : lang === 'ko' ? '고양이 카오모지' : 'Cat Kaomoji', url: 'kaomoji/cat/', sample: '/ᐠ｡ꞈ｡ᐟ\\' },
+        { name: lang === 'es' ? 'Caras de Lucha' : lang === 'ja' ? '戦う顔文字' : lang === 'ko' ? '싸움 얼굴' : 'Fighting Faces', url: 'text-faces/fight/', sample: "(ง'̀-'́)ง" }
+      ],
+      lang
     });
 
-    fs.writeFileSync(path.join(ROOT_DIR, p.slug), html, 'utf8');
-    console.log(`  ✓ Generated: ${p.slug}`);
-
-    // 2. Generate clean directory index.html (e.g. /crying-lenny-face/index.html)
-    const cleanDir = path.join(ROOT_DIR, dirSlug);
-    if (!fs.existsSync(cleanDir)) fs.mkdirSync(cleanDir, { recursive: true });
-
-    const cleanBreadcrumbs = [
-      { name: 'Home', url: 'index.html' },
-      { name: 'Lenny Faces', url: 'index.html#browse' },
-      { name: p.h1.replace(/<[^>]*>?/gm, '').trim(), url: `${dirSlug}/` }
-    ];
-
-    const cleanHtml = generatePageTemplate({
-      pageTitle,
-      metaDescription,
-      canonicalUrl: `${SITE_URL}/${dirSlug}/`,
-      rootPrefix: '../',
-      breadcrumbs: cleanBreadcrumbs,
-      heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
-      h1Text,
-      heroSub,
-      activeHub: 'lenny',
-      activeSub: p.sub,
-      glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
-      editorialHtml,
-      faqList,
-      relatedCats,
-      lang: 'en'
-    });
-
-    fs.writeFileSync(path.join(cleanDir, 'index.html'), cleanHtml, 'utf8');
-    console.log(`  ✓ Generated Clean URL: ${dirSlug}/index.html`);
+    fs.writeFileSync(outPath, html, 'utf8');
+    console.log(`  ✓ Generated Homepage: ${langObj.dir ? langObj.dir + '/' : ''}index.html`);
   }
 }
 
-// Build Hub Category Pages (Text Faces, Kaomoji, Emoticons, Symbols, Aesthetic)
+// 2. Build Lenny Subpages across all 4 languages (17 subpages x 4 languages)
+function buildLennySubpages() {
+  console.log('Building Lenny Subpages across all languages...');
+
+  for (const langObj of LANGUAGES) {
+    const lang = langObj.code;
+    const isEn = (lang === 'en');
+    const baseDir = langObj.dir ? path.join(ROOT_DIR, langObj.dir) : ROOT_DIR;
+    ensureDir(baseDir);
+
+    for (const p of LENNY_SUBPAGES) {
+      const glyphs = ALL_GLYPHS.filter(g => g.sub === p.sub || (g.hub === 'lenny' && g.sub === p.sub));
+      const cleanSlug = p.slug.replace(/\.html$/, '');
+      const cleanPath = `${cleanSlug}/`;
+
+      let pageTitle, metaDescription, h1Text, heroSub, editorialHtml, faqList, relatedCats, pageName;
+
+      if (isEn) {
+        const custom = CUSTOM_SUBPAGE_CONTENT[cleanSlug];
+        pageTitle = custom ? custom.pageTitle : p.title;
+        metaDescription = custom ? custom.metaDescription : p.description;
+        h1Text = custom ? custom.h1Text : p.h1;
+        heroSub = custom ? custom.heroSub : p.heroSub;
+        editorialHtml = custom ? custom.editorialHtml : p.editorial;
+        faqList = custom ? custom.faqList : p.faqs;
+        relatedCats = custom ? custom.relatedCats : p.related;
+        pageName = p.h1.replace(/<[^>]*>?/gm, '').trim();
+      } else {
+        const i18n = (LENNY_SUBPAGES_I18N[p.sub] && LENNY_SUBPAGES_I18N[p.sub][lang]) || {};
+        pageName = i18n.name || p.h1.replace(/<[^>]*>?/gm, '').trim();
+        pageTitle = i18n.title || `${pageName} — Copy & Paste`;
+        metaDescription = i18n.description || `Copy and paste ${pageName} in 1-click. Free Unicode text emoticons.`;
+        h1Text = i18n.h1 || p.h1;
+        heroSub = i18n.heroSub || p.heroSub;
+        editorialHtml = getLocalizedEditorial(pageName, glyphs[0] ? glyphs[0].glyph : '', lang);
+        faqList = getLocalizedFaqs(pageName, glyphs[0] ? glyphs[0].glyph : '', lang);
+        relatedCats = (p.related || []).map(r => ({
+          name: r.name,
+          url: r.url.replace(/\.html$/, '') + '/',
+          sample: r.sample
+        }));
+      }
+
+      const ui = UI_STRINGS[lang] || UI_STRINGS.en;
+
+      // 1. Direct .html file (e.g. es/angry-lenny-face.html)
+      const directHtmlPath = path.join(baseDir, `${cleanSlug}.html`);
+      const directRootPrefix = calculateRootPrefix(directHtmlPath);
+      const directBreadcrumbs = [
+        { name: ui.hubAll, url: '' },
+        { name: ui.hubLenny, url: '#browse' },
+        { name: pageName, url: cleanPath }
+      ];
+
+      const directHtml = generatePageTemplate({
+        pageTitle,
+        metaDescription,
+        cleanPath,
+        rootPrefix: directRootPrefix,
+        breadcrumbs: directBreadcrumbs,
+        heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
+        h1Text,
+        heroSub,
+        activeHub: 'lenny',
+        activeSub: p.sub,
+        glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
+        editorialHtml,
+        faqList,
+        relatedCats,
+        lang
+      });
+      fs.writeFileSync(directHtmlPath, directHtml, 'utf8');
+
+      // 2. Clean Directory URL (e.g. es/angry-lenny-face/index.html)
+      const cleanSubDir = path.join(baseDir, cleanSlug);
+      ensureDir(cleanSubDir);
+      const cleanHtmlPath = path.join(cleanSubDir, 'index.html');
+      const cleanRootPrefix = calculateRootPrefix(cleanHtmlPath);
+
+      const cleanBreadcrumbs = [
+        { name: ui.hubAll, url: '' },
+        { name: ui.hubLenny, url: '#browse' },
+        { name: pageName, url: cleanPath }
+      ];
+
+      const cleanHtml = generatePageTemplate({
+        pageTitle,
+        metaDescription,
+        cleanPath,
+        rootPrefix: cleanRootPrefix,
+        breadcrumbs: cleanBreadcrumbs,
+        heroBadge: '⚡ 1-Click Copy • 100/100 PageSpeed',
+        h1Text,
+        heroSub,
+        activeHub: 'lenny',
+        activeSub: p.sub,
+        glyphs: glyphs.length > 0 ? glyphs : ALL_GLYPHS.slice(0, 15),
+        editorialHtml,
+        faqList,
+        relatedCats,
+        lang
+      });
+      fs.writeFileSync(cleanHtmlPath, cleanHtml, 'utf8');
+    }
+    console.log(`  ✓ Built 17 Lenny subpages for language: ${lang}`);
+  }
+}
+
+// 3. Build Hub Category Pages & All Subpages across 4 languages
 function buildHubPages() {
+  console.log('Building Hub Pages and Subpages across all languages...');
+
+  // The 5 Hub Categories and their Subcategories
   const hubs = [
     {
       dir: 'text-faces',
@@ -1263,351 +1066,377 @@ function buildHubPages() {
     }
   ];
 
-  for (const hubInfo of hubs) {
-    const hubDir = path.join(ROOT_DIR, hubInfo.dir);
-    ensureDir(hubDir);
+  for (const langObj of LANGUAGES) {
+    const lang = langObj.code;
+    const isEn = (lang === 'en');
+    const baseDir = langObj.dir ? path.join(ROOT_DIR, langObj.dir) : ROOT_DIR;
+    ensureDir(baseDir);
+    const ui = UI_STRINGS[lang] || UI_STRINGS.en;
 
-    // 1. Build Hub Index Page (e.g. /text-faces/index.html)
-    const hubGlyphs = ALL_GLYPHS.filter(g => g.hub === hubInfo.hub);
-    const hubBreadcrumbs = [
-      { name: 'Home', url: 'index.html' },
-      { name: hubInfo.title.split('—')[0].trim(), url: `${hubInfo.dir}/index.html` }
-    ];
+    for (const hubInfo of hubs) {
+      const hubDir = path.join(baseDir, hubInfo.dir);
+      ensureDir(hubDir);
+      const hubCleanPath = `${hubInfo.dir}/`;
 
-    const relatedCatCards = hubInfo.subpages.map(s => ({
-      name: s.name,
-      url: `${hubInfo.dir}/${s.sub}.html`,
-      sample: s.sample,
-      count: 'Explore'
-    }));
+      // 1. Build Hub Index Page (e.g. /text-faces/index.html, /es/text-faces/index.html)
+      const hubGlyphs = ALL_GLYPHS.filter(g => g.hub === hubInfo.hub);
 
-    const hubCustom = CUSTOM_HUB_CONTENT[hubInfo.hub];
-    const pageTitle = hubCustom ? hubCustom.pageTitle : hubInfo.title;
-    const metaDescription = hubCustom ? hubCustom.metaDescription : hubInfo.description;
-    const h1Text = hubCustom ? hubCustom.h1Text : hubInfo.h1;
-    const heroSub = hubCustom ? hubCustom.heroSub : hubInfo.heroSub;
-    const editorialHtml = hubCustom ? hubCustom.editorialHtml : `
-        <h2>Comprehensive Guide to ${hubInfo.title.split('—')[0].trim()}</h2>
-        <p>Welcome to the ultimate directory of <strong>${hubInfo.title.split('—')[0].trim()}</strong>. Whether you are styling your Discord profile bio, commenting on viral TikTok videos, or chatting in Twitch streams, our curated collection delivers zero-lag, instant 1-click clipboard copying across all operating systems.</p>
-        <h3>Category Highlights</h3>
-        <p>Explore specialized sub-collections below to find the exact emotion or aesthetic design for your mood.</p>
-    `;
-    const faqList = hubCustom ? hubCustom.faqList : [
-        { q: `How do I copy these ${hubInfo.title.split('—')[0].trim()}?`, a: "Simply tap or click any card box on this page to copy directly to your clipboard. A toast notification will verify the copy." },
-        { q: "Are these characters compatible on iPhone and Android?", a: "Yes! All characters use universal Unicode standards, ensuring flawless rendering on iOS, Android, macOS, Windows, and Linux." }
-    ];
+      let hubTitle, hubDesc, hubH1, hubHeroSub, hubEditorial, hubFaqs, hubName;
 
-    const hubHtml = generatePageTemplate({
-      pageTitle,
-      metaDescription,
-      canonicalUrl: `${SITE_URL}/${hubInfo.dir}/`,
-      rootPrefix: '../',
-      breadcrumbs: hubBreadcrumbs,
-      heroBadge: '⚡ 1-Click Copy • 1,000+ Items',
-      h1Text,
-      heroSub,
-      activeHub: hubInfo.hub,
-      activeSub: 'all',
-      glyphs: hubGlyphs,
-      editorialHtml,
-      faqList,
-      relatedCats: relatedCatCards,
-      lang: 'en'
-    });
+      if (isEn) {
+        const hubCustom = CUSTOM_HUB_CONTENT[hubInfo.hub];
+        hubTitle = hubCustom ? hubCustom.pageTitle : hubInfo.title;
+        hubDesc = hubCustom ? hubCustom.metaDescription : hubInfo.description;
+        hubH1 = hubCustom ? hubCustom.h1Text : hubInfo.h1;
+        hubHeroSub = hubCustom ? hubCustom.heroSub : hubInfo.heroSub;
+        hubEditorial = hubCustom ? hubCustom.editorialHtml : `
+          <h2>Comprehensive Guide to ${hubInfo.title.split('—')[0].trim()}</h2>
+          <p>Welcome to the ultimate directory of <strong>${hubInfo.title.split('—')[0].trim()}</strong>. Whether you are styling your Discord profile bio, commenting on viral TikTok videos, or chatting in Twitch streams, our curated collection delivers zero-lag, instant 1-click clipboard copying across all operating systems.</p>
+        `;
+        hubFaqs = hubCustom ? hubCustom.faqList : [
+          { q: `How do I copy these ${hubInfo.title.split('—')[0].trim()}?`, a: "Simply tap or click any card box on this page to copy directly to your clipboard. A toast notification will verify the copy." },
+          { q: "Are these characters compatible on iPhone and Android?", a: "Yes! All characters use universal Unicode standards, ensuring flawless rendering on iOS, Android, macOS, Windows, and Linux." }
+        ];
+        hubName = hubInfo.title.split('—')[0].trim();
+      } else {
+        const i18n = (HUBS_I18N[hubInfo.dir] && HUBS_I18N[hubInfo.dir][lang]) || {};
+        hubName = i18n.name || hubInfo.title.split('—')[0].trim();
+        hubTitle = i18n.title || `${hubName} — Copy & Paste`;
+        hubDesc = i18n.description || `Copy and paste ${hubName} in 1-click.`;
+        hubH1 = i18n.h1 || hubInfo.h1;
+        hubHeroSub = i18n.heroSub || hubInfo.heroSub;
+        hubEditorial = getLocalizedEditorial(hubName, hubGlyphs[0] ? hubGlyphs[0].glyph : '', lang);
+        hubFaqs = getLocalizedFaqs(hubName, hubGlyphs[0] ? hubGlyphs[0].glyph : '', lang);
+      }
 
-    fs.writeFileSync(path.join(hubDir, 'index.html'), hubHtml, 'utf8');
-    console.log(`  ✓ Generated Hub Index: ${hubInfo.dir}/index.html`);
-
-    // 2. Build Subpages within this Hub (e.g. /text-faces/donger.html, /kaomoji/cat.html)
-    for (const sub of hubInfo.subpages) {
-      const subGlyphs = ALL_GLYPHS.filter(g => g.hub === hubInfo.hub && g.sub === sub.sub);
-      const subBreadcrumbs = [
-        { name: 'Home', url: 'index.html' },
-        { name: hubInfo.title.split('—')[0].trim(), url: `${hubInfo.dir}/index.html` },
-        { name: sub.name, url: `${hubInfo.dir}/${sub.sub}.html` }
+      const hubBreadcrumbs = [
+        { name: ui.hubAll, url: '' },
+        { name: hubName, url: hubCleanPath }
       ];
 
-      const customKey = `${hubInfo.dir}/${sub.sub}`;
-      const customContent = CUSTOM_SUBPAGE_CONTENT[customKey];
-
-      const pageTitle = customContent ? customContent.pageTitle : `${sub.name} ${sub.sample} — 1-Click Copy and Paste`;
-      const metaDescription = customContent ? customContent.metaDescription : `Copy and paste ${sub.name} ${sub.sample} in 1-click. Free Unicode emoticons and text faces for Discord, TikTok, Roblox, and gaming.`;
-      const h1Text = customContent ? customContent.h1Text : `${sub.name} <span>${sub.sample}</span>`;
-      const heroSub = customContent ? customContent.heroSub : `Browse our curated collection of ${sub.name.toLowerCase()} for profiles, bios, and chat.`;
-      const editorialHtml = customContent ? customContent.editorialHtml : `
-          <h2>All About ${sub.name} ${sub.sample}</h2>
-          <p>The <strong>${sub.name}</strong> collection offers expressive typographical art using international Unicode and special characters. Ideal for standing out on gaming servers, personal bios, and social media captions.</p>
-          <h3>How to Use</h3>
-          <p>Click any card above to copy the character. Paste into Discord, Roblox, TikTok, or your favorite messaging app with <kbd>Ctrl</kbd> + <kbd>V</kbd>.</p>
-      `;
-      const faqList = customContent ? customContent.faqList : [
-          { q: `What is the most popular ${sub.name.toLowerCase()}?`, a: `The most iconic symbol in this category is ${sub.sample}, widely recognized across internet culture.` },
-          { q: "Can I use these symbols in my bio?", a: "Yes, these characters are 100% compliant with Instagram, TikTok, Twitter, and Discord bio formatting rules." }
-      ];
-      const relatedCats = customContent ? customContent.relatedCats : relatedCatCards.filter(r => !r.url.endsWith(`${sub.sub}.html`)).slice(0, 6);
-
-      // 1. Root Subpage HTML (e.g. emoticons/laughing.html)
-      const subHtml = generatePageTemplate({
-        pageTitle,
-        metaDescription,
-        canonicalUrl: `${SITE_URL}/${hubInfo.dir}/${sub.sub}.html`,
-        rootPrefix: '../',
-        breadcrumbs: subBreadcrumbs,
-        heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
-        h1Text,
-        heroSub,
-        activeHub: hubInfo.hub,
-        activeSub: sub.sub,
-        glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
-        editorialHtml,
-        faqList,
-        relatedCats,
-        lang: 'en'
+      const relatedCatCards = hubInfo.subpages.map(s => {
+        const subKey = `${hubInfo.dir}/${s.sub}`;
+        const subI18n = (!isEn && SUBPAGES_I18N[subKey] && SUBPAGES_I18N[subKey][lang]) ? SUBPAGES_I18N[subKey][lang] : null;
+        return {
+          name: subI18n ? subI18n.name : s.name,
+          url: `${hubInfo.dir}/${s.sub}/`,
+          sample: s.sample,
+          count: 'Explore'
+        };
       });
 
-      fs.writeFileSync(path.join(hubDir, `${sub.sub}.html`), subHtml, 'utf8');
-      console.log(`    ✓ Generated: ${hubInfo.dir}/${sub.sub}.html`);
+      const hubHtmlPath = path.join(hubDir, 'index.html');
+      const hubRootPrefix = calculateRootPrefix(hubHtmlPath);
 
-      // 2. Clean Directory URL (e.g. emoticons/laughing/index.html)
-      const cleanSubDir = path.join(hubDir, sub.sub);
-      if (!fs.existsSync(cleanSubDir)) fs.mkdirSync(cleanSubDir, { recursive: true });
-
-      const cleanSubBreadcrumbs = [
-        { name: 'Home', url: 'index.html' },
-        { name: hubInfo.title.split('—')[0].trim(), url: `${hubInfo.dir}/` },
-        { name: sub.name, url: `${hubInfo.dir}/${sub.sub}/` }
-      ];
-
-      const cleanSubHtml = generatePageTemplate({
-        pageTitle,
-        metaDescription,
-        canonicalUrl: `${SITE_URL}/${hubInfo.dir}/${sub.sub}/`,
-        rootPrefix: '../../',
-        breadcrumbs: cleanSubBreadcrumbs,
-        heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
-        h1Text,
-        heroSub,
+      const hubHtml = generatePageTemplate({
+        pageTitle: hubTitle,
+        metaDescription: hubDesc,
+        cleanPath: hubCleanPath,
+        rootPrefix: hubRootPrefix,
+        breadcrumbs: hubBreadcrumbs,
+        heroBadge: '⚡ 1-Click Copy • 1,000+ Items',
+        h1Text: hubH1,
+        heroSub: hubHeroSub,
         activeHub: hubInfo.hub,
-        activeSub: sub.sub,
-        glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
-        editorialHtml,
-        faqList,
-        relatedCats,
-        lang: 'en'
+        activeSub: 'all',
+        glyphs: hubGlyphs,
+        editorialHtml: hubEditorial,
+        faqList: hubFaqs,
+        relatedCats: relatedCatCards,
+        lang
       });
+      fs.writeFileSync(hubHtmlPath, hubHtml, 'utf8');
 
-      fs.writeFileSync(path.join(cleanSubDir, 'index.html'), cleanSubHtml, 'utf8');
-      console.log(`    ✓ Generated Clean URL: ${hubInfo.dir}/${sub.sub}/index.html`);
+      // 2. Build Subpages within this Hub (e.g. /text-faces/fight/index.html and .html)
+      for (const sub of hubInfo.subpages) {
+        const subGlyphs = ALL_GLYPHS.filter(g => g.hub === hubInfo.hub && g.sub === sub.sub);
+        const subCleanPath = `${hubInfo.dir}/${sub.sub}/`;
+        const subCustomKey = `${hubInfo.dir}/${sub.sub}`;
+
+        let subPageTitle, subMetaDesc, subH1, subHeroSub, subEditorial, subFaqList, subName;
+
+        if (isEn) {
+          const custom = CUSTOM_SUBPAGE_CONTENT[subCustomKey];
+          subPageTitle = custom ? custom.pageTitle : `${sub.name} ${sub.sample} — 1-Click Copy and Paste`;
+          subMetaDesc = custom ? custom.metaDescription : `Copy and paste ${sub.name} ${sub.sample} in 1-click. Free Unicode emoticons and text faces for Discord, TikTok, Roblox, and gaming.`;
+          subH1 = custom ? custom.h1Text : `${sub.name} <span>${sub.sample}</span>`;
+          subHeroSub = custom ? custom.heroSub : `Browse our curated collection of ${sub.name.toLowerCase()} for profiles, bios, and chat.`;
+          subEditorial = custom ? custom.editorialHtml : `
+            <h2>All About ${sub.name} ${sub.sample}</h2>
+            <p>The <strong>${sub.name}</strong> collection offers expressive typographical art using international Unicode and special characters. Ideal for standing out on gaming servers, personal bios, and social media captions.</p>
+          `;
+          subFaqList = custom ? custom.faqList : [
+            { q: `What is the most popular ${sub.name.toLowerCase()}?`, a: `The most iconic symbol in this category is ${sub.sample}, widely recognized across internet culture.` },
+            { q: "Can I use these symbols in my bio?", a: "Yes, these characters are 100% compliant with Instagram, TikTok, Twitter, and Discord bio formatting rules." }
+          ];
+          subName = sub.name;
+        } else {
+          const i18n = (SUBPAGES_I18N[subCustomKey] && SUBPAGES_I18N[subCustomKey][lang]) || {};
+          subName = i18n.name || sub.name;
+          subPageTitle = i18n.title || `${subName} ${sub.sample} — 1-Click Copy`;
+          subMetaDesc = `Copy and paste ${subName} ${sub.sample} in 1-click. Unicode text emoticons.`;
+          subH1 = `${subName} <span>${sub.sample}</span>`;
+          subHeroSub = `Colección de ${subName} para perfiles, bios y chats.`;
+          subEditorial = getLocalizedEditorial(subName, sub.sample, lang);
+          subFaqList = getLocalizedFaqs(subName, sub.sample, lang);
+        }
+
+        const subBreadcrumbs = [
+          { name: ui.hubAll, url: '' },
+          { name: hubName, url: hubCleanPath },
+          { name: subName, url: subCleanPath }
+        ];
+
+        const subRelatedCats = relatedCatCards.filter(r => !r.url.endsWith(`${sub.sub}/`)).slice(0, 6);
+
+        // a) Direct .html file (e.g. es/text-faces/fight.html)
+        const subDirectHtmlPath = path.join(hubDir, `${sub.sub}.html`);
+        const subDirectRootPrefix = calculateRootPrefix(subDirectHtmlPath);
+
+        const subDirectHtml = generatePageTemplate({
+          pageTitle: subPageTitle,
+          metaDescription: subMetaDesc,
+          cleanPath: subCleanPath,
+          rootPrefix: subDirectRootPrefix,
+          breadcrumbs: subBreadcrumbs,
+          heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
+          h1Text: subH1,
+          heroSub: subHeroSub,
+          activeHub: hubInfo.hub,
+          activeSub: sub.sub,
+          glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
+          editorialHtml: subEditorial,
+          faqList: subFaqList,
+          relatedCats: subRelatedCats,
+          lang
+        });
+        fs.writeFileSync(subDirectHtmlPath, subDirectHtml, 'utf8');
+
+        // b) Clean Directory URL (e.g. es/text-faces/fight/index.html)
+        const subCleanDir = path.join(hubDir, sub.sub);
+        ensureDir(subCleanDir);
+        const subCleanHtmlPath = path.join(subCleanDir, 'index.html');
+        const subCleanRootPrefix = calculateRootPrefix(subCleanHtmlPath);
+
+        const subCleanHtml = generatePageTemplate({
+          pageTitle: subPageTitle,
+          metaDescription: subMetaDesc,
+          cleanPath: subCleanPath,
+          rootPrefix: subCleanRootPrefix,
+          breadcrumbs: subBreadcrumbs,
+          heroBadge: '⚡ 1-Click Copy • Unicode Compatible',
+          h1Text: subH1,
+          heroSub: subHeroSub,
+          activeHub: hubInfo.hub,
+          activeSub: sub.sub,
+          glyphs: subGlyphs.length > 0 ? subGlyphs : hubGlyphs.slice(0, 12),
+          editorialHtml: subEditorial,
+          faqList: subFaqList,
+          relatedCats: subRelatedCats,
+          lang
+        });
+        fs.writeFileSync(subCleanHtmlPath, subCleanHtml, 'utf8');
+      }
     }
+    console.log(`  ✓ Built 5 Hubs and 68 Subpages for language: ${lang}`);
   }
 }
 
-// Build Multilingual Hubs (/jp/, /kr/, /es/)
-function buildMultilingualHubs() {
-  console.log('Building Multilingual Hubs...');
-  
-  // 1. Japanese Hub (/jp/index.html)
-  const jpDir = path.join(ROOT_DIR, 'jp');
-  ensureDir(jpDir);
-  const jpHtml = generatePageTemplate({
-    pageTitle: '顔文字 コピペ (Kaomoji) — かわいい顔文字 & レニーフェイス 一覧 [2026]',
-    metaDescription: 'ワンクリックでコピーできるかわいい顔文字（Kaomoji）とレニーフェイス（Lenny Face）の無料一覧まとめ。Twitter、Discord、LINEですぐに使えます。',
-    canonicalUrl: `${SITE_URL}/jp/`,
-    rootPrefix: '../',
-    breadcrumbs: [
-      { name: 'ホーム', url: 'index.html' },
-      { name: '日本語 顔文字 (Kaomoji)', url: 'jp/index.html' }
-    ],
-    heroBadge: '⚡ ワンクリックで簡単コピー • 1000種以上の顔文字',
-    h1Text: '顔文字 コピペ & レニーフェイス <span>( ͡° ͜ʖ ͡°)</span>',
-    heroSub: 'カードをタップするだけでクリップボードに瞬時にコピー。Twitter、Discord、LINE、ゲームチャットで使える豊富な顔文字一覧です。',
-    activeHub: 'all',
-    activeSub: 'all',
-    glyphs: ALL_GLYPHS.slice(0, 36),
-    editorialHtml: `
-      <h2>顔文字（Kaomoji）とレニーフェイス（Lenny Face）の魅力</h2>
-      <p>日本のインターネット文化が生んだ<strong>顔文字（Kaomoji）</strong>は、文字コード（Unicode）を組み合わせて感情を豊かに表現するテキストアートです。海外で大人気の「レニーフェイス ( ͡° ͜ʖ ͡°)」も、世界中で親しまれています。</p>
-      <h3>主なカテゴリー</h3>
-      <ul>
-        <li><strong>かわいい顔文字:</strong> ( ˶ˆ꒳ˆ˵ )、(*/ω＼*) など、柔らかい表情の顔文字。</li>
-        <li><strong>動物の顔文字:</strong> /ᐠ｡ꞈ｡ᐟ\\（ねこ）、૮₍ • ᴥ • ₎ა（いぬ）、ᕱ⑅ᕱ（うさぎ）。</li>
-        <li><strong>感情の顔文字:</strong> (*^▽^*)（よろこび）、(ノ_<。)（なみだ）、(#\`Д´)（いかり）。</li>
-      </ul>
-    `,
-    faqList: [
-      { q: "顔文字はどうやってコピーしますか？", a: "カードをタップまたはクリックするだけで、お使いの端末のクリップボードに自動的にコピーされます。" },
-      { q: "スマホ（iPhone / Android）でも崩れず表示されますか？", a: "はい。当サイトの顔文字は世界標準のUnicode文字を使用しているため、最新のスマートフォンやPCで正しく表示されます。" }
-    ],
-    relatedCats: [
-      { name: "猫の顔文字", url: "kaomoji/cat.html", sample: "/ᐠ｡ꞈ｡ᐟ\\" },
-      { name: "かわいい顔文字", url: "kaomoji/cute.html", sample: "( ˶ˆ꒳ˆ˵ )" },
-      { name: "ハート記号", url: "symbols/heart.html", sample: "♡" }
-    ],
-    lang: 'ja'
-  });
-  fs.writeFileSync(path.join(jpDir, 'index.html'), jpHtml, 'utf8');
-  console.log('  ✓ Generated: jp/index.html');
-
-  // 2. Korean Hub (/kr/index.html)
-  const krDir = path.join(ROOT_DIR, 'kr');
-  ensureDir(krDir);
-  const krHtml = generatePageTemplate({
-    pageTitle: '레니페이스 복사 ( ͡° ͜ʖ ͡°) — 텍스트 이모티콘 & 카오모지 모음',
-    metaDescription: '원클릭으로 간편하게 복사하는 레니페이스 ( ͡° ͜ʖ ͡°), 카오모지, 귀여운 텍스트 이모티콘 모음. 디스코드, 인스타그램, 롤 채팅 완벽 지원.',
-    canonicalUrl: `${SITE_URL}/kr/`,
-    rootPrefix: '../',
-    breadcrumbs: [
-      { name: '홈', url: 'index.html' },
-      { name: '한국어 레니페이스', url: 'kr/index.html' }
-    ],
-    heroBadge: '⚡ 원클릭 복사 • 1,000+ 텍스트 이모티콘',
-    h1Text: '레니페이스 & 특수문자 이모티콘 <span>( ͡° ͜ʖ ͡°)</span>',
-    heroSub: '카드를 탭하여 클립보드에 바로 복사하세요. 디스코드, 카카오톡, 게임 채팅에서 사용할 수 있는 다양한 텍스트 얼굴 모음입니다.',
-    activeHub: 'all',
-    activeSub: 'all',
-    glyphs: ALL_GLYPHS.slice(0, 36),
-    editorialHtml: `
-      <h2>레니페이스 ( ͡° ͜ʖ ͡°) 와 특수문자 이모티콘 가이드</h2>
-      <p><strong>레니페이스(Lenny Face)</strong>는 음흉하면서도 익살스러운 표정으로 전 세계 게이머와 커뮤니티에서 폭발적인 인기를 얻은 대표적인 텍스트 이모티콘입니다. 유니코드 조합 문자를 사용하여 어떤 플랫폼에서도 이미지 없이 텍스트 형태로 깔끔하게 표시됩니다.</p>
-    `,
-    faqList: [
-      { q: "모바일에서도 원클릭 복사가 가능한가요?", a: "네! 원하는 이모티콘 카드를 누르면 즉시 클립보드에 복사되며 붙여넣기(Ctrl+V)하여 바로 사용할 수 있습니다." }
-    ],
-    relatedCats: [
-      { name: "귀여운 레니", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
-      { name: "고양이 카오모지", url: "kaomoji/cat.html", sample: "(=^･ω･^=)" }
-    ],
-    lang: 'ko'
-  });
-  fs.writeFileSync(path.join(krDir, 'index.html'), krHtml, 'utf8');
-  console.log('  ✓ Generated: kr/index.html');
-
-  // 3. Spanish Hub (/es/index.html)
-  const esDir = path.join(ROOT_DIR, 'es');
-  ensureDir(esDir);
-  const esHtml = generatePageTemplate({
-    pageTitle: 'Caritas Lenny ( ͡° ͜ʖ ͡°) — Copiar y Pegar Caras de Texto y Kaomojis',
-    metaDescription: 'Copia y pega caritas Lenny ( ͡° ͜ʖ ͡°), kaomojis japoneses, símbolos estéticos y emoticones de texto con 1 solo clic. Gratis para Discord y WhatsApp.',
-    canonicalUrl: `${SITE_URL}/es/`,
-    rootPrefix: '../',
-    breadcrumbs: [
-      { name: 'Inicio', url: 'index.html' },
-      { name: 'Caritas Lenny en Español', url: 'es/index.html' }
-    ],
-    heroBadge: '⚡ 1 Clic para Copiar • Más de 1,000 Caritas',
-    h1Text: 'Caritas Lenny & Kaomojis <span>( ͡° ͜ʖ ͡°)</span>',
-    heroSub: 'Toca cualquier tarjeta para copiar al portapapeles al instante. Colección gratuita para Discord, WhatsApp, TikTok y videojuegos.',
-    activeHub: 'all',
-    activeSub: 'all',
-    glyphs: ALL_GLYPHS.slice(0, 36),
-    editorialHtml: `
-      <h2>Guía Completa de Caritas Lenny y Kaomojis en Español</h2>
-      <p>La famosa <strong>Carita Lenny ( ͡° ͜ʖ ͡°)</strong> es uno de los emoticones más populares de internet, ideal para expresar picardía, sarcasmo o humor cómplice. Gracias a los caracteres combinados de Unicode, puedes usarla en cualquier red social sin necesidad de instalar fuentes especiales.</p>
-    `,
-    faqList: [
-      { q: "¿Cómo copio y pego las caritas en el celular?", a: "Simplemente pulsa sobre cualquier tarjeta para copiarla directamente a tu portapapeles y luego pégala en tu chat o biografía." }
-    ],
-    relatedCats: [
-      { name: "Caritas Tiernas", url: "cute-lenny-face.html", sample: "( ͜° ͜ʊ ͜°)" },
-      { name: "Símbolos de Corazón", url: "symbols/heart.html", sample: "♡" }
-    ],
-    lang: 'es'
-  });
-  fs.writeFileSync(path.join(esDir, 'index.html'), esHtml, 'utf8');
-  console.log('  ✓ Generated: es/index.html');
-}
-
-// Build Static Informational Pages (About, Privacy, Terms)
+// 4. Build Informational Pages (About, Privacy, Terms) across all 4 languages
 function buildInfoPages() {
-  console.log('Building Informational Pages...');
+  console.log('Building Informational Pages across all languages...');
 
-  const pages = [
-    {
-      slug: 'about.html',
-      title: 'About Us — Lenny Face Pro',
-      description: 'Learn about Lenny Face Pro, our mission for 100/100 Core Web Vitals, and our open Unicode text emoticon directory.',
-      h1: 'About <span>Lenny Face Pro</span>',
-      content: `
-        <h2>Our Mission</h2>
-        <p>Lenny Face Pro was built with a simple premise: web utilities should be instantaneous, zero-bloat, and enjoyable to use. While existing emoticon websites are bogged down by intrusive advertisements, slow WordPress frameworks, and sluggish loading times, our platform delivers a verified <strong>100/100 Google PageSpeed score</strong> using clean, modern HTML5, CSS3, and lightweight vanilla JavaScript.</p>
-        
-        <h3>Universal Unicode Compatibility</h3>
-        <p>Every single glyph on our site is tested against modern Unicode specifications across iOS, Android, Windows, macOS, and Linux to guarantee that your messages, Discord statuses, and gaming chats look crisp and distortion-free.</p>
-      `
+  const infoContent = {
+    'about.html': {
+      en: {
+        title: 'About Us — Lenny Face Pro',
+        description: 'Learn about Lenny Face Pro, our mission for 100/100 Core Web Vitals, and our open Unicode text emoticon directory.',
+        h1: 'About <span>Lenny Face Pro</span>',
+        content: `
+          <h2>Our Mission</h2>
+          <p>Lenny Face Pro was built with a simple premise: web utilities should be instantaneous, zero-bloat, and enjoyable to use. While existing emoticon websites are bogged down by intrusive advertisements, slow WordPress frameworks, and sluggish loading times, our platform delivers a verified <strong>100/100 Google PageSpeed score</strong> using clean, modern HTML5, CSS3, and lightweight vanilla JavaScript.</p>
+          
+          <h3>Universal Unicode Compatibility</h3>
+          <p>Every single glyph on our site is tested against modern Unicode specifications across iOS, Android, Windows, macOS, and Linux to guarantee that your messages, Discord statuses, and gaming chats look crisp and distortion-free.</p>
+        `
+      },
+      es: {
+        title: 'Sobre Nosotros — Caritas Lenny Pro',
+        description: 'Conoce la misión de Caritas Lenny Pro, nuestro compromiso con 100/100 Core Web Vitals y nuestro directorio de emoticones Unicode.',
+        h1: 'Sobre <span>Caritas Lenny Pro</span>',
+        content: `
+          <h2>Nuestra Misión</h2>
+          <p>Caritas Lenny Pro fue creado con una premisa simple: las herramientas web deben ser rápidas, limpias y agradables de usar. Ofrecemos una experiencia instantánea con puntuación 100/100 en Google PageSpeed.</p>
+          <h3>Compatibilidad Unicode Universal</h3>
+          <p>Cada símbolo es compatible con WhatsApp, Discord, TikTok, Instagram y cualquier dispositivo móvil o PC sin fuentes adicionales.</p>
+        `
+      },
+      ja: {
+        title: '当サイトについて — レニーフェイス Pro',
+        description: 'レニーフェイス Pro の運営方針、完全無料の顔文字・アスキーアートまとめ、Unicode互換性へのこだわり。',
+        h1: '当サイトについて <span>( ͡° ͜ʖ ͡°)</span>',
+        content: `
+          <h2>私たちの想い</h2>
+          <p>レニーフェイス Pro は、広告だらけで重い従来の顔文字サイトとは異なり、圧倒的な表示速度（PageSpeed 100点満点）とワンクリックでの簡単コピーを実現するために制作されました。</p>
+          <h3>文字化けゼロへの取り組み</h3>
+          <p>iPhone、Android、Windows、Macのあらゆる環境で正しく表示されるよう、国際規格Unicodeに準拠した文字のみを厳選しています。</p>
+        `
+      },
+      ko: {
+        title: '사이트 소개 — 레니페이스 Pro',
+        description: '레니페이스 Pro의 철학, 100/100 페이지스피드 최적화 및 유니코드 텍스트 이모티콘 모음집 안내.',
+        h1: '사이트 소개 <span>( ͡° ͜ʖ ͡°)</span>',
+        content: `
+          <h2>우리의 목표</h2>
+          <p>레니페이스 Pro는 복잡하고 느린 웹사이트 대신, 군더더기 없는 초고속 원클릭 복사 경험을 제공하기 위해 구축되었습니다.</p>
+          <h3>유니코드 완벽 호환</h3>
+          <p>디스코드, 인스타그램, 롤 채팅 등 모든 최신 환경에서 깨짐 없이 표시되는 표준 텍스트 기호만을 제공합니다.</p>
+        `
+      }
     },
-    {
-      slug: 'privacy.html',
-      title: 'Privacy Policy — Lenny Face Pro',
-      description: 'Lenny Face Pro Privacy Policy: We do not store personal data or track private chat information.',
-      h1: 'Privacy <span>Policy</span>',
-      content: `
-        <h2>Your Privacy Matters</h2>
-        <p>Lenny Face Pro does not collect personally identifiable information. We do not require account registration, passwords, or personal email addresses to use our 1-click copy tools and generators.</p>
-        <h3>Local Storage</h3>
-        <p>Your favorite emoticons and selected theme preference (Dark or Light mode) are saved locally on your own device using browser <code>localStorage</code>. This data never leaves your device and is never transmitted to any external servers.</p>
-      `
+    'privacy.html': {
+      en: {
+        title: 'Privacy Policy — Lenny Face Pro',
+        description: 'Lenny Face Pro Privacy Policy: We do not store personal data or track private chat information.',
+        h1: 'Privacy <span>Policy</span>',
+        content: `
+          <h2>Your Privacy Matters</h2>
+          <p>Lenny Face Pro does not collect personally identifiable information. We do not require account registration, passwords, or personal email addresses to use our 1-click copy tools and generators.</p>
+          <h3>Local Storage</h3>
+          <p>Your favorite emoticons and selected theme preference are saved locally on your own device using browser <code>localStorage</code>. This data never leaves your device and is never transmitted to any external servers.</p>
+        `
+      },
+      es: {
+        title: 'Política de Privacidad — Caritas Lenny Pro',
+        description: 'Política de Privacidad de Caritas Lenny Pro: no almacenamos datos personales ni rastreamos tus conversaciones.',
+        h1: 'Política de <span>Privacidad</span>',
+        content: `
+          <h2>Tu Privacidad es Nuestra Prioridad</h2>
+          <p>No recopilamos información personal identificable. No solicitamos registros ni contraseñas para copiar caritas.</p>
+          <h3>Almacenamiento Local (localStorage)</h3>
+          <p>Tus caritas favoritas se guardan únicamente en la memoria local de tu propio navegador y nunca se envían a servidores externos.</p>
+        `
+      },
+      ja: {
+        title: 'プライバシーポリシー — レニーフェイス Pro',
+        description: 'レニーフェイス Proのプライバシーポリシー：個人情報の取得やチャット内容の収集は一切行いません。',
+        h1: 'プライバシー<span>ポリシー</span>',
+        content: `
+          <h2>プライバシーの保護について</h2>
+          <p>当サイトではユーザーの個人情報を取得・保存・追跡することはありません。アカウント登録も不要です。</p>
+          <h3>ローカルストレージの利用</h3>
+          <p>お気に入りに追加された顔文字は、お使いの端末のブラウザ内（localStorage）にのみ保存され、外部サーバーに送信されることはありません。</p>
+        `
+      },
+      ko: {
+        title: '개인정보처리방침 — 레니페이스 Pro',
+        description: '레니페이스 Pro 개인정보처리방침: 개인정보를 수집하거나 채팅 데이터를 추적하지 않습니다.',
+        h1: '개인정보<span>처리방침</span>',
+        content: `
+          <h2>이용자의 개인정보 보호</h2>
+          <p>레니페이스 Pro는 회원가입 없이 누구나 자유롭게 이용할 수 있으며, 어떠한 개인 식별 정보도 수집하지 않습니다.</p>
+          <h3>로컬 저장소 안내</h3>
+          <p>즐겨찾기 목록은 사용자의 웹 브라우저(localStorage)에만 안전하게 보관되며 외부 서버로 전송되지 않습니다.</p>
+        `
+      }
     },
-    {
-      slug: 'terms.html',
-      title: 'Terms of Service — Lenny Face Pro',
-      description: 'Terms of Service for using Lenny Face Pro tools and text face collections.',
-      h1: 'Terms of <span>Service</span>',
-      content: `
-        <h2>Usage Agreement</h2>
-        <p>By accessing and utilizing Lenny Face Pro, you agree to use our free text generator and copying tools for personal, creative, and commercial communications in compliance with applicable laws.</p>
-        <p>All Unicode characters and ASCII art combinations are provided free of charge for community expression across social networks and digital platforms.</p>
-      `
+    'terms.html': {
+      en: {
+        title: 'Terms of Service — Lenny Face Pro',
+        description: 'Terms of Service for using Lenny Face Pro tools and text face collections.',
+        h1: 'Terms of <span>Service</span>',
+        content: `
+          <h2>Usage Agreement</h2>
+          <p>By accessing and utilizing Lenny Face Pro, you agree to use our free text generator and copying tools for personal, creative, and commercial communications in compliance with applicable laws.</p>
+          <p>All Unicode characters and ASCII art combinations are provided free of charge for community expression across social networks and digital platforms.</p>
+        `
+      },
+      es: {
+        title: 'Términos de Servicio — Caritas Lenny Pro',
+        description: 'Términos de servicio para el uso de herramientas y caritas de texto de Caritas Lenny Pro.',
+        h1: 'Términos de <span>Servicio</span>',
+        content: `
+          <h2>Acuerdo de Uso</h2>
+          <p>Todas las caritas, símbolos y arte ASCII están disponibles de forma 100% gratuita para comunicaciones personales y creativas en redes sociales y juegos.</p>
+        `
+      },
+      ja: {
+        title: '利用規約 — レニーフェイス Pro',
+        description: 'レニーフェイス Pro のテキスト顔文字およびツールの利用規約。',
+        h1: '利用<span>規約</span>',
+        content: `
+          <h2>ご利用条件</h2>
+          <p>当サイトで提供しているすべての顔文字や特殊文字は、個人利用・SNSでのやり取り・ゲームチャットなどにおいて完全無料でご自由にお使いいただけます。</p>
+        `
+      },
+      ko: {
+        title: '이용약관 — 레니페이스 Pro',
+        description: '레니페이스 Pro 텍스트 이모티콘 및 생성기 도구 이용약관.',
+        h1: '이용<span>약관</span>',
+        content: `
+          <h2>서비스 이용 규정</h2>
+          <p>본 사이트의 모든 텍스트 이모티콘 및 특수문자는 개인적, 창작적 커뮤니케이션 목적으로 누구나 무료로 자유롭게 사용할 수 있습니다.</p>
+        `
+      }
     }
-  ];
+  };
 
-  for (const p of pages) {
-    const html = generatePageTemplate({
-      pageTitle: p.title,
-      metaDescription: p.description,
-      canonicalUrl: `${SITE_URL}/${p.slug}`,
-      rootPrefix: '',
-      breadcrumbs: [
-        { name: 'Home', url: 'index.html' },
-        { name: p.title.split('—')[0].trim(), url: p.slug }
-      ],
-      heroBadge: 'ℹ️ Information & Transparency',
-      h1Text: p.h1,
-      heroSub: 'Learn more about our platform standards, security, and privacy commitments.',
-      activeHub: 'all',
-      activeSub: 'all',
-      glyphs: [],
-      editorialHtml: p.content,
-      faqList: [],
-      relatedCats: [],
-      lang: 'en'
-    });
+  for (const langObj of LANGUAGES) {
+    const lang = langObj.code;
+    const baseDir = langObj.dir ? path.join(ROOT_DIR, langObj.dir) : ROOT_DIR;
+    ensureDir(baseDir);
+    const ui = UI_STRINGS[lang] || UI_STRINGS.en;
 
-    fs.writeFileSync(path.join(ROOT_DIR, p.slug), html, 'utf8');
-    console.log(`  ✓ Generated: ${p.slug}`);
+    for (const slug of ['about.html', 'privacy.html', 'terms.html']) {
+      const data = infoContent[slug][lang] || infoContent[slug].en;
+      const outPath = path.join(baseDir, slug);
+      const rootPrefix = calculateRootPrefix(outPath);
+
+      const html = generatePageTemplate({
+        pageTitle: data.title,
+        metaDescription: data.description,
+        cleanPath: slug,
+        rootPrefix,
+        breadcrumbs: [
+          { name: ui.hubAll, url: '' },
+          { name: data.title.split('—')[0].trim(), url: slug }
+        ],
+        heroBadge: 'ℹ️ Information & Transparency',
+        h1Text: data.h1,
+        heroSub: 'Learn more about our platform standards, security, and privacy commitments.',
+        activeHub: 'all',
+        activeSub: 'all',
+        glyphs: [],
+        editorialHtml: data.content,
+        faqList: [],
+        relatedCats: [],
+        lang
+      });
+
+      fs.writeFileSync(outPath, html, 'utf8');
+    }
+    console.log(`  ✓ Built Informational pages for language: ${lang}`);
   }
 }
 
-// Generate XML Sitemap & robots.txt
+// 5. Build XML Sitemap & robots.txt with Multi-Language Hreflang Clusters
 function buildSitemapAndRobots() {
-  console.log('Building sitemap.xml & robots.txt...');
+  console.log('Building sitemap.xml & robots.txt with full hreflang clusters...');
 
-  const allUrls = [
-    { loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'daily' },
-    ...LENNY_SUBPAGES.map(p => ({ loc: `${SITE_URL}/${p.slug.replace(/\.html$/, '')}/`, priority: '0.9', changefreq: 'weekly' })),
-    { loc: `${SITE_URL}/text-faces/`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/kaomoji/`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/emoticons/`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/symbols/`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/aesthetic/`, priority: '0.9', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/jp/`, priority: '0.8', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/kr/`, priority: '0.8', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/es/`, priority: '0.8', changefreq: 'weekly' },
-    { loc: `${SITE_URL}/about.html`, priority: '0.5', changefreq: 'monthly' },
-    { loc: `${SITE_URL}/privacy.html`, priority: '0.3', changefreq: 'yearly' },
-    { loc: `${SITE_URL}/terms.html`, priority: '0.3', changefreq: 'yearly' }
+  const cleanPaths = [
+    { path: '', priority: '1.0', changefreq: 'daily' },
+    ...LENNY_SUBPAGES.map(p => ({ path: `${p.slug.replace(/\.html$/, '')}/`, priority: '0.9', changefreq: 'weekly' })),
+    { path: 'text-faces/', priority: '0.9', changefreq: 'weekly' },
+    { path: 'kaomoji/', priority: '0.9', changefreq: 'weekly' },
+    { path: 'emoticons/', priority: '0.9', changefreq: 'weekly' },
+    { path: 'symbols/', priority: '0.9', changefreq: 'weekly' },
+    { path: 'aesthetic/', priority: '0.9', changefreq: 'weekly' },
+    { path: 'about.html', priority: '0.5', changefreq: 'monthly' },
+    { path: 'privacy.html', priority: '0.3', changefreq: 'yearly' },
+    { path: 'terms.html', priority: '0.3', changefreq: 'yearly' }
   ];
 
-  // Add all hub subpages with clean URL formatting
+  // Add all hub subpages
   const hubFolders = ['text-faces', 'kaomoji', 'emoticons', 'symbols', 'aesthetic'];
   for (const folder of hubFolders) {
     const folderPath = path.join(ROOT_DIR, folder);
@@ -1616,8 +1445,8 @@ function buildSitemapAndRobots() {
       for (const file of files) {
         if (file.endsWith('.html') && file !== 'index.html') {
           const subSlug = file.replace(/\.html$/, '');
-          allUrls.push({
-            loc: `${SITE_URL}/${folder}/${subSlug}/`,
+          cleanPaths.push({
+            path: `${folder}/${subSlug}/`,
             priority: '0.8',
             changefreq: 'weekly'
           });
@@ -1628,18 +1457,37 @@ function buildSitemapAndRobots() {
 
   const today = new Date().toISOString().split('T')[0];
 
-  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(u => `  <url>
-    <loc>${u.loc}</loc>
+  // Build <url> entries for each language variant of each clean path
+  const urlEntries = [];
+
+  for (const item of cleanPaths) {
+    for (const langObj of LANGUAGES) {
+      const lang = langObj.code;
+      const loc = getAbsoluteLangUrl(item.path, lang);
+
+      const hreflangLinks = LANGUAGES.map(l => {
+        return `    <xhtml:link rel="alternate" hreflang="${l.hreflang}" href="${getAbsoluteLangUrl(item.path, l.code)}"/>`;
+      });
+      // Add x-default pointing to English
+      hreflangLinks.unshift(`    <xhtml:link rel="alternate" hreflang="x-default" href="${getAbsoluteLangUrl(item.path, 'en')}"/>`);
+
+      urlEntries.push(`  <url>
+    <loc>${loc}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>${u.changefreq}</changefreq>
-    <priority>${u.priority}</priority>
-  </url>`).join('\n')}
+    <changefreq>${item.changefreq}</changefreq>
+    <priority>${item.priority}</priority>
+${hreflangLinks.join('\n')}
+  </url>`);
+    }
+  }
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urlEntries.join('\n')}
 </urlset>`;
 
   fs.writeFileSync(path.join(ROOT_DIR, 'sitemap.xml'), sitemapXml, 'utf8');
-  console.log(`  ✓ Generated: sitemap.xml (${allUrls.length} URLs indexed)`);
+  console.log(`  ✓ Generated: sitemap.xml (${urlEntries.length} total URLs indexed across 4 languages)`);
 
   const robotsTxt = `User-agent: *
 Allow: /
@@ -1651,7 +1499,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
   console.log('  ✓ Generated: robots.txt');
 }
 
-// Update data.js with Master Dataset
+// 6. Update data.js with Master Dataset
 function updateDataJs() {
   console.log('Updating data.js with master dataset...');
   const dataJsContent = `/**
@@ -1669,79 +1517,16 @@ if (typeof module !== 'undefined' && module.exports) {
   console.log('  ✓ Updated data.js');
 }
 
-// Pre-render static cards into index.html
-function buildHomePage() {
-  console.log('Injecting pre-rendered cards and subbars into index.html...');
-  const indexPath = path.join(ROOT_DIR, 'index.html');
-  if (!fs.existsSync(indexPath)) return;
-
-  let indexHtml = fs.readFileSync(indexPath, 'utf8');
-  const allGlyphs = ALL_GLYPHS;
-  const cardsHtml = allGlyphs.map(renderStaticCard).join('\n');
-
-  // Replace content between <!-- START_SSR_CARDS --> and <!-- END_SSR_CARDS -->
-  if (indexHtml.includes('<!-- START_SSR_CARDS -->') && indexHtml.includes('<!-- END_SSR_CARDS -->')) {
-    indexHtml = indexHtml.replace(
-      /<!-- START_SSR_CARDS -->[\s\S]*?<!-- END_SSR_CARDS -->/,
-      `<!-- START_SSR_CARDS -->\n        <div class="face-grid" id="face-grid" data-initial-hub="all" data-initial-sub="all">\n${cardsHtml}\n        </div>\n        <!-- END_SSR_CARDS -->`
-    );
-  } else {
-    // Fallback: replace face-grid
-    indexHtml = indexHtml.replace(
-      /<div class="face-grid" id="face-grid"[\s\S]*?<\/div>/,
-      `<div class="face-grid" id="face-grid" data-initial-hub="all" data-initial-sub="all">\n${cardsHtml}\n        </div>`
-    );
-  }
-
-  // Pre-render Hubbar & Subbars
-  const hubbarSection = `<!-- Hub Category Filter Chips with Real Links & Bottom-Left Link Preview -->
-      <div class="hubbar" role="group" aria-label="Category Hubs">
-        <a href="index.html" class="hub-chip active" data-hub="all">All Faces</a>
-        <button type="button" class="hub-chip" data-hub="__favs">❤️ Favorites</button>
-        <a href="index.html#browse" class="hub-chip" data-hub="lenny">Lenny Faces</a>
-        <a href="text-faces/index.html" class="hub-chip" data-hub="text-faces">Text Faces</a>
-        <a href="kaomoji/index.html" class="hub-chip" data-hub="kaomoji">Kaomoji</a>
-        <a href="emoticons/index.html" class="hub-chip" data-hub="emoticons">Emoticons</a>
-        <a href="symbols/index.html" class="hub-chip" data-hub="symbols">Symbols</a>
-        <a href="aesthetic/index.html" class="hub-chip" data-hub="aesthetic">Aesthetic Bios</a>
-      </div>
-
-      <!-- Pre-rendered Static Subbars with Real Anchor Links -->
-      ${renderAllSubbars('lenny', 'all', '')}`;
-
-  if (indexHtml.includes('<!-- Hub Category Filter Chips') && indexHtml.includes('<!-- Social Share Buttons -->')) {
-    indexHtml = indexHtml.replace(
-      /<!-- Hub Category Filter Chips[\s\S]*?(?=<!-- Social Share Buttons -->)/,
-      hubbarSection + '\n\n      '
-    );
-  } else if (indexHtml.includes('<div class="hubbar"') && indexHtml.includes('<!-- Social Share Buttons -->')) {
-    indexHtml = indexHtml.replace(
-      /<div class="hubbar"[\s\S]*?(?=<!-- Social Share Buttons -->)/,
-      hubbarSection + '\n\n      '
-    );
-  }
-
-  // Update grid count display
-  indexHtml = indexHtml.replace(
-    /<div class="grid-count">[\s\S]*?<\/div>/,
-    `<div class="grid-count">Showing <strong>${allGlyphs.length}</strong> items in this category</div>`
-  );
-
-  fs.writeFileSync(indexPath, indexHtml, 'utf8');
-  console.log(`  ✓ Injected ALL ${allGlyphs.length} pre-rendered cards and subbars into index.html`);
-}
-
 // Execute All Builders
 function buildAll() {
-  console.log('🚀 Starting Lenny Face Pro Site Builder...');
+  console.log('🚀 Starting Lenny Face Pro Multilingual Site Builder...');
   updateDataJs();
   buildHomePage();
   buildLennySubpages();
   buildHubPages();
-  buildMultilingualHubs();
   buildInfoPages();
   buildSitemapAndRobots();
-  console.log('🎉 Site build completed successfully!');
+  console.log('🎉 Multilingual site build completed successfully!');
 }
 
 buildAll();

@@ -10,17 +10,18 @@
   <link rel="canonical" href="https://thelennyfaces.com/emoticons/">
 
   <!-- Hreflang Tags for Multi-language Clusters -->
-  <link rel="alternate" hreflang="x-default" href="https://thelennyfaces.com/">
+  <link rel="alternate" hreflang="x-default" href="https://thelennyfaces.com/emoticons/">
   <link rel="alternate" hreflang="en" href="https://thelennyfaces.com/emoticons/">
-  <link rel="alternate" hreflang="es" href="https://thelennyfaces.com/es/">
-  <link rel="alternate" hreflang="ja" href="https://thelennyfaces.com/jp/">
-  <link rel="alternate" hreflang="ko" href="https://thelennyfaces.com/kr/">
+  <link rel="alternate" hreflang="es" href="https://thelennyfaces.com/es/emoticons/">
+  <link rel="alternate" hreflang="ja" href="https://thelennyfaces.com/jp/emoticons/">
+  <link rel="alternate" hreflang="ko" href="https://thelennyfaces.com/kr/emoticons/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thelennyfaces.com/emoticons/">
   <meta property="og:title" content="Emoticons :-) — Classic Keyboard Text Smileys Copy and Paste">
   <meta property="og:description" content="Copy and paste vintage keyboard emoticons: smileys, winks, hearts, kissing, laughing, and sad faces. Instant clipboard copy.">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Favicon & Site Icons -->
@@ -57,14 +58,14 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Home",
-          "item": "https://thelennyfaces.com/index.html"
+          "name": "All Faces",
+          "item": "https://thelennyfaces.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Emoticons :-)",
-          "item": "https://thelennyfaces.com/emoticons/index.html"
+          "item": "https://thelennyfaces.com/emoticons/"
         }
       ]
     },
@@ -283,28 +284,28 @@
   <!-- Header -->
   <header class="header">
     <div class="container header-nav">
-      <a href="../index.html" class="brand-logo" title="Lenny Face Pro">
+      <a href="/" class="brand-logo" title="Lenny Face Pro">
         <span class="brand-glyph">( ͡° ͜ʖ ͡°)</span>
         <span>Lenny<span class="highlight">Pro</span></span>
       </a>
 
       <nav>
         <ul class="nav-links">
-          <li><a href="../index.html#browse">Browse All</a></li>
-          <li><a href="../text-faces/index.html">Text Faces</a></li>
-          <li><a href="../kaomoji/index.html">Kaomoji</a></li>
-          <li><a href="../emoticons/index.html">Emoticons</a></li>
-          <li><a href="../symbols/index.html">Symbols</a></li>
-          <li><a href="../aesthetic/index.html">Aesthetic</a></li>
+          <li><a href="/#browse">Browse All</a></li>
+          <li><a href="/text-faces/">Text Faces</a></li>
+          <li><a href="/kaomoji/">Kaomoji</a></li>
+          <li><a href="/emoticons/">Emoticons</a></li>
+          <li><a href="/symbols/">Symbols</a></li>
+          <li><a href="/aesthetic/">Aesthetic</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <select class="lang-select" id="lang-select" onchange="window.location.href=this.value" aria-label="Select Language">
-          <option value="../index.html" selected>🇺🇸 English</option>
-          <option value="../es/index.html" >🇪🇸 Español</option>
-          <option value="../jp/index.html" >🇯🇵 日本語</option>
-          <option value="../kr/index.html" >🇰🇷 한국어</option>
+        <select class="lang-select" id="lang-select" onchange="handleLangSelect(this.value)" aria-label="Select Language">
+          <option value="/emoticons/" selected>🇺🇸 English</option>
+          <option value="/es/emoticons/" >🇪🇸 Español</option>
+          <option value="/jp/emoticons/" >🇯🇵 日本語</option>
+          <option value="/kr/emoticons/" >🇰🇷 한국어</option>
         </select>
       </div>
     </div>
@@ -315,7 +316,7 @@
     <div class="container">
       
     <nav class="breadcrumbs" aria-label="Breadcrumb">
-      <a href="../index.html">Home</a><span class="sep">/</span> <span class="current">Emoticons :-)</span>
+      <a href="/">All Faces</a><span class="sep">/</span> <span class="current">Emoticons :-)</span>
     </nav>
   
       <div class="hero-badge">⚡ 1-Click Copy • 1,000+ Items</div>
@@ -325,152 +326,152 @@
       <!-- Global Live Search -->
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="search-input" class="search-input" placeholder="Search faces & keywords..." aria-label="Search text faces">
+        <input type="text" id="search-input" class="search-input" placeholder="Search faces &amp; keywords..." aria-label="Search text faces">
         <button type="button" id="search-clear" class="search-clear-btn" aria-label="Clear Search">✕</button>
       </div>
 
       <!-- Category Filter Chips with Real Links & Bottom-Left Link Preview -->
       <div class="hubbar" role="group" aria-label="Category Hubs">
-        <a href="../index.html" class="hub-chip " data-hub="all">All Faces</a>
+        <a href="/" class="hub-chip " data-hub="all">All Faces</a>
         <button type="button" class="hub-chip " data-hub="__favs">❤️ Favorites</button>
-        <a href="../index.html#browse" class="hub-chip " data-hub="lenny">Lenny Faces</a>
-        <a href="../text-faces/index.html" class="hub-chip " data-hub="text-faces">Text Faces</a>
-        <a href="../kaomoji/index.html" class="hub-chip " data-hub="kaomoji">Kaomoji</a>
-        <a href="../emoticons/index.html" class="hub-chip active" data-hub="emoticons">Emoticons</a>
-        <a href="../symbols/index.html" class="hub-chip " data-hub="symbols">Symbols</a>
-        <a href="../aesthetic/index.html" class="hub-chip " data-hub="aesthetic">Aesthetic Bios</a>
+        <a href="/#browse" class="hub-chip " data-hub="lenny">Lenny Faces</a>
+        <a href="/text-faces/" class="hub-chip " data-hub="text-faces">Text Faces</a>
+        <a href="/kaomoji/" class="hub-chip " data-hub="kaomoji">Kaomoji</a>
+        <a href="/emoticons/" class="hub-chip active" data-hub="emoticons">Emoticons</a>
+        <a href="/symbols/" class="hub-chip " data-hub="symbols">Symbols</a>
+        <a href="/aesthetic/" class="hub-chip " data-hub="aesthetic">Aesthetic Bios</a>
       </div>
 
       <!-- Pre-rendered Static Subbars with Real Anchor Links -->
       
       <!-- Sub-category Bar: lenny -->
       <div class="subbar" id="subbar-lenny" data-hub-group="lenny" style="display: none;" role="group" aria-label="lenny subcategories">
-        <a href="../index.html#browse" class="sub-chip " data-sub="all">All Lenny</a>
-        <a href="../angry-lenny-face/" class="sub-chip " data-sub="angry">Angry</a>
-        <a href="../crying-lenny-face/" class="sub-chip " data-sub="crying">Crying</a>
-        <a href="../cute-lenny-face/" class="sub-chip " data-sub="cute">Cute</a>
-        <a href="../sad-lenny-face/" class="sub-chip " data-sub="sad">Sad</a>
-        <a href="../happy-lenny-face/" class="sub-chip " data-sub="happy">Happy</a>
-        <a href="../blushing-lenny-face/" class="sub-chip " data-sub="blushing">Blushing</a>
-        <a href="../shrug-lenny-face/" class="sub-chip " data-sub="shrug">Shrug</a>
-        <a href="../middle-finger/" class="sub-chip " data-sub="middle-finger">Middle Finger</a>
-        <a href="../wink-lenny-face/" class="sub-chip " data-sub="wink">Wink</a>
-        <a href="../cool-lenny-face/" class="sub-chip " data-sub="cool">Cool</a>
-        <a href="../strong-lenny-face/" class="sub-chip " data-sub="strong">Strong</a>
-        <a href="../hug-lenny-face/" class="sub-chip " data-sub="hug">Hug</a>
-        <a href="../love-lenny-face/" class="sub-chip " data-sub="love">Love</a>
-        <a href="../donger-lenny-face/" class="sub-chip " data-sub="donger">Donger</a>
-        <a href="../shocked-lenny-face/" class="sub-chip " data-sub="shocked">Shocked</a>
-        <a href="../sparkle-lenny-face/" class="sub-chip " data-sub="sparkle">Sparkle</a>
-        <a href="../weapons-lenny-face/" class="sub-chip " data-sub="weapons">Weapons</a>
+        <a href="/#browse" class="sub-chip " data-sub="all">Lenny Faces</a>
+        <a href="/angry-lenny-face/" class="sub-chip " data-sub="angry">Angry</a>
+        <a href="/crying-lenny-face/" class="sub-chip " data-sub="crying">Crying</a>
+        <a href="/cute-lenny-face/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="/sad-lenny-face/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="/happy-lenny-face/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="/blushing-lenny-face/" class="sub-chip " data-sub="blushing">Blushing</a>
+        <a href="/shrug-lenny-face/" class="sub-chip " data-sub="shrug">Shrug</a>
+        <a href="/middle-finger/" class="sub-chip " data-sub="middle-finger">Middle Finger</a>
+        <a href="/wink-lenny-face/" class="sub-chip " data-sub="wink">Wink</a>
+        <a href="/cool-lenny-face/" class="sub-chip " data-sub="cool">Cool</a>
+        <a href="/strong-lenny-face/" class="sub-chip " data-sub="strong">Strong</a>
+        <a href="/hug-lenny-face/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="/love-lenny-face/" class="sub-chip " data-sub="love">Love</a>
+        <a href="/donger-lenny-face/" class="sub-chip " data-sub="donger">Donger</a>
+        <a href="/shocked-lenny-face/" class="sub-chip " data-sub="shocked">Shocked</a>
+        <a href="/sparkle-lenny-face/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="/weapons-lenny-face/" class="sub-chip " data-sub="weapons">Weapons</a>
       </div>
     
 
       <!-- Sub-category Bar: kaomoji -->
       <div class="subbar" id="subbar-kaomoji" data-hub-group="kaomoji" style="display: none;" role="group" aria-label="kaomoji subcategories">
-        <a href="../kaomoji/" class="sub-chip " data-sub="all">All Kaomoji</a>
-        <a href="../kaomoji/cat/" class="sub-chip " data-sub="cat">Cat</a>
-        <a href="../kaomoji/cute/" class="sub-chip " data-sub="cute">Cute</a>
-        <a href="../kaomoji/heart/" class="sub-chip " data-sub="heart">Heart</a>
-        <a href="../kaomoji/happy/" class="sub-chip " data-sub="happy">Happy</a>
-        <a href="../kaomoji/hug/" class="sub-chip " data-sub="hug">Hug</a>
-        <a href="../kaomoji/kiss/" class="sub-chip " data-sub="kiss">Kiss</a>
-        <a href="../kaomoji/sad/" class="sub-chip " data-sub="sad">Sad</a>
-        <a href="../kaomoji/angry/" class="sub-chip " data-sub="angry">Angry</a>
-        <a href="../kaomoji/dog/" class="sub-chip " data-sub="dog">Dog</a>
-        <a href="../kaomoji/bunny/" class="sub-chip " data-sub="bunny">Bunny</a>
-        <a href="../kaomoji/bear/" class="sub-chip " data-sub="bear">Bear</a>
-        <a href="../kaomoji/spider/" class="sub-chip " data-sub="spider">Spider</a>
-        <a href="../kaomoji/begging/" class="sub-chip " data-sub="begging">Begging</a>
-        <a href="../kaomoji/determined/" class="sub-chip " data-sub="determined">Determined</a>
-        <a href="../kaomoji/dancing/" class="sub-chip " data-sub="dancing">Dancing</a>
-        <a href="../kaomoji/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
-        <a href="../kaomoji/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
-        <a href="../kaomoji/shocked/" class="sub-chip " data-sub="shocked">Shocked</a>
-        <a href="../kaomoji/scared/" class="sub-chip " data-sub="scared">Scared</a>
-        <a href="../kaomoji/tired/" class="sub-chip " data-sub="tired">Tired</a>
-        <a href="../kaomoji/nervous/" class="sub-chip " data-sub="nervous">Nervous</a>
-        <a href="../kaomoji/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
+        <a href="/kaomoji/" class="sub-chip " data-sub="all">Kaomoji</a>
+        <a href="/kaomoji/cat/" class="sub-chip " data-sub="cat">Cat</a>
+        <a href="/kaomoji/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="/kaomoji/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="/kaomoji/happy/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="/kaomoji/hug/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="/kaomoji/kiss/" class="sub-chip " data-sub="kiss">Kiss</a>
+        <a href="/kaomoji/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="/kaomoji/angry/" class="sub-chip " data-sub="angry">Angry</a>
+        <a href="/kaomoji/dog/" class="sub-chip " data-sub="dog">Dog</a>
+        <a href="/kaomoji/bunny/" class="sub-chip " data-sub="bunny">Bunny</a>
+        <a href="/kaomoji/bear/" class="sub-chip " data-sub="bear">Bear</a>
+        <a href="/kaomoji/spider/" class="sub-chip " data-sub="spider">Spider</a>
+        <a href="/kaomoji/begging/" class="sub-chip " data-sub="begging">Begging</a>
+        <a href="/kaomoji/determined/" class="sub-chip " data-sub="determined">Determined</a>
+        <a href="/kaomoji/dancing/" class="sub-chip " data-sub="dancing">Dancing</a>
+        <a href="/kaomoji/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
+        <a href="/kaomoji/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="/kaomoji/shocked/" class="sub-chip " data-sub="shocked">Shocked</a>
+        <a href="/kaomoji/scared/" class="sub-chip " data-sub="scared">Scared</a>
+        <a href="/kaomoji/tired/" class="sub-chip " data-sub="tired">Tired</a>
+        <a href="/kaomoji/nervous/" class="sub-chip " data-sub="nervous">Nervous</a>
+        <a href="/kaomoji/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
       </div>
     
 
       <!-- Sub-category Bar: text-faces -->
       <div class="subbar" id="subbar-text-faces" data-hub-group="text-faces" style="display: none;" role="group" aria-label="text-faces subcategories">
-        <a href="../text-faces/" class="sub-chip " data-sub="all">All Text Faces</a>
-        <a href="../text-faces/donger/" class="sub-chip " data-sub="donger">Donger</a>
-        <a href="../text-faces/table-flipping/" class="sub-chip " data-sub="table-flipping">Table Flip</a>
-        <a href="../text-faces/disapproval/" class="sub-chip " data-sub="disapproval">Disapproval</a>
-        <a href="../text-faces/fight/" class="sub-chip " data-sub="fight">Fighting</a>
-        <a href="../text-faces/bear/" class="sub-chip " data-sub="bear">Bear</a>
-        <a href="../text-faces/cat/" class="sub-chip " data-sub="cat">Cat</a>
-        <a href="../text-faces/dog/" class="sub-chip " data-sub="dog">Dog</a>
-        <a href="../text-faces/hug/" class="sub-chip " data-sub="hug">Hug</a>
-        <a href="../text-faces/crying/" class="sub-chip " data-sub="crying">Crying</a>
-        <a href="../text-faces/cool/" class="sub-chip " data-sub="cool">Cool</a>
-        <a href="../text-faces/happy/" class="sub-chip " data-sub="happy">Happy</a>
-        <a href="../text-faces/cute/" class="sub-chip " data-sub="cute">Cute</a>
-        <a href="../text-faces/love/" class="sub-chip " data-sub="love">Love</a>
-        <a href="../text-faces/sad/" class="sub-chip " data-sub="sad">Sad</a>
-        <a href="../text-faces/confused/" class="sub-chip " data-sub="confused">Confused</a>
-        <a href="../text-faces/blushing/" class="sub-chip " data-sub="blushing">Blushing</a>
-        <a href="../text-faces/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
-        <a href="../text-faces/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
-        <a href="../text-faces/gaming/" class="sub-chip " data-sub="gaming">Gaming</a>
-        <a href="../text-faces/funny/" class="sub-chip " data-sub="funny">Funny</a>
+        <a href="/text-faces/" class="sub-chip " data-sub="all">Text Faces</a>
+        <a href="/text-faces/donger/" class="sub-chip " data-sub="donger">Donger</a>
+        <a href="/text-faces/table-flipping/" class="sub-chip " data-sub="table-flipping">Table Flip</a>
+        <a href="/text-faces/disapproval/" class="sub-chip " data-sub="disapproval">Disapproval</a>
+        <a href="/text-faces/fight/" class="sub-chip " data-sub="fight">Fighting</a>
+        <a href="/text-faces/bear/" class="sub-chip " data-sub="bear">Bear</a>
+        <a href="/text-faces/cat/" class="sub-chip " data-sub="cat">Cat</a>
+        <a href="/text-faces/dog/" class="sub-chip " data-sub="dog">Dog</a>
+        <a href="/text-faces/hug/" class="sub-chip " data-sub="hug">Hug</a>
+        <a href="/text-faces/crying/" class="sub-chip " data-sub="crying">Crying</a>
+        <a href="/cool-lenny-face/" class="sub-chip " data-sub="cool">Cool</a>
+        <a href="/text-faces/happy/" class="sub-chip " data-sub="happy">Happy</a>
+        <a href="/text-faces/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="/text-faces/love/" class="sub-chip " data-sub="love">Love</a>
+        <a href="/text-faces/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="/text-faces/confused/" class="sub-chip " data-sub="confused">Confused</a>
+        <a href="/text-faces/blushing/" class="sub-chip " data-sub="blushing">Blushing</a>
+        <a href="/text-faces/sleepy/" class="sub-chip " data-sub="sleepy">Sleepy</a>
+        <a href="/text-faces/shrug/" class="sub-chip " data-sub="shrug">Shrug</a>
+        <a href="/text-faces/gaming/" class="sub-chip " data-sub="gaming">Gaming</a>
+        <a href="/text-faces/funny/" class="sub-chip " data-sub="funny">Funny</a>
       </div>
     
 
       <!-- Sub-category Bar: emoticons -->
       <div class="subbar" id="subbar-emoticons" data-hub-group="emoticons" style="display: flex;" role="group" aria-label="emoticons subcategories">
-        <a href="../emoticons/" class="sub-chip active" data-sub="all">All Emoticons</a>
-        <a href="../emoticons/laughing/" class="sub-chip " data-sub="laughing">Laughing</a>
-        <a href="../emoticons/smiley/" class="sub-chip " data-sub="smiley">Smiley</a>
-        <a href="../emoticons/winky/" class="sub-chip " data-sub="winky">Winky</a>
-        <a href="../emoticons/sad/" class="sub-chip " data-sub="sad">Sad</a>
-        <a href="../emoticons/mad/" class="sub-chip " data-sub="mad">Mad</a>
-        <a href="../emoticons/annoyed/" class="sub-chip " data-sub="annoyed">Annoyed</a>
-        <a href="../emoticons/kissy/" class="sub-chip " data-sub="kissy">Kissy</a>
-        <a href="../emoticons/heart/" class="sub-chip " data-sub="heart">Heart</a>
-        <a href="../emoticons/cute/" class="sub-chip " data-sub="cute">Cute</a>
-        <a href="../emoticons/creepy/" class="sub-chip " data-sub="creepy">Creepy</a>
+        <a href="/emoticons/" class="sub-chip active" data-sub="all">Emoticons</a>
+        <a href="/emoticons/laughing/" class="sub-chip " data-sub="laughing">Laughing</a>
+        <a href="/emoticons/smiley/" class="sub-chip " data-sub="smiley">Smiley</a>
+        <a href="/emoticons/winky/" class="sub-chip " data-sub="winky">Winky</a>
+        <a href="/emoticons/sad/" class="sub-chip " data-sub="sad">Sad</a>
+        <a href="/emoticons/mad/" class="sub-chip " data-sub="mad">Mad</a>
+        <a href="/emoticons/annoyed/" class="sub-chip " data-sub="annoyed">Annoyed</a>
+        <a href="/emoticons/kissy/" class="sub-chip " data-sub="kissy">Kissy</a>
+        <a href="/emoticons/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="/emoticons/cute/" class="sub-chip " data-sub="cute">Cute</a>
+        <a href="/emoticons/creepy/" class="sub-chip " data-sub="creepy">Creepy</a>
       </div>
     
 
       <!-- Sub-category Bar: symbols -->
       <div class="subbar" id="subbar-symbols" data-hub-group="symbols" style="display: none;" role="group" aria-label="symbols subcategories">
-        <a href="../symbols/" class="sub-chip " data-sub="all">All Symbols</a>
-        <a href="../symbols/heart/" class="sub-chip " data-sub="heart">Heart</a>
-        <a href="../symbols/star/" class="sub-chip " data-sub="star">Star</a>
-        <a href="../symbols/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
-        <a href="../symbols/flower/" class="sub-chip " data-sub="flower">Flower</a>
-        <a href="../symbols/moon/" class="sub-chip " data-sub="moon">Moon</a>
-        <a href="../symbols/skull/" class="sub-chip " data-sub="skull">Skull</a>
-        <a href="../symbols/crown/" class="sub-chip " data-sub="crown">Crown</a>
-        <a href="../symbols/weapons/" class="sub-chip " data-sub="weapons">Weapons</a>
-        <a href="../symbols/bow/" class="sub-chip " data-sub="bow">Bow</a>
-        <a href="../symbols/music/" class="sub-chip " data-sub="music">Music</a>
-        <a href="../symbols/butterfly/" class="sub-chip " data-sub="butterfly">Butterfly</a>
-        <a href="../symbols/fire/" class="sub-chip " data-sub="fire">Fire</a>
-        <a href="../symbols/snowflake/" class="sub-chip " data-sub="snowflake">Snowflake</a>
-        <a href="../symbols/sun/" class="sub-chip " data-sub="sun">Sun</a>
-        <a href="../symbols/check-mark/" class="sub-chip " data-sub="check-mark">Check Marks</a>
-        <a href="../symbols/bullet-point/" class="sub-chip " data-sub="bullet-point">Bullet Points</a>
-        <a href="../symbols/cross/" class="sub-chip " data-sub="cross">Crosses</a>
-        <a href="../symbols/arrow/" class="sub-chip " data-sub="arrow">Arrows</a>
+        <a href="/symbols/" class="sub-chip " data-sub="all">Symbols</a>
+        <a href="/symbols/heart/" class="sub-chip " data-sub="heart">Heart</a>
+        <a href="/symbols/star/" class="sub-chip " data-sub="star">Star</a>
+        <a href="/symbols/sparkle/" class="sub-chip " data-sub="sparkle">Sparkle</a>
+        <a href="/symbols/flower/" class="sub-chip " data-sub="flower">Flower</a>
+        <a href="/symbols/moon/" class="sub-chip " data-sub="moon">Moon</a>
+        <a href="/symbols/skull/" class="sub-chip " data-sub="skull">Skull</a>
+        <a href="/symbols/crown/" class="sub-chip " data-sub="crown">Crown</a>
+        <a href="/symbols/weapons/" class="sub-chip " data-sub="weapons">Weapons</a>
+        <a href="/symbols/bow/" class="sub-chip " data-sub="bow">Bow</a>
+        <a href="/symbols/music/" class="sub-chip " data-sub="music">Music</a>
+        <a href="/symbols/butterfly/" class="sub-chip " data-sub="butterfly">Butterfly</a>
+        <a href="/symbols/fire/" class="sub-chip " data-sub="fire">Fire</a>
+        <a href="/symbols/snowflake/" class="sub-chip " data-sub="snowflake">Snowflake</a>
+        <a href="/symbols/sun/" class="sub-chip " data-sub="sun">Sun</a>
+        <a href="/symbols/check-mark/" class="sub-chip " data-sub="check-mark">Check Marks</a>
+        <a href="/symbols/bullet-point/" class="sub-chip " data-sub="bullet-point">Bullet Points</a>
+        <a href="/symbols/cross/" class="sub-chip " data-sub="cross">Crosses</a>
+        <a href="/symbols/arrow/" class="sub-chip " data-sub="arrow">Arrows</a>
       </div>
     
 
       <!-- Sub-category Bar: aesthetic -->
       <div class="subbar" id="subbar-aesthetic" data-hub-group="aesthetic" style="display: none;" role="group" aria-label="aesthetic subcategories">
-        <a href="../aesthetic/" class="sub-chip " data-sub="all">All Aesthetic</a>
-        <a href="../aesthetic/discord-bio/" class="sub-chip " data-sub="discord-bio">Discord Bios</a>
-        <a href="../aesthetic/instagram-bio/" class="sub-chip " data-sub="instagram-bio">Instagram Bios</a>
-        <a href="../aesthetic/tiktok-bio/" class="sub-chip " data-sub="tiktok-bio">TikTok Bios</a>
-        <a href="../aesthetic/dividers/" class="sub-chip " data-sub="dividers">Aesthetic Dividers</a>
-        <a href="../aesthetic/borders/" class="sub-chip " data-sub="borders">Fancy Borders</a>
-        <a href="../aesthetic/emoji-combos/" class="sub-chip " data-sub="emoji-combos">Emoji Combos</a>
-        <a href="../aesthetic/bio-templates/" class="sub-chip " data-sub="bio-templates">Bio Templates</a>
-        <a href="../aesthetic/symbols/" class="sub-chip " data-sub="symbols">Aesthetic Symbols</a>
+        <a href="/aesthetic/" class="sub-chip " data-sub="all">Aesthetic Bios</a>
+        <a href="/aesthetic/discord-bio/" class="sub-chip " data-sub="discord-bio">Discord Bios</a>
+        <a href="/aesthetic/instagram-bio/" class="sub-chip " data-sub="instagram-bio">Instagram Bios</a>
+        <a href="/aesthetic/tiktok-bio/" class="sub-chip " data-sub="tiktok-bio">TikTok Bios</a>
+        <a href="/aesthetic/dividers/" class="sub-chip " data-sub="dividers">Aesthetic Dividers</a>
+        <a href="/aesthetic/borders/" class="sub-chip " data-sub="borders">Fancy Borders</a>
+        <a href="/aesthetic/emoji-combos/" class="sub-chip " data-sub="emoji-combos">Emoji Combos</a>
+        <a href="/aesthetic/bio-templates/" class="sub-chip " data-sub="bio-templates">Bio Templates</a>
+        <a href="/aesthetic/symbols/" class="sub-chip " data-sub="symbols">Aesthetic Symbols</a>
       </div>
     
 
@@ -530,13 +531,13 @@
       <div class="face-meta">
         <span class="face-tag">Classic Smiley With Nose</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-)`, `Classic Smiley With Nose`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-)`, `Classic Smiley With Nose`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -553,13 +554,13 @@
       <div class="face-meta">
         <span class="face-tag">Simple Happy Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:)`, `Simple Happy Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:)`, `Simple Happy Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -576,13 +577,13 @@
       <div class="face-meta">
         <span class="face-tag">Inverted Reverse Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(:`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(:`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(:`, `Inverted Reverse Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(:`, `Inverted Reverse Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(:`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(:`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -599,13 +600,13 @@
       <div class="face-meta">
         <span class="face-tag">Square Bracket Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:]`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:]`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:]`, `Square Bracket Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:]`, `Square Bracket Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:]`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:]`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -622,13 +623,13 @@
       <div class="face-meta">
         <span class="face-tag">Equal Sign Eyes Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=)`, `Equal Sign Eyes Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=)`, `Equal Sign Eyes Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -645,13 +646,13 @@
       <div class="face-meta">
         <span class="face-tag">Classic Wink Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;-)`, `Classic Wink Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;-)`, `Classic Wink Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -668,13 +669,13 @@
       <div class="face-meta">
         <span class="face-tag">Simple Quick Wink</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;)`, `Simple Quick Wink`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;)`, `Simple Quick Wink`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -691,13 +692,13 @@
       <div class="face-meta">
         <span class="face-tag">Laughing Big Wink</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;D`, `Laughing Big Wink`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;D`, `Laughing Big Wink`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -714,13 +715,13 @@
       <div class="face-meta">
         <span class="face-tag">Winking Tongue Out</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;-P`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`;-P`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;-P`, `Winking Tongue Out`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`;-P`, `Winking Tongue Out`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;-P`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`;-P`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -737,13 +738,13 @@
       <div class="face-meta">
         <span class="face-tag">Big Laugh Grin</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-D`, `Big Laugh Grin`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-D`, `Big Laugh Grin`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -760,13 +761,13 @@
       <div class="face-meta">
         <span class="face-tag">Open Mouth Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:D`, `Open Mouth Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:D`, `Open Mouth Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -783,13 +784,13 @@
       <div class="face-meta">
         <span class="face-tag">Squinting Laugh XD</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`XD`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`XD`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`XD`, `Squinting Laugh XD`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`XD`, `Squinting Laugh XD`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`XD`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`XD`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -806,13 +807,13 @@
       <div class="face-meta">
         <span class="face-tag">Playful Lowercase xD</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`xD`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`xD`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`xD`, `Playful Lowercase xD`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`xD`, `Playful Lowercase xD`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`xD`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`xD`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -829,13 +830,13 @@
       <div class="face-meta">
         <span class="face-tag">Uncontrollable Laugh xDD</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`xDD`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`xDD`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`xDD`, `Uncontrollable Laugh xDD`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`xDD`, `Uncontrollable Laugh xDD`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`xDD`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`xDD`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -852,13 +853,13 @@
       <div class="face-meta">
         <span class="face-tag">Double Line Eyes Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=D`, `Double Line Eyes Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=D`, `Double Line Eyes Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -875,13 +876,13 @@
       <div class="face-meta">
         <span class="face-tag">Classic Sad Frown</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-(`, `Classic Sad Frown`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-(`, `Classic Sad Frown`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -898,13 +899,13 @@
       <div class="face-meta">
         <span class="face-tag">Simple Sad Frown</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:(`, `Simple Sad Frown`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:(`, `Simple Sad Frown`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -921,13 +922,13 @@
       <div class="face-meta">
         <span class="face-tag">Square Bracket Frown</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:[`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:[`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:[`, `Square Bracket Frown`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:[`, `Square Bracket Frown`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:[`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:[`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -944,13 +945,13 @@
       <div class="face-meta">
         <span class="face-tag">Equal Sign Sad Frown</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=(`, `Equal Sign Sad Frown`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=(`, `Equal Sign Sad Frown`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -967,13 +968,13 @@
       <div class="face-meta">
         <span class="face-tag">Crying Tear Frown</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:&#039;-(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:&#039;-(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:&#039;-(`, `Crying Tear Frown`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:&#039;-(`, `Crying Tear Frown`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:&#039;-(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:&#039;-(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -990,13 +991,13 @@
       <div class="face-meta">
         <span class="face-tag">Single Tear Cry</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:&#039;(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:&#039;(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:&#039;(`, `Single Tear Cry`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:&#039;(`, `Single Tear Cry`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:&#039;(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:&#039;(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1013,13 +1014,13 @@
       <div class="face-meta">
         <span class="face-tag">Horizontal Shocked Gasp</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`D:`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`D:`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`D:`, `Horizontal Shocked Gasp`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`D:`, `Horizontal Shocked Gasp`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`D:`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`D:`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1036,13 +1037,13 @@
       <div class="face-meta">
         <span class="face-tag">Mad Grump Angry</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:-(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:-(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:-(`, `Mad Grump Angry`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:-(`, `Mad Grump Angry`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:-(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:-(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1059,13 +1060,13 @@
       <div class="face-meta">
         <span class="face-tag">Angry Brows Glare</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:(`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:(`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:(`, `Angry Brows Glare`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:(`, `Angry Brows Glare`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:(`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:(`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1082,13 +1083,13 @@
       <div class="face-meta">
         <span class="face-tag">Roaring Screaming Mad</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:O`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:O`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:O`, `Roaring Screaming Mad`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:O`, `Roaring Screaming Mad`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:O`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:O`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1105,13 +1106,13 @@
       <div class="face-meta">
         <span class="face-tag">Annoyed Skeptic Smirk</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-/`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-/`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-/`, `Annoyed Skeptic Smirk`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-/`, `Annoyed Skeptic Smirk`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-/`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-/`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1128,13 +1129,13 @@
       <div class="face-meta">
         <span class="face-tag">Unsure Slanted Pout</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-\`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-\`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-\`, `Unsure Slanted Pout`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-\`, `Unsure Slanted Pout`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-\`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-\`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1151,13 +1152,13 @@
       <div class="face-meta">
         <span class="face-tag">Straight Face Neutral</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-|`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-|`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-|`, `Straight Face Neutral`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-|`, `Straight Face Neutral`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-|`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-|`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1174,13 +1175,13 @@
       <div class="face-meta">
         <span class="face-tag">Kissing Smooch Nose</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-*`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-*`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-*`, `Kissing Smooch Nose`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-*`, `Kissing Smooch Nose`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-*`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-*`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1197,13 +1198,13 @@
       <div class="face-meta">
         <span class="face-tag">Quick Sweet Kiss</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:*`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:*`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:*`, `Quick Sweet Kiss`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:*`, `Quick Sweet Kiss`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:*`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:*`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1220,13 +1221,13 @@
       <div class="face-meta">
         <span class="face-tag">Classic Text Heart</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;3`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;3`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;3`, `Classic Text Heart`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;3`, `Classic Text Heart`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;3`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;3`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1243,13 +1244,13 @@
       <div class="face-meta">
         <span class="face-tag">Broken Heart Shattered</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;/3`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;/3`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;/3`, `Broken Heart Shattered`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;/3`, `Broken Heart Shattered`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;/3`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;/3`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1266,13 +1267,13 @@
       <div class="face-meta">
         <span class="face-tag">Double Sized Heart</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;33`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&lt;33`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;33`, `Double Sized Heart`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&lt;33`, `Double Sized Heart`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;33`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&lt;33`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1289,13 +1290,13 @@
       <div class="face-meta">
         <span class="face-tag">Surprised Gasp Mouth</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-O`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-O`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-O`, `Surprised Gasp Mouth`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-O`, `Surprised Gasp Mouth`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-O`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-O`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1312,13 +1313,13 @@
       <div class="face-meta">
         <span class="face-tag">Open Mouth Surprised</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:O`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:O`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:O`, `Open Mouth Surprised`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:O`, `Open Mouth Surprised`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:O`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:O`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1335,13 +1336,13 @@
       <div class="face-meta">
         <span class="face-tag">Devil Grin Mischief</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:-)`, `Devil Grin Mischief`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:-)`, `Devil Grin Mischief`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1358,13 +1359,13 @@
       <div class="face-meta">
         <span class="face-tag">Little Devil Smirk</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`&gt;:)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:)`, `Little Devil Smirk`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`&gt;:)`, `Little Devil Smirk`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`&gt;:)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1381,13 +1382,13 @@
       <div class="face-meta">
         <span class="face-tag">Devil Horns Grin</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`3:-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`3:-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`3:-)`, `Devil Horns Grin`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`3:-)`, `Devil Horns Grin`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`3:-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`3:-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1404,13 +1405,13 @@
       <div class="face-meta">
         <span class="face-tag">Angel Halo Innocent</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`O:-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`O:-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`O:-)`, `Angel Halo Innocent`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`O:-)`, `Angel Halo Innocent`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`O:-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`O:-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1427,13 +1428,13 @@
       <div class="face-meta">
         <span class="face-tag">Angel Saint Halo</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`O:)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`O:)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`O:)`, `Angel Saint Halo`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`O:)`, `Angel Saint Halo`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`O:)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`O:)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1450,13 +1451,13 @@
       <div class="face-meta">
         <span class="face-tag">Cute Kitten Smile</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-3`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-3`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-3`, `Cute Kitten Smile`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-3`, `Cute Kitten Smile`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-3`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-3`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1473,13 +1474,13 @@
       <div class="face-meta">
         <span class="face-tag">Simple Cat Face :3</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:3`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:3`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:3`, `Simple Cat Face :3`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:3`, `Simple Cat Face :3`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:3`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:3`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1496,13 +1497,13 @@
       <div class="face-meta">
         <span class="face-tag">Equal Sign Kitty Face</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=3`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`=3`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=3`, `Equal Sign Kitty Face`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`=3`, `Equal Sign Kitty Face`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=3`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`=3`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1519,13 +1520,13 @@
       <div class="face-meta">
         <span class="face-tag">Playful Tongue Out Nose</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-P`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-P`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-P`, `Playful Tongue Out Nose`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-P`, `Playful Tongue Out Nose`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-P`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-P`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1542,13 +1543,13 @@
       <div class="face-meta">
         <span class="face-tag">Tongue Out Silly</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:P`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:P`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:P`, `Tongue Out Silly`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:P`, `Tongue Out Silly`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:P`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:P`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1565,13 +1566,13 @@
       <div class="face-meta">
         <span class="face-tag">Derp Tongue Left</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-b`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-b`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-b`, `Derp Tongue Left`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-b`, `Derp Tongue Left`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-b`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-b`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1588,13 +1589,13 @@
       <div class="face-meta">
         <span class="face-tag">Glasses Nerd Smart</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8-)`, `Glasses Nerd Smart`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8-)`, `Glasses Nerd Smart`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1611,13 +1612,13 @@
       <div class="face-meta">
         <span class="face-tag">Cool Sunglasses Guy</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`B-)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`B-)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`B-)`, `Cool Sunglasses Guy`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`B-)`, `Cool Sunglasses Guy`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`B-)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`B-)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1634,13 +1635,13 @@
       <div class="face-meta">
         <span class="face-tag">Glasses Big Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8-D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8-D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8-D`, `Glasses Big Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8-D`, `Glasses Big Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8-D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8-D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1657,13 +1658,13 @@
       <div class="face-meta">
         <span class="face-tag">Wide Eyed Glasses Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`8D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8D`, `Wide Eyed Glasses Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`8D`, `Wide Eyed Glasses Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`8D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1680,13 +1681,13 @@
       <div class="face-meta">
         <span class="face-tag">Hyphen Squint Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`x-D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`x-D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`x-D`, `Hyphen Squint Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`x-D`, `Hyphen Squint Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`x-D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`x-D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1703,13 +1704,13 @@
       <div class="face-meta">
         <span class="face-tag">Capital Hard Laugh X-D</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`X-D`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`X-D`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`X-D`, `Capital Hard Laugh X-D`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`X-D`, `Capital Hard Laugh X-D`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`X-D`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`X-D`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1726,13 +1727,13 @@
       <div class="face-meta">
         <span class="face-tag">Smirking Grin Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-&gt;`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-&gt;`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-&gt;`, `Smirking Grin Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-&gt;`, `Smirking Grin Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-&gt;`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-&gt;`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1749,13 +1750,13 @@
       <div class="face-meta">
         <span class="face-tag">Double Chin Big Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-))`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`:-))`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-))`, `Double Chin Big Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`:-))`, `Double Chin Big Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-))`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`:-))`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1772,13 +1773,13 @@
       <div class="face-meta">
         <span class="face-tag">Slapping Knee Ecstatic Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ヾ(≧▽≦*)o`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ヾ(≧▽≦*)o`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ヾ(≧▽≦*)o`, `Slapping Knee Ecstatic Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ヾ(≧▽≦*)o`, `Slapping Knee Ecstatic Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ヾ(≧▽≦*)o`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ヾ(≧▽≦*)o`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1795,13 +1796,13 @@
       <div class="face-meta">
         <span class="face-tag">Wide Open Mouth Hysterical Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( ≧ᗜ≦)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( ≧ᗜ≦)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( ≧ᗜ≦)`, `Wide Open Mouth Hysterical Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( ≧ᗜ≦)`, `Wide Open Mouth Hysterical Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( ≧ᗜ≦)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( ≧ᗜ≦)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1818,13 +1819,13 @@
       <div class="face-meta">
         <span class="face-tag">Throwing Confetti Laughter</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(ﾉ´ヮ)ﾉ*: ･ﾟ`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(ﾉ´ヮ)ﾉ*: ･ﾟ`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(ﾉ´ヮ)ﾉ*: ･ﾟ`, `Throwing Confetti Laughter`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(ﾉ´ヮ)ﾉ*: ･ﾟ`, `Throwing Confetti Laughter`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(ﾉ´ヮ)ﾉ*: ･ﾟ`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(ﾉ´ヮ)ﾉ*: ･ﾟ`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1841,13 +1842,13 @@
       <div class="face-meta">
         <span class="face-tag">Pure Happy Hearty Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(＾▽＾)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(＾▽＾)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(＾▽＾)`, `Pure Happy Hearty Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(＾▽＾)`, `Pure Happy Hearty Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(＾▽＾)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(＾▽＾)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1864,13 +1865,13 @@
       <div class="face-meta">
         <span class="face-tag">Cheering Star Burst Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(⌒▽⌒)☆`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(⌒▽⌒)☆`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(⌒▽⌒)☆`, `Cheering Star Burst Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(⌒▽⌒)☆`, `Cheering Star Burst Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(⌒▽⌒)☆`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(⌒▽⌒)☆`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1887,13 +1888,13 @@
       <div class="face-meta">
         <span class="face-tag">Cute Kitten Squeeze Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(≧ω≦)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(≧ω≦)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(≧ω≦)`, `Cute Kitten Squeeze Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(≧ω≦)`, `Cute Kitten Squeeze Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(≧ω≦)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(≧ω≦)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1910,13 +1911,13 @@
       <div class="face-meta">
         <span class="face-tag">Cheerful Round Eyed Chuckle</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(o^▽^o)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(o^▽^o)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(o^▽^o)`, `Cheerful Round Eyed Chuckle`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(o^▽^o)`, `Cheerful Round Eyed Chuckle`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(o^▽^o)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(o^▽^o)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1933,13 +1934,13 @@
       <div class="face-meta">
         <span class="face-tag">Ecstatic Squealing Laughter</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(*≧ω≦*)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(*≧ω≦*)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(*≧ω≦*)`, `Ecstatic Squealing Laughter`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(*≧ω≦*)`, `Ecstatic Squealing Laughter`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(*≧ω≦*)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(*≧ω≦*)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1956,13 +1957,13 @@
       <div class="face-meta">
         <span class="face-tag">Giggling Behind Hands</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( *´艸｀)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( *´艸｀)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( *´艸｀)`, `Giggling Behind Hands`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( *´艸｀)`, `Giggling Behind Hands`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( *´艸｀)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( *´艸｀)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -1979,13 +1980,13 @@
       <div class="face-meta">
         <span class="face-tag">Bursting Out Laughing Loud</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ꉂ(ˊᗜˋ*)`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`ꉂ(ˊᗜˋ*)`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ꉂ(ˊᗜˋ*)`, `Bursting Out Laughing Loud`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`ꉂ(ˊᗜˋ*)`, `Bursting Out Laughing Loud`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ꉂ(ˊᗜˋ*)`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`ꉂ(ˊᗜˋ*)`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -2002,13 +2003,13 @@
       <div class="face-meta">
         <span class="face-tag">Double Hand Fist Pump Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(𐭪 &gt; ᴗ &lt;)𐭪`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`(𐭪 &gt; ᴗ &lt;)𐭪`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(𐭪 &gt; ᴗ &lt;)𐭪`, `Double Hand Fist Pump Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`(𐭪 &gt; ᴗ &lt;)𐭪`, `Double Hand Fist Pump Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(𐭪 &gt; ᴗ &lt;)𐭪`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`(𐭪 &gt; ᴗ &lt;)𐭪`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -2025,13 +2026,13 @@
       <div class="face-meta">
         <span class="face-tag">Blushing Soft Warm Giggles</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( ˶ˆᗜˆ˵ )`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`( ˶ˆᗜˆ˵ )`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( ˶ˆᗜˆ˵ )`, `Blushing Soft Warm Giggles`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`( ˶ˆᗜˆ˵ )`, `Blushing Soft Warm Giggles`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( ˶ˆᗜˆ˵ )`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`( ˶ˆᗜˆ˵ )`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -2048,13 +2049,13 @@
       <div class="face-meta">
         <span class="face-tag">Echoing Deep Belly Laugh</span>
         <div class="face-actions" onclick="event.stopPropagation()">
-          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`((´∀｀*))`)" title="Add to favorites">
+          <button type="button" class="face-action-btn" onclick="event.stopPropagation(); toggleFavAction(`((´∀｀*))`)" title="❤️ Favorites">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </button>
-          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`((´∀｀*))`, `Echoing Deep Belly Laugh`)" title="Share this text face">
+          <button type="button" class="face-share-btn" onclick="event.stopPropagation(); shareGlyph(`((´∀｀*))`, `Echoing Deep Belly Laugh`)" title="Share Collection With Friends">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           </button>
-          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`((´∀｀*))`, this)" title="Copy text face">
+          <button type="button" class="face-copy-btn" onclick="event.stopPropagation(); copyGlyph(`((´∀｀*))`, this)" title="Copy">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span>Copy</span>
           </button>
@@ -2069,55 +2070,55 @@
       <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem;">Explore Related Categories</h3>
       <div class="category-card-grid">
         
-          <a href="../emoticons/smiley.html" class="cat-card">
+          <a href="/emoticons/smiley/" class="cat-card">
             <span class="cat-sample">:-)</span>
             <span class="cat-name">Smiley Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/winky.html" class="cat-card">
+          <a href="/emoticons/winky/" class="cat-card">
             <span class="cat-sample">;-)</span>
             <span class="cat-name">Winky Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/laughing.html" class="cat-card">
+          <a href="/emoticons/laughing/" class="cat-card">
             <span class="cat-sample">:-D</span>
             <span class="cat-name">Laughing Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/sad.html" class="cat-card">
+          <a href="/emoticons/sad/" class="cat-card">
             <span class="cat-sample">:-(</span>
             <span class="cat-name">Sad Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/mad.html" class="cat-card">
+          <a href="/emoticons/mad/" class="cat-card">
             <span class="cat-sample">>:-( </span>
             <span class="cat-name">Mad Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/kissy.html" class="cat-card">
+          <a href="/emoticons/kissy/" class="cat-card">
             <span class="cat-sample">:-*</span>
             <span class="cat-name">Kissy Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/heart.html" class="cat-card">
+          <a href="/emoticons/heart/" class="cat-card">
             <span class="cat-sample"><3</span>
             <span class="cat-name">Heart Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/cute.html" class="cat-card">
+          <a href="/emoticons/cute/" class="cat-card">
             <span class="cat-sample">:-3</span>
             <span class="cat-name">Cute Emoticons</span>
             <span class="cat-count">Explore</span>
           </a>
         
-          <a href="../emoticons/creepy.html" class="cat-card">
+          <a href="/emoticons/creepy/" class="cat-card">
             <span class="cat-sample">:-O</span>
             <span class="cat-name">Creepy Emoticons</span>
             <span class="cat-count">Explore</span>
@@ -2195,35 +2196,35 @@
         <div class="footer-col">
           <h4>Lenny Face Styles</h4>
           <ul>
-            <li><a href="../cute-lenny-face.html">Cute Lenny Face</a></li>
-            <li><a href="../sad-lenny-face.html">Sad Lenny Face</a></li>
-            <li><a href="../happy-lenny-face.html">Happy Lenny Face</a></li>
-            <li><a href="../angry-lenny-face.html">Angry Lenny Face</a></li>
-            <li><a href="../crying-lenny-face.html">Crying Lenny Face</a></li>
-            <li><a href="../middle-finger.html">Middle Finger Face</a></li>
-            <li><a href="../shrug-lenny-face.html">Shrug Lenny Face</a></li>
+            <li><a href="/cute-lenny-face/">Cute Lenny Face</a></li>
+            <li><a href="/sad-lenny-face/">Sad Lenny Face</a></li>
+            <li><a href="/happy-lenny-face/">Happy Lenny Face</a></li>
+            <li><a href="/angry-lenny-face/">Angry Lenny Face</a></li>
+            <li><a href="/crying-lenny-face/">Crying Lenny Face</a></li>
+            <li><a href="/middle-finger/">Middle Finger Face</a></li>
+            <li><a href="/shrug-lenny-face/">Shrug Lenny Face</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Kaomoji & Emoticons</h4>
+          <h4>Kaomoji &amp; Emoticons</h4>
           <ul>
-            <li><a href="../kaomoji/cat.html">Cat Kaomoji</a></li>
-            <li><a href="../kaomoji/hug.html">Hug Kaomoji</a></li>
-            <li><a href="../kaomoji/heart.html">Heart Kaomoji</a></li>
-            <li><a href="../emoticons/smiley.html">Smiley Emoticons</a></li>
-            <li><a href="../text-faces/donger.html">Donger Faces</a></li>
-            <li><a href="../text-faces/table-flipping.html">Table Flip Faces</a></li>
+            <li><a href="/kaomoji/cat/">Cat Kaomoji</a></li>
+            <li><a href="/kaomoji/hug/">Hug Kaomoji</a></li>
+            <li><a href="/kaomoji/heart/">Heart Kaomoji</a></li>
+            <li><a href="/emoticons/smiley/">Smiley Emoticons</a></li>
+            <li><a href="/text-faces/donger/">Donger Faces</a></li>
+            <li><a href="/text-faces/table-flipping/">Table Flip Faces</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Symbols & Aesthetic</h4>
+          <h4>Symbols &amp; Aesthetic</h4>
           <ul>
-            <li><a href="../symbols/heart.html">Heart Symbols</a></li>
-            <li><a href="../symbols/sparkle.html">Sparkle Symbols</a></li>
-            <li><a href="../aesthetic/discord-bio.html">Discord Bios</a></li>
-            <li><a href="../aesthetic/dividers.html">Aesthetic Dividers</a></li>
+            <li><a href="/symbols/heart/">Heart Symbols</a></li>
+            <li><a href="/symbols/sparkle/">Sparkle Symbols</a></li>
+            <li><a href="/aesthetic/discord-bio/">Discord Bios</a></li>
+            <li><a href="/aesthetic/dividers/">Aesthetic Dividers</a></li>
             <li><a href="../sitemap.xml">XML Sitemap</a></li>
           </ul>
         </div>
@@ -2231,7 +2232,7 @@
 
       <div class="footer-bottom">
         <p>&copy; 2026 Lenny Face Pro. All rights reserved.</p>
-        <p><a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a> | <a href="../about.html">About Us</a></p>
+        <p><a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a> | <a href="/about.html">About Us</a></p>
       </div>
     </div>
   </footer>
