@@ -547,6 +547,7 @@ function generatePageTemplate({
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="VmxQTantpEptJAnqkzIcP6v3y7JRJKNY8yr8hI4F6gw" />
   
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(metaDescription)}">
