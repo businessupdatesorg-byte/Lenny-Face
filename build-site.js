@@ -549,6 +549,16 @@ function generatePageTemplate({
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="VmxQTantpEptJAnqkzIcP6v3y7JRJKNY8yr8hI4F6gw" />
   
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MT2W2Q3BE1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MT2W2Q3BE1');
+  </script>
+  
   <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(metaDescription)}">
   <meta name="robots" content="index, follow">
